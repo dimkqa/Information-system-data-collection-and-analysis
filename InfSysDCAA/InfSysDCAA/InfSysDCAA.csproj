@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DataBase\class.database.cs" />
+    <Compile Include="Classes\File\class.file.cs" />
     <Compile Include="Forms\DataBase\AddEditDeviceForms\DeviceStepOne.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,12 +65,13 @@
     <Compile Include="Forms\DataBase\DeleteForms\DeviceDeleted.Designer.cs">
       <DependentUpon>DeviceDeleted.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Other\FirstRun\FirstRun.cs">
+    <Compile Include="Forms\Other\Auth\Auth.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Other\FirstRun\FirstRun.Designer.cs">
-      <DependentUpon>FirstRun.cs</DependentUpon>
+    <Compile Include="Forms\Other\Auth\Auth.Designer.cs">
+      <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Other\Auth\class.authorization.cs" />
     <Compile Include="Forms\Reports\ReportForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,8 +92,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Other\FirstRun\FirstRun.resx">
-      <DependentUpon>FirstRun.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Other\Auth\Auth.resx">
+      <DependentUpon>Auth.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -102,6 +106,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -117,8 +122,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Forms\DataBase\DeviceDataForms\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Files\Params\Parametrs_v1.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Files\Params\Parametrs_v2.xml" />
+    <None Include="Resources\add_property.png" />
+    <None Include="Resources\system_information.png" />
+    <None Include="Resources\database.png" />
+    <None Include="Resources\line.png" />
+    <None Include="Resources\circuit.png" />
+    <None Include="Resources\high_importance.png" />
+    <None Include="Resources\nas.png" />
+    <None Include="Resources\Info-52.png" />
+    <None Include="Resources\file.png" />
+    <None Include="Resources\login2.png" />
+    <None Include="Resources\login1.png" />
+    <None Include="Resources\login.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
