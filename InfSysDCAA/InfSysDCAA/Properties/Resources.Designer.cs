@@ -93,6 +93,16 @@ namespace InfSysDCAA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap engineering {
+            get {
+                object obj = ResourceManager.GetObject("engineering", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap file {
             get {
                 object obj = ResourceManager.GetObject("file", resourceCulture);
@@ -176,6 +186,16 @@ namespace InfSysDCAA.Properties {
         internal static System.Drawing.Bitmap system_information {
             get {
                 object obj = ResourceManager.GetObject("system_information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap system_information1 {
+            get {
+                object obj = ResourceManager.GetObject("system_information1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

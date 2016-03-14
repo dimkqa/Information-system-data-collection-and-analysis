@@ -9,16 +9,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Forms.FirstRun;
+using InfSysDCAA.Forms.Settings;
+using InfSysDCAA.Files.Params;
+using InfSysDCAA.Classes.Collecting_information.System_information;
+using InfSysDCAA.Forms.About_system_PC;
 
 namespace InfSysDCAA
 {
+            
     public partial class Main : Form
     {
         private Auth _authForm;
+        private SetingsApps _settingsForm;
+        private AboutOfSystem sysInfoForms;
 
         private const int MaxWidth    = 1336;
         private const int MaxHeight   = 768;
         protected bool authUser = false;
+        
+        private static readonly string currentUserName = Environment.UserName;
+
         public Main()
         {
 
@@ -28,6 +38,11 @@ namespace InfSysDCAA
             MinimumSize = new Size(MaxWidth, MaxHeight);
             MaximumSize = new Size(MaxWidth, MaxHeight);
             Text = Convert.ToString("Информационная система сбора и анализа данных");
+            collect_system_info.getSystemInformation();
+            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Config");
+            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Reports");
+            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Raw Files");
+            PathFinder.CreateAllPath();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -60,6 +75,18 @@ namespace InfSysDCAA
 
                 }
             }
+        }
+
+        private void connectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _settingsForm = new SetingsApps();
+            _settingsForm.Show();
+        }
+
+        private void infoComputerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            sysInfoForms = new AboutOfSystem();
+            sysInfoForms.Show();
         }
     }
 }

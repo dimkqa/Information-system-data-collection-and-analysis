@@ -10,9 +10,16 @@ using MySql.Data.MySqlClient;
 namespace InfSysDCAA.Classes.MySQLDataBase
 {
     class MySQLDataBase
-    {
+    {/*
+        
         private MySqlConnectionStringBuilder _ConnectParamsString;
         private MySqlConnection _Connection;
+        private MySQLDataBase instance;
+
+        public MySQLDataBase GetInstance()
+        {
+            return instance ?? (instance = new MySQLDataBase());
+        }
 
         /// <summary>
         /// Конструктор заносит в структуру MysqlConnectionStringBuilder параметры
@@ -71,7 +78,7 @@ namespace InfSysDCAA.Classes.MySQLDataBase
             {
 
             }
-        }
+        }*/
 
     }
 }
