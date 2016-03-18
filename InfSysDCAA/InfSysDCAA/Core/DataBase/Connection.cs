@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-
-namespace InfSysDCAA.Classes.MySQLDataBase
+﻿namespace InfSysDCAA.Core.DataBase
 {
-    class MySQLDataBase
+    class MySqlDataBase
     {/*
         
         private MySqlConnectionStringBuilder _ConnectParamsString;

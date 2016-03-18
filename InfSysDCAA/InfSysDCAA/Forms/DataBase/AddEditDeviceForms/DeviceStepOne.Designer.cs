@@ -1,4 +1,4 @@
-﻿namespace InfSysDCAA.Forms.Other.DataBase.AddDeviceForms
+﻿namespace InfSysDCAA.Forms.DataBase.AddEditDeviceForms
 {
     partial class DeviceStepOne
     {

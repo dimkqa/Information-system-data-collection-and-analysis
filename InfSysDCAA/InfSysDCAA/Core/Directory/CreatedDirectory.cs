@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InfSysDCAA.Classes.Files
+﻿namespace InfSysDCAA.Core.Directory
 {
     /// <summary>
     /// Класс содержит методы для работы с папками:
@@ -14,7 +7,7 @@ namespace InfSysDCAA.Classes.Files
     /// </summary>
     public class FolderOperations
     {
-        public string path
+        public string Path
         {
             get { return _path; }
             set { _path = value; }
@@ -24,7 +17,7 @@ namespace InfSysDCAA.Classes.Files
 
         public FolderOperations(string path)
         {
-            this.path = path;
+            this.Path = path;
         }
         /// <summary>
         /// Метод создаёт директорию по указанному пути (путь передаётся в конструктор
@@ -33,9 +26,9 @@ namespace InfSysDCAA.Classes.Files
         /// </summary>
         public void CreateFolderInPath()
         {
-            if (!Directory.Exists(path))
+            if (!System.IO.Directory.Exists(Path))
             {
-                Directory.CreateDirectory(path);
+                System.IO.Directory.CreateDirectory(Path);
             }
         }
     }

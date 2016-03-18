@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using InfSysDCAA.Forms.Other.Auth;
 
-namespace InfSysDCAA.Forms.FirstRun
+namespace InfSysDCAA.Forms.Auth
 {
     public partial class Auth : Form
     {
@@ -34,7 +26,7 @@ namespace InfSysDCAA.Forms.FirstRun
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new System.Drawing.Size(Width, Height);//Минимальный размер окна
             MaximumSize = new System.Drawing.Size(Width, Height);//Максимальный размер окна
-            statusFunctionalityPartsOfTheWindow(false);
+            StatusFunctionalityPartsOfTheWindow(false);
             //testMemberAuth();
             _parentForm.TopMost = false;
             _currentForm = this;
@@ -54,7 +46,7 @@ namespace InfSysDCAA.Forms.FirstRun
             password_field.Enabled = false;
 
             _authorization = new Authorization(login, password);
-            if (!_authorization.scanLogin())
+            if (!_authorization.ScanLogin())
             {
                 MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.None);
                 login_field.Enabled = true;
@@ -63,7 +55,7 @@ namespace InfSysDCAA.Forms.FirstRun
             else
             {
                 _currentForm.Hide();
-               statusFunctionalityPartsOfTheWindow(true);
+               StatusFunctionalityPartsOfTheWindow(true);
             }
         }
         /// <summary>
@@ -80,7 +72,7 @@ namespace InfSysDCAA.Forms.FirstRun
         /// Отвечает за доступ к функциональным полям главной формы
         /// </summary>
         /// <param name="enabled">BOOL включено или выключено.</param>
-        private void statusFunctionalityPartsOfTheWindow(bool enabled)
+        private void StatusFunctionalityPartsOfTheWindow(bool enabled)
         {
             if (!enabled)
             {

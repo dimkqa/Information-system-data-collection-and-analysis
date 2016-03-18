@@ -11,6 +11,22 @@
     <AssemblyName>InfSysDCAA</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Dmitriy\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +47,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>D1AFAB086266921434D09BEB86CBEF1CBEC85731</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>InfSysDCAA_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -47,19 +75,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Collecting information\System\collect-system-info.cs" />
-    <Compile Include="Classes\DataBase\class.database.cs" />
-    <Compile Include="Classes\DocumentsAndFolders\Folders\operationsWithFolders.cs" />
-    <Compile Include="Classes\DocumentsAndFolders\Documents\operationsWithHTMLFiles.cs" />
-    <Compile Include="Classes\DocumentsAndFolders\Documents\operationsWithXMLFiles.cs" />
-    <Compile Include="Classes\DocumentsAndFolders\Documents\workWithFiles.cs" />
-    <Compile Include="Classes\Settings\Settings.cs" />
-    <Compile Include="Files\Config\database.Designer.cs">
+    <Compile Include="Core\Validation\Validation.cs" />
+    <Compile Include="Properties\Application data\application.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>application.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Application data\DataBase.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>DataBase.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Application data\systemInformation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>systemInformation.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Collecting information\System\collect-system-info.cs" />
+    <Compile Include="Core\DataBase\Connection.cs" />
+    <Compile Include="Core\Directory\CreatedDirectory.cs" />
+    <Compile Include="Core\Files\operationsWithHTMLFiles.cs" />
+    <Compile Include="Core\Files\operationsWithXMLFiles.cs" />
+    <Compile Include="Core\Files\workWithFiles.cs" />
+    <Compile Include="Core\Settings\Settings.cs" />
+    <Compile Include="Core\Config\database.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>database.settings</DependentUpon>
     </Compile>
-    <Compile Include="Files\Params\PathFinder.cs" />
+    <Compile Include="Core\Directory\PathFinder.cs" />
     <Compile Include="Forms\About system PC\AboutOfSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,7 +177,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Files\Config\database.settings">
+    <None Include="InfSysDCAA_TemporaryKey.pfx" />
+    <None Include="Properties\Application data\application.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>application.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Application data\DataBase.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>DataBase.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Application data\systemInformation.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>systemInformation.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Core\Config\database.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>database.Designer.cs</LastGenOutput>
     </None>
@@ -153,12 +210,14 @@
   <ItemGroup>
     <Folder Include="Forms\DataBase\DeviceDataForms\" />
     <Folder Include="Forms\Other\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Files\Params\Parametrs_v1.xml">
+    <Content Include="Core\Params\Parametrs_v1.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Files\Params\Parametrs_v2.xml" />
+    <Content Include="Core\Params\Parametrs_v2.xml" />
+    <None Include="Resources\Info-521.png" />
     <None Include="Resources\system_information1.png" />
     <None Include="Resources\engineering.png" />
     <None Include="Resources\add_property.png" />
@@ -173,6 +232,23 @@
     <None Include="Resources\login2.png" />
     <None Include="Resources\login1.png" />
     <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>Клиентский профиль .NET Framework 3.5 с пакетом обновления 1 %28SP1%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

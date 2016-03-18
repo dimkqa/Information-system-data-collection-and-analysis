@@ -8,42 +8,39 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InfSysDCAA.Properties {
+namespace InfSysDCAA.Properties.Application_data {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class application : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static application defaultInstance = ((application)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new application())));
         
-        public static Settings Default {
+        public static application Default {
             get {
                 return defaultInstance;
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0.01a")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
             }
-            set {
-                this["Version"] = value;
-            }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int CountOpeningProgramm {
+        public int OpenProgramm {
             get {
-                return ((int)(this["CountOpeningProgramm"]));
+                return ((int)(this["OpenProgramm"]));
             }
             set {
-                this["CountOpeningProgramm"] = value;
+                this["OpenProgramm"] = value;
             }
         }
     }

@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-
-namespace InfSysDCAA.Classes.Files
+﻿namespace InfSysDCAA.Core.Files
 {
-    public abstract class workWithFiles
+    public abstract class WorkWithFiles
     {
-        public abstract string pathFile { get; set; }
-        public abstract string nameFile { get; set; }
+        public abstract string PathFile { get; set; }
+        public abstract string NameFile { get; set; }
         /* public string pathFile
         {
             get { return _pathFile; }
@@ -23,7 +16,7 @@ namespace InfSysDCAA.Classes.Files
             set { _nameFile = value; }
         }*/
 
-        protected abstract string fullPath { get; }
+        protected abstract string FullPath { get; }
 
         /// <summary>
         /// FileInfo возврщает специфический объект

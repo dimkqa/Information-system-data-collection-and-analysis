@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InfSysDCAA.Files.Config {
+namespace InfSysDCAA.Core.Config {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

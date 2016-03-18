@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using InfSysDCAA.Classes.Collecting_information.System_information;
+using InfSysDCAA.Core.Collecting_information.System;
 
 namespace InfSysDCAA.Forms.About_system_PC
 {
@@ -16,9 +16,13 @@ namespace InfSysDCAA.Forms.About_system_PC
     {
         public AboutOfSystem()
         {
-
             InitializeComponent();
-            foreach (KeyValuePair<string, string> kvp in collect_system_info.ForAboutComputerInformation)
+            PrintSystemInfo();
+        }
+
+        private void PrintSystemInfo()
+        {
+            foreach (KeyValuePair<string, string> kvp in CollectSystemInfo.ForAboutComputerInformation)
             {
                 string key = Convert.ToString(kvp.Key);
                 string param = Convert.ToString(kvp.Value);

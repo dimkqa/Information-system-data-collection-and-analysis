@@ -1,4 +1,4 @@
-﻿namespace InfSysDCAA.Forms.Other.DataBase.DeleteForms
+﻿namespace InfSysDCAA.Forms.DataBase.DeleteForms
 {
     partial class DeviceDeleted
     {

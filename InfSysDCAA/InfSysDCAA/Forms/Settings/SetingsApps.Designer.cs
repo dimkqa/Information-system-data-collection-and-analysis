@@ -32,10 +32,10 @@
             this.data_db_grpbx = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.selected_db_combobox = new System.Windows.Forms.ComboBox();
-            this.password_db_field = new System.Windows.Forms.TextBox();
-            this.user_db_field = new System.Windows.Forms.TextBox();
-            this.host_db_field = new System.Windows.Forms.TextBox();
-            this.name_db_field = new System.Windows.Forms.TextBox();
+            this.field_db_password = new System.Windows.Forms.TextBox();
+            this.field_db_user = new System.Windows.Forms.TextBox();
+            this.field_db_host = new System.Windows.Forms.TextBox();
+            this.field_db_name = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -49,10 +49,10 @@
             // 
             this.data_db_grpbx.Controls.Add(this.label5);
             this.data_db_grpbx.Controls.Add(this.selected_db_combobox);
-            this.data_db_grpbx.Controls.Add(this.password_db_field);
-            this.data_db_grpbx.Controls.Add(this.user_db_field);
-            this.data_db_grpbx.Controls.Add(this.host_db_field);
-            this.data_db_grpbx.Controls.Add(this.name_db_field);
+            this.data_db_grpbx.Controls.Add(this.field_db_password);
+            this.data_db_grpbx.Controls.Add(this.field_db_user);
+            this.data_db_grpbx.Controls.Add(this.field_db_host);
+            this.data_db_grpbx.Controls.Add(this.field_db_name);
             this.data_db_grpbx.Controls.Add(this.label4);
             this.data_db_grpbx.Controls.Add(this.label3);
             this.data_db_grpbx.Controls.Add(this.label2);
@@ -84,33 +84,33 @@
             this.selected_db_combobox.Size = new System.Drawing.Size(182, 21);
             this.selected_db_combobox.TabIndex = 8;
             // 
-            // password_db_field
+            // field_db_password
             // 
-            this.password_db_field.Location = new System.Drawing.Point(122, 124);
-            this.password_db_field.Name = "password_db_field";
-            this.password_db_field.Size = new System.Drawing.Size(182, 20);
-            this.password_db_field.TabIndex = 7;
+            this.field_db_password.Location = new System.Drawing.Point(122, 124);
+            this.field_db_password.Name = "field_db_password";
+            this.field_db_password.Size = new System.Drawing.Size(182, 20);
+            this.field_db_password.TabIndex = 7;
             // 
-            // user_db_field
+            // field_db_user
             // 
-            this.user_db_field.Location = new System.Drawing.Point(122, 98);
-            this.user_db_field.Name = "user_db_field";
-            this.user_db_field.Size = new System.Drawing.Size(182, 20);
-            this.user_db_field.TabIndex = 6;
+            this.field_db_user.Location = new System.Drawing.Point(122, 98);
+            this.field_db_user.Name = "field_db_user";
+            this.field_db_user.Size = new System.Drawing.Size(182, 20);
+            this.field_db_user.TabIndex = 6;
             // 
-            // host_db_field
+            // field_db_host
             // 
-            this.host_db_field.Location = new System.Drawing.Point(122, 72);
-            this.host_db_field.Name = "host_db_field";
-            this.host_db_field.Size = new System.Drawing.Size(182, 20);
-            this.host_db_field.TabIndex = 5;
+            this.field_db_host.Location = new System.Drawing.Point(122, 72);
+            this.field_db_host.Name = "field_db_host";
+            this.field_db_host.Size = new System.Drawing.Size(182, 20);
+            this.field_db_host.TabIndex = 5;
             // 
-            // name_db_field
+            // field_db_name
             // 
-            this.name_db_field.Location = new System.Drawing.Point(122, 46);
-            this.name_db_field.Name = "name_db_field";
-            this.name_db_field.Size = new System.Drawing.Size(182, 20);
-            this.name_db_field.TabIndex = 4;
+            this.field_db_name.Location = new System.Drawing.Point(122, 46);
+            this.field_db_name.Name = "field_db_name";
+            this.field_db_name.Size = new System.Drawing.Size(182, 20);
+            this.field_db_name.TabIndex = 4;
             // 
             // label4
             // 
@@ -166,7 +166,7 @@
             this.btn_save_settings_connect.TabIndex = 2;
             this.btn_save_settings_connect.Text = "Сохранить настройки";
             this.btn_save_settings_connect.UseVisualStyleBackColor = true;
-            this.btn_save_settings_connect.Click += new System.EventHandler(this.button2_Click);
+            this.btn_save_settings_connect.Click += new System.EventHandler(this.btn_save_settings_connect_Click);
             // 
             // SetingsApps
             // 
@@ -192,15 +192,15 @@
         private System.Windows.Forms.GroupBox data_db_grpbx;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox selected_db_combobox;
-        private System.Windows.Forms.TextBox password_db_field;
-        private System.Windows.Forms.TextBox user_db_field;
-        private System.Windows.Forms.TextBox host_db_field;
-        private System.Windows.Forms.TextBox name_db_field;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_test_connect;
         private System.Windows.Forms.Button btn_save_settings_connect;
+        private System.Windows.Forms.TextBox field_db_password;
+        private System.Windows.Forms.TextBox field_db_user;
+        private System.Windows.Forms.TextBox field_db_host;
+        private System.Windows.Forms.TextBox field_db_name;
     }
 }

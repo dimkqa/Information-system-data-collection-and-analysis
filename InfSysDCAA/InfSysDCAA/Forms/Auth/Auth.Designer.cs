@@ -1,4 +1,4 @@
-﻿namespace InfSysDCAA.Forms.FirstRun
+﻿namespace InfSysDCAA.Forms.Auth
 {
     partial class Auth
     {

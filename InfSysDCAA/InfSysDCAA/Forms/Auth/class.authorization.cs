@@ -1,39 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
 
-namespace InfSysDCAA.Forms.Other.Auth
+namespace InfSysDCAA.Forms.Auth
 {
     class Authorization
     {
         private Main _formMain;
 
-        private string login;
-        private string password;
-        private string trueLogin = "dimkqa";
-        private string truePassword = "dimkqa";
+        private string _login;
+        private string _password;
+        private string _trueLogin = "dimkqa";
+        private string _truePassword = "dimkqa";
 
         public Authorization(string login, string password)
         {
-            this.login = login;
-            this.password = password;
+            this._login = login;
+            this._password = password;
         }
 
-        public bool scanLogin()
+        public bool ScanLogin()
         {
             
             return true;
         }
 
-        public bool scanPassword(string password)
+        public bool ScanPassword(string password)
         {
             return true;
         }
 
-        private bool testLogin(string login)
+        private bool TestLogin(string login)
         {
             List<string> pattern = new List<string>();
             pattern.Add(@"\^[a-z]+$");
@@ -41,14 +36,14 @@ namespace InfSysDCAA.Forms.Other.Auth
             return true;
         }
 
-        private bool testPassword(string password)
+        private bool TestPassword(string password)
         {
             return true;
         }
 
         public bool Signin()
         {
-            if (login == trueLogin && password == truePassword)
+            if (_login == _trueLogin && _password == _truePassword)
                 return true;
             return false;
         }

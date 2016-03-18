@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Xml.Linq;
+using InfSysDCAA.Core.Directory;
 
-namespace InfSysDCAA.Classes.Files
+namespace InfSysDCAA.Core.Files
 {
 
-    public class operationsWithXML : workWithFiles
+    public class OperationsWithXml : WorkWithFiles
     {
         private string _pathFile;
         private string _nameFile;
@@ -20,33 +15,33 @@ namespace InfSysDCAA.Classes.Files
         /// Максимум может быть 
         /// </summary>
  
-        public override string pathFile
+        public override string PathFile
         {
             get { return _pathFile; }
             set { _pathFile = value; }
         }
 
-        public override string nameFile
+        public override string NameFile
         {
             get { return _nameFile; }
             set { _nameFile = value; }
         }
 
-        protected override string fullPath
+        protected override string FullPath
         {
-            get { return Path.Combine(_pathFile + @"\" + nameFile); }
+            get { return Path.Combine(_pathFile + @"\" + NameFile); }
         }
 
-        private FolderOperations _FO;
+        private FolderOperations _fo;
 
         /// <summary>
         /// В конструктор передаётся полный путь до файла. 
         /// </summary>
         /// <param name="path">String - Путь до XML файла</param>
-        public operationsWithXML(string path, string name)
+        public OperationsWithXml(string path, string name)
         {
-            pathFile = path;
-            nameFile = name;
+            PathFile = path;
+            NameFile = name;
         }
 
         /// <summary>
@@ -55,15 +50,15 @@ namespace InfSysDCAA.Classes.Files
         /// <returns></returns>
         public override int CreateFile()
         {
-            if (!Directory.Exists(pathFile))
+            if (!System.IO.Directory.Exists(PathFile))
             {
-                _FO = new FolderOperations(pathFile);
-                _FO.CreateFolderInPath();
+                _fo = new FolderOperations(PathFile);
+                _fo.CreateFolderInPath();
             }
             else
             {
                 //Полный путь до файла, включая сам файл
-                FileInfo fileInfo = new FileInfo(fullPath);
+                FileInfo fileInfo = new FileInfo(FullPath);
                 fileInfo.Create();
             }
             return 0;
@@ -77,7 +72,7 @@ namespace InfSysDCAA.Classes.Files
         /// <returns></returns>
         public override bool FindFile()
         {
-            if (!File.Exists(fullPath))
+            if (!File.Exists(FullPath))
             {
                 CreateFile();
                 return true;

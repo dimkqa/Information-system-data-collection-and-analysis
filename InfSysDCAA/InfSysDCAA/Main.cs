@@ -5,51 +5,55 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using InfSysDCAA.Forms.FirstRun;
+using InfSysDCAA.Core.Collecting_information.System;
+using InfSysDCAA.Core.Directory;
 using InfSysDCAA.Forms.Settings;
-using InfSysDCAA.Files.Params;
-using InfSysDCAA.Classes.Collecting_information.System_information;
 using InfSysDCAA.Forms.About_system_PC;
+using InfSysDCAA.Forms.Auth;
 
 namespace InfSysDCAA
 {
-            
     public partial class Main : Form
     {
         private Auth _authForm;
-        private SetingsApps _settingsForm;
-        private AboutOfSystem sysInfoForms;
+        private SetingsApps _settingsForm = new SetingsApps();
+        private AboutOfSystem _sysInfoForms;
 
         private const int MaxWidth    = 1336;
         private const int MaxHeight   = 768;
         protected bool authUser = false;
-        
-        private static readonly string currentUserName = Environment.UserName;
+        private string _version;
+
+        private static readonly string CurrentUserName = Environment.UserName;
 
         public Main()
         {
 
             InitializeComponent();
 
+            //Счётчик запуска программы
+            Properties.Settings.Default.CountOpeningProgramm++;
+            Properties.Settings.Default.Save();
+
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new Size(MaxWidth, MaxHeight);
             MaximumSize = new Size(MaxWidth, MaxHeight);
             Text = Convert.ToString("Информационная система сбора и анализа данных");
-            collect_system_info.getSystemInformation();
-            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Config");
-            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Reports");
-            PathFinder.AllPath.Add(@"C:\Users\" + currentUserName + @"\Documents\InfSysDCAA\Raw Files");
+            CollectSystemInfo.GetSystemInformation();
+            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Config");
+            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Reports");
+            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Raw Files");
             PathFinder.CreateAllPath();
+            AuthUser();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-            _authForm = new Auth(this);
-            _authForm.FormClosed += FirstRunFormClosed;
-            _authForm.Show(this);
+
         }
 
         private void FirstRunFormClosed(object sender, FormClosedEventArgs e)
@@ -79,14 +83,30 @@ namespace InfSysDCAA
 
         private void connectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _settingsForm = new SetingsApps();
-            _settingsForm.Show();
+                _settingsForm = new SetingsApps();
+                _settingsForm.Show();
         }
 
         private void infoComputerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sysInfoForms = new AboutOfSystem();
-            sysInfoForms.Show();
+            _sysInfoForms = new AboutOfSystem();
+            _sysInfoForms.Show();
+        }
+
+        private void button_logout_Click(object sender, EventArgs e)
+        {
+            //Выход из системы, остановка всех выполняемых операций
+            //Открытие окна авторизации
+            //LogOutUser();
+            AuthUser();
+        }
+        
+        //Открывает форму авторизации
+        private void AuthUser()
+        {
+            _authForm = new Auth(this);
+            _authForm.FormClosed += FirstRunFormClosed;
+            _authForm.Show(this);
         }
     }
 }
