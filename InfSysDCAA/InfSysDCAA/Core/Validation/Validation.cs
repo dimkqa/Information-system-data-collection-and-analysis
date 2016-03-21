@@ -47,8 +47,6 @@ namespace InfSysDCAA.Core.Validation
                 {
                     {fieldNamePresenter[fieldName], "Пустое поле"}
                 });
-               // sv.Add(fieldNamePresenter[fieldName], "Пустая строка");
-               // errors.Add(fieldName, sv);
                 return errors;
             }
             if (!FindOfPattern(fieldName, fieldText))

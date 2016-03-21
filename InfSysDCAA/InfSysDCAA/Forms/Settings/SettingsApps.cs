@@ -60,6 +60,7 @@ namespace InfSysDCAA.Forms.Settings
                             field.Clear();
                         }
                     }
+                    //re
                     foreach (KeyValuePair<string, string> errMsg in err.Value)
                     {
                         messageError += errMsg.Key + " " + errMsg.Value + "\r\n";

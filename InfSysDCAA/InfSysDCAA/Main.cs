@@ -6,11 +6,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
 using InfSysDCAA.Core.Directory;
+using InfSysDCAA.Core.Validation;
 using InfSysDCAA.Forms.Settings;
 using InfSysDCAA.Forms.About_system_PC;
 using InfSysDCAA.Forms.Auth;
@@ -20,21 +22,16 @@ namespace InfSysDCAA
     public partial class Main : Form
     {
         private Auth _authForm;
-        private SetingsApps _settingsForm = new SetingsApps();
-        private AboutOfSystem _sysInfoForms;
 
         private const int MaxWidth    = 1336;
         private const int MaxHeight   = 768;
         protected bool authUser = false;
-        private string _version;
 
         private static readonly string CurrentUserName = Environment.UserName;
 
         public Main()
         {
-
             InitializeComponent();
-
             //Счётчик запуска программы
             Properties.Settings.Default.CountOpeningProgramm++;
             Properties.Settings.Default.Save();
@@ -43,6 +40,7 @@ namespace InfSysDCAA
             MinimumSize = new Size(MaxWidth, MaxHeight);
             MaximumSize = new Size(MaxWidth, MaxHeight);
             Text = Convert.ToString("Информационная система сбора и анализа данных");
+
             CollectSystemInfo.GetSystemInformation();
             PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Config");
             PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Reports");
@@ -83,14 +81,12 @@ namespace InfSysDCAA
 
         private void connectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                _settingsForm = new SetingsApps();
-                _settingsForm.Show();
+            FormChecker.ControlOpenedForm(typeof(SetingsApps));
         }
 
         private void infoComputerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _sysInfoForms = new AboutOfSystem();
-            _sysInfoForms.Show();
+            FormChecker.ControlOpenedForm(typeof (AboutOfSystem));
         }
 
         private void button_logout_Click(object sender, EventArgs e)
