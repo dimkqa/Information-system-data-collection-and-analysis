@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\EventLog\EventLog.cs" />
     <Compile Include="Core\Validation\FormChecker.cs" />
     <Compile Include="Core\Validation\Validation.cs" />
     <Compile Include="Properties\Application data\application.Designer.cs">
