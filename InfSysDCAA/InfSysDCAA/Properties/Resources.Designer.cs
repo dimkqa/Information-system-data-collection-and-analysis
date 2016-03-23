@@ -63,6 +63,16 @@ namespace InfSysDCAA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_device {
+            get {
+                object obj = ResourceManager.GetObject("add_device", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_property {
             get {
                 object obj = ResourceManager.GetObject("add_property", resourceCulture);

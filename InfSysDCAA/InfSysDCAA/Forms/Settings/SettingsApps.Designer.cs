@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btn_test_connect = new System.Windows.Forms.Button();
-            this.btn_save_settings_connect = new System.Windows.Forms.Button();
+            this.button_test_settings = new System.Windows.Forms.Button();
+            this.button_save_settings = new System.Windows.Forms.Button();
             this.data_db_grpbx.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,33 +148,33 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Выбор базы даных";
             // 
-            // btn_test_connect
+            // button_test_settings
             // 
-            this.btn_test_connect.Location = new System.Drawing.Point(12, 172);
-            this.btn_test_connect.Name = "btn_test_connect";
-            this.btn_test_connect.Size = new System.Drawing.Size(150, 23);
-            this.btn_test_connect.TabIndex = 1;
-            this.btn_test_connect.Text = "Проверить соединение";
-            this.btn_test_connect.UseVisualStyleBackColor = true;
-            this.btn_test_connect.Click += new System.EventHandler(this.btn_test_connect_Click);
+            this.button_test_settings.Location = new System.Drawing.Point(12, 172);
+            this.button_test_settings.Name = "button_test_settings";
+            this.button_test_settings.Size = new System.Drawing.Size(150, 23);
+            this.button_test_settings.TabIndex = 1;
+            this.button_test_settings.Text = "Проверить соединение";
+            this.button_test_settings.UseVisualStyleBackColor = true;
+            this.button_test_settings.Click += new System.EventHandler(this.btn_test_connect_Click);
             // 
-            // btn_save_settings_connect
+            // button_save_settings
             // 
-            this.btn_save_settings_connect.Location = new System.Drawing.Point(174, 172);
-            this.btn_save_settings_connect.Name = "btn_save_settings_connect";
-            this.btn_save_settings_connect.Size = new System.Drawing.Size(148, 23);
-            this.btn_save_settings_connect.TabIndex = 2;
-            this.btn_save_settings_connect.Text = "Сохранить настройки";
-            this.btn_save_settings_connect.UseVisualStyleBackColor = true;
-            this.btn_save_settings_connect.Click += new System.EventHandler(this.btn_save_settings_connect_Click);
+            this.button_save_settings.Location = new System.Drawing.Point(174, 172);
+            this.button_save_settings.Name = "button_save_settings";
+            this.button_save_settings.Size = new System.Drawing.Size(148, 23);
+            this.button_save_settings.TabIndex = 2;
+            this.button_save_settings.Text = "Сохранить настройки";
+            this.button_save_settings.UseVisualStyleBackColor = true;
+            this.button_save_settings.Click += new System.EventHandler(this.btn_save_settings_connect_Click);
             // 
             // SetingsApps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 211);
-            this.Controls.Add(this.btn_save_settings_connect);
-            this.Controls.Add(this.btn_test_connect);
+            this.Controls.Add(this.button_save_settings);
+            this.Controls.Add(this.button_test_settings);
             this.Controls.Add(this.data_db_grpbx);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -196,8 +196,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btn_test_connect;
-        private System.Windows.Forms.Button btn_save_settings_connect;
+        private System.Windows.Forms.Button button_test_settings;
+        private System.Windows.Forms.Button button_save_settings;
         private System.Windows.Forms.TextBox field_db_password;
         private System.Windows.Forms.TextBox field_db_user;
         private System.Windows.Forms.TextBox field_db_host;

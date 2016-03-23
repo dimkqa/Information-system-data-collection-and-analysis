@@ -34,12 +34,13 @@
             this.OperationsInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBarDown = new System.Windows.Forms.ToolStripProgressBar();
             this.topMenu = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addeddatafileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.connectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +49,7 @@
             this.журналОшибокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoComputerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxReportsList = new System.Windows.Forms.GroupBox();
             this.gridViewReportsList = new System.Windows.Forms.DataGridView();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +67,6 @@
             this.label_text_secondname_info = new System.Windows.Forms.Label();
             this.label_text_firstname_info = new System.Windows.Forms.Label();
             this.button_logout = new System.Windows.Forms.Button();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.topMenu.SuspendLayout();
             this.groupBoxReportsList.SuspendLayout();
@@ -105,7 +106,7 @@
             // topMenu
             // 
             this.topMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
+            this.systemToolStripMenuItem,
             this.reportsToolStripMenuItem,
             this.serviceToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -115,18 +116,27 @@
             this.topMenu.TabIndex = 2;
             this.topMenu.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
+            // systemToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addDeviceToolStripMenuItem,
             this.addeddatafileToolStripMenuItem,
-            this.toolStripSeparator1,
+            this.toolStripSeparator4,
             this.connectSettingsToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.выходToolStripMenuItem});
-            this.fileToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.nas;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.fileToolStripMenuItem.Text = "Файл";
+            this.toolStripSeparator3,
+            this.exitToolStripMenuItem});
+            this.systemToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.nas;
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.systemToolStripMenuItem.Text = "Система";
+            // 
+            // addDeviceToolStripMenuItem
+            // 
+            this.addDeviceToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.add_device;
+            this.addDeviceToolStripMenuItem.Name = "addDeviceToolStripMenuItem";
+            this.addDeviceToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.addDeviceToolStripMenuItem.Text = "Добавить устройство";
+            this.addDeviceToolStripMenuItem.Click += new System.EventHandler(this.addDeviceToolStripMenuItem_Click);
             // 
             // addeddatafileToolStripMenuItem
             // 
@@ -134,12 +144,11 @@
             this.addeddatafileToolStripMenuItem.Name = "addeddatafileToolStripMenuItem";
             this.addeddatafileToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.addeddatafileToolStripMenuItem.Text = "Добавить файл даных";
-            this.addeddatafileToolStripMenuItem.Click += new System.EventHandler(this.добавитьОтчётToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(199, 6);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
             // 
             // connectSettingsToolStripMenuItem
             // 
@@ -147,19 +156,19 @@
             this.connectSettingsToolStripMenuItem.Name = "connectSettingsToolStripMenuItem";
             this.connectSettingsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.connectSettingsToolStripMenuItem.Text = "Настройки соединения";
-            this.connectSettingsToolStripMenuItem.Click += new System.EventHandler(this.connectSettingsToolStripMenuItem_Click);
+            this.connectSettingsToolStripMenuItem.Click += new System.EventHandler(this.connectSettingsToolStripMenuItem_Click_1);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator3
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(199, 6);
             // 
-            // выходToolStripMenuItem
+            // exitToolStripMenuItem
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // reportsToolStripMenuItem
             // 
@@ -220,9 +229,16 @@
             // 
             this.infoComputerToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.system_information1;
             this.infoComputerToolStripMenuItem.Name = "infoComputerToolStripMenuItem";
-            this.infoComputerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.infoComputerToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.infoComputerToolStripMenuItem.Text = "О системе...";
             this.infoComputerToolStripMenuItem.Click += new System.EventHandler(this.infoComputerToolStripMenuItem_Click);
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.Info_521;
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // groupBoxReportsList
             // 
@@ -403,13 +419,6 @@
             this.button_logout.UseVisualStyleBackColor = true;
             this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
             // 
-            // справкаToolStripMenuItem
-            // 
-            this.справкаToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.Info_521;
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.справкаToolStripMenuItem.Text = "Справка";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,13 +454,10 @@
         private System.Windows.Forms.ToolStripStatusLabel OperationsInfo;
         private System.Windows.Forms.ToolStripProgressBar statusProgressBarDown;
         private System.Windows.Forms.MenuStrip topMenu;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem statisticsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem журналСобытийToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem журналОшибокToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxReportsList;
         private System.Windows.Forms.DataGridViewTextBoxColumn Number;
         private System.Windows.Forms.DataGridViewTextBoxColumn reportTitle;
@@ -463,7 +469,6 @@
         protected internal System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem serviceToolStripMenuItem;
         public System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        public System.Windows.Forms.ToolStripMenuItem addeddatafileToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox_userInfo;
         private System.Windows.Forms.Label label_status_info;
         private System.Windows.Forms.Label label_secondname_info;
@@ -473,10 +478,15 @@
         private System.Windows.Forms.Label label_text_firstname_info;
         protected internal System.Windows.Forms.Button button_blocked;
         protected internal System.Windows.Forms.Button button_logout;
-        private System.Windows.Forms.ToolStripMenuItem connectSettingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem infoComputerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addDeviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        public System.Windows.Forms.ToolStripMenuItem addeddatafileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem connectSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 
 
     }

@@ -16,8 +16,9 @@ namespace InfSysDCAA.Core.Validation
             {"field_db_host", @"^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$"},
             {"field_db_name", @"^[a-zA-Z][a-zA-Z0-9-_]{3,8}$"},
             {"field_db_user", @"^[a-zA-Z][a-zA-Z0-9-_]{3,8}$"},
-            {"field_db_password", @"^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})$"}
-
+            {"field_db_password", @"^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})$"},
+            {"field_system_login", @"^[a-zA-Z][a-zA-Z0-9-_]{10}$"},
+            {"field_system_password", @"^[a-zA-Z][a-zA-Z0-9-_]{8,15}$"}
         };
         /// <summary>
         /// fieldNamePresenter - Dictionary<string, string> - содержит базовые текстовые конструкции для ошибок
@@ -27,7 +28,9 @@ namespace InfSysDCAA.Core.Validation
             {"field_db_host", "Поле \"Хост базы данных\" содержит ошибки:\r\n"},
             {"field_db_name", "Поле \"Имя базы данных\" содержит ошибки:\r\n"},
             {"field_db_user", "Поле \"Имя пользователя базы данных\" содержит ошибки:\r\n"},
-            {"field_db_password", "Поле \"Пароль\" содержит ошибки:\r\n"}
+            {"field_db_password", "Поле \"Пароль\" содержит ошибки:\r\n"},
+            {"field_system_login", "Поле \"Логин\" содержит ошибки:\r\n"},
+            {"field_system_password", "Поле \"Пароль\" содержит ошибки:\r\n"}
         };
         /// <summary>
         /// Божественный валидатор полей TextBox

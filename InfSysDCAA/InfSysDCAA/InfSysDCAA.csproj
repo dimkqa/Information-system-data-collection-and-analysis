@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Validation\FormChecker.cs" />
+    <Compile Include="Core\Validation\StatusUserUI.cs" />
     <Compile Include="Core\Validation\Validation.cs" />
     <Compile Include="Properties\Application data\application.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -218,6 +219,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Core\Params\Parametrs_v2.xml" />
+    <None Include="Resources\add_device.png" />
     <None Include="Resources\Info-521.png" />
     <None Include="Resources\system_information1.png" />
     <None Include="Resources\engineering.png" />

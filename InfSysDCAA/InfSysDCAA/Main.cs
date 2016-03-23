@@ -21,13 +21,9 @@ namespace InfSysDCAA
 {
     public partial class Main : Form
     {
-        private Auth _authForm;
-
         private const int MaxWidth    = 1336;
         private const int MaxHeight   = 768;
         protected bool authUser = false;
-
-        private static readonly string CurrentUserName = Environment.UserName;
 
         public Main()
         {
@@ -42,26 +38,13 @@ namespace InfSysDCAA
             Text = Convert.ToString("Информационная система сбора и анализа данных");
 
             CollectSystemInfo.GetSystemInformation();
-            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Config");
-            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Reports");
-            PathFinder.AllPath.Add(@"C:\Users\" + CurrentUserName + @"\Documents\InfSysDCAA\Raw Files");
-            PathFinder.CreateAllPath();
+            PathFinder.CreateAllPath(Environment.UserName);
             AuthUser();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void FirstRunFormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void добавитьОтчётToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,16 +62,31 @@ namespace InfSysDCAA
             }
         }
 
-        private void connectSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Открывает форму "Настройки"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void connectSettingsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FormChecker.ControlOpenedForm(typeof(SetingsApps));
         }
 
+        /// <summary>
+        /// Открывает форму "О системе"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void infoComputerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormChecker.ControlOpenedForm(typeof (AboutOfSystem));
         }
 
+        /// <summary>
+        /// Обработка кнопки Logout
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_logout_Click(object sender, EventArgs e)
         {
             //Выход из системы, остановка всех выполняемых операций
@@ -97,12 +95,41 @@ namespace InfSysDCAA
             AuthUser();
         }
         
-        //Открывает форму авторизации
+        /// <summary>
+        /// Открывает форму авторизации
+        /// </summary>
         private void AuthUser()
         {
-            _authForm = new Auth(this);
-            _authForm.FormClosed += FirstRunFormClosed;
-            _authForm.Show(this);
+            FormChecker.ControlOpenedForm(typeof(Auth), this, getFormControls());
+        }
+
+        /// <summary>
+        /// Получает все Control's формы
+        /// </summary>
+        /// <returns>Возвращает List Control'ов</returns>
+        private List<Control> getFormControls()
+        {
+            List<Control> formControls = new List<Control>();
+            foreach (Control c in Controls)
+            {
+                formControls.Add(c);
+            }
+            return formControls;
+        }
+
+        private void addDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// Выход из программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

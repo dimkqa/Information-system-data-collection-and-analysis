@@ -19,7 +19,8 @@ namespace InfSysDCAA.Core.Validation
         private static readonly Dictionary<string, string> FormNamePresenter = new Dictionary<string, string>()
         {
             {"AboutOfSystem", "О системе"},
-            {"SetingsApps", "Настройки системы"}
+            {"SetingsApps", "Настройки системы"},
+            {"Auth","Авторизация"}
         };
 
         private static string _nameOldForm;
@@ -35,10 +36,23 @@ namespace InfSysDCAA.Core.Validation
         {
             return Activator.CreateInstance(className);
         }
+
         /// <summary>
-        /// Осуществляет контроль надо формами
+        /// CreatedNewObjectByClassName - создает и возвращает экземпляр указанного типа, используя конструктор, 
+        /// заданный для этого типа по умолчанию.
         /// </summary>
-        /// <param name="className"></param>
+        /// <param name="className">Type - Имя класса</param>
+        /// <param name="args">Аргументы для конструктора className </param>
+        /// <returns></returns>
+        private static Object CreatedNewObjectByClassName(Type className, object args)
+        {
+            return Activator.CreateInstance(className, args);
+        }
+
+        /// <summary>
+        /// Осуществляет контроль открытых форм
+        /// </summary>
+        /// <param name="className">Имя класса формы</param>
         public static void ControlOpenedForm(Type className)
         {
             if (ClassType == null)
@@ -59,6 +73,21 @@ namespace InfSysDCAA.Core.Validation
                 _newForm.TopMost = true;
                 _newForm.WindowState = FormWindowState.Normal;
             }
+        }
+
+        /// <summary>
+        /// Перегрузка контроля открытых форм - используем аргументы
+        /// </summary>
+        /// <param name="className">Имя класса формы</param>
+        /// <param name="form">Форма</param>
+        /// <param name="formControls">Массив Control'ов</param>
+        public static void ControlOpenedForm(Type className, Form form, List<Control> formControls)
+        {
+            _newForm = (Form)CreatedNewObjectByClassName(className, formControls);
+            _newForm.FormClosed += FormCloseFunctionExit;
+            _newForm.Show();
+            _newForm.TopLevel = true;
+            _newForm.TopMost = true;
         }
 
         /// <summary>
@@ -88,6 +117,11 @@ namespace InfSysDCAA.Core.Validation
         private static void FormCloseFunction(object sender, FormClosedEventArgs e)
         {
             ClassType = null;
+        }
+
+        private static void FormCloseFunctionExit(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
