@@ -103,6 +103,16 @@ namespace InfSysDCAA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap electronics__1_ {
+            get {
+                object obj = ResourceManager.GetObject("electronics (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap engineering {
             get {
                 object obj = ResourceManager.GetObject("engineering", resourceCulture);
@@ -193,9 +203,29 @@ namespace InfSysDCAA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap multiply {
+            get {
+                object obj = ResourceManager.GetObject("multiply", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap nas {
             get {
                 object obj = ResourceManager.GetObject("nas", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus__1_ {
+            get {
+                object obj = ResourceManager.GetObject("plus (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +246,16 @@ namespace InfSysDCAA.Properties {
         internal static System.Drawing.Bitmap system_information1 {
             get {
                 object obj = ResourceManager.GetObject("system_information1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tool_box {
+            get {
+                object obj = ResourceManager.GetObject("tool_box", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

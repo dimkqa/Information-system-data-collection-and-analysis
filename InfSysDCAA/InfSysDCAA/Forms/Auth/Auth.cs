@@ -3,56 +3,61 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Validation;
 using System.Linq;
+using InfSysDCAA.Core.Auth;
 
 namespace InfSysDCAA.Forms.Auth
 {
     public partial class Auth : Form
     {
-        private Authorization _authorization;
-
-
         private const int Width = (int)300;    
         private const int Height = (int)204; 
 
         private List<Control> controlsInForm = new List<Control>();
-
+        private List<TextBox> fields = new List<TextBox>();
         public Auth(List<Control> tmpControlsForm)
         {
             InitializeComponent();
 
-            controlsInForm = tmpControlsForm;
             Text = Convert.ToString("ИСВСК Авторизация");
             StartPosition = FormStartPosition.CenterScreen;
             MinimumSize = new System.Drawing.Size(Width, Height);
             MaximumSize = new System.Drawing.Size(Width, Height);
 
+            controlsInForm = tmpControlsForm;
+            fields.Add(field_system_login);
+            fields.Add(field_system_password);
+
             StatusUserUI.StatusFunctionalityPartsOfTheWindow(tmpControlsForm);
         }
 
         /// <summary>
-        /// Обработка нажатия кнопки входа
+        /// Обработка события при нажатии на кнопку входа.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void button_login_system_Click(object sender, EventArgs e)
         {
-            string login = Convert.ToString(field_system_login.Text);
-            string password = Convert.ToString(field_system_password.Text);
-
-            field_system_login.Enabled = false;
-            field_system_password.Enabled = false;
-
-            _authorization = new Authorization(login, password);
-            if (!_authorization.ScanLogin())
+            //Если валидация успешна
+            if (ValidationFieldTextBox.ValidationFields(fields))
             {
-                MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.None);
-                field_system_login.Enabled = true;
-                field_system_password.Enabled = true;
-            }
-            else
-            {
-                this.Hide();
-                StatusUserUI.StatusFunctionalityPartsOfTheWindow(setAllControlsEnabled(controlsInForm));
+                List<Control> fieldsAuth = new List<Control>()
+                {
+                  field_system_login, field_system_password
+                };
+                string login = Convert.ToString(field_system_login.Text);
+                string password = Convert.ToString(field_system_password.Text);
+                StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
+                authentication uAuth = new authentication(login, password);
+                if (!uAuth.LogIn())
+                {
+                    MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
+                }
+                else
+                {
+                    this.Hide();
+                    StatusUserUI.StatusFunctionalityPartsOfTheWindow(setAllControlsEnabled(controlsInForm));
+                }
             }
         }
 

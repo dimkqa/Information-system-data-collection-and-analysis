@@ -27,8 +27,6 @@ namespace InfSysDCAA.Core.Collecting_information.System
             "Число физических процессоров: ", "Название видеоплаты: ", "Граф. процессор: "
         };
 
-        private static string _oldFileCheckSum;
-        private static string _newFileCheckSum;
         public static void GetSystemInformation()
         {
             ManagementObjectSearcher operatingSystem = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_OperatingSystem");

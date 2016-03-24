@@ -75,9 +75,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Auth\authentication.cs" />
+    <Compile Include="Core\Validation\FieldList.cs" />
     <Compile Include="Core\Validation\FormChecker.cs" />
     <Compile Include="Core\Validation\StatusUserUI.cs" />
     <Compile Include="Core\Validation\Validation.cs" />
+    <Compile Include="Core\Validation\ValidationFieldTextBox.cs" />
+    <Compile Include="Forms\Processing data\ProcesingData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Processing data\ProcesingData.Designer.cs">
+      <DependentUpon>ProcesingData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Application data\application.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -112,23 +121,17 @@
     <Compile Include="Forms\About system PC\AboutOfSystem.Designer.cs">
       <DependentUpon>AboutOfSystem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataBase\AddEditDeviceForms\DeviceStepOne.cs">
+    <Compile Include="Forms\Device\Add or Edit\AddDeviceStepOne.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataBase\AddEditDeviceForms\DeviceStepOne.Designer.cs">
-      <DependentUpon>DeviceStepOne.cs</DependentUpon>
+    <Compile Include="Forms\Device\Add or Edit\AddDeviceStepOne.Designer.cs">
+      <DependentUpon>AddDeviceStepOne.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DataBase\AddEditDeviceForms\DeviceStepTwo.cs">
+    <Compile Include="Forms\Device\Add or Edit\AddDeviceStepTwo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\DataBase\AddEditDeviceForms\DeviceStepTwo.Designer.cs">
-      <DependentUpon>DeviceStepTwo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DataBase\DeleteForms\DeviceDeleted.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DataBase\DeleteForms\DeviceDeleted.Designer.cs">
-      <DependentUpon>DeviceDeleted.cs</DependentUpon>
+    <Compile Include="Forms\Device\Add or Edit\AddDeviceStepTwo.Designer.cs">
+      <DependentUpon>AddDeviceStepTwo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Auth\Auth.cs">
       <SubType>Form</SubType>
@@ -136,7 +139,6 @@
     <Compile Include="Forms\Auth\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Auth\class.authorization.cs" />
     <Compile Include="Forms\Reports\ReportForms.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +164,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Auth\Auth.resx">
       <DependentUpon>Auth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device\Add or Edit\AddDeviceStepOne.resx">
+      <DependentUpon>AddDeviceStepOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Device\Add or Edit\AddDeviceStepTwo.resx">
+      <DependentUpon>AddDeviceStepTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Processing data\ProcesingData.resx">
+      <DependentUpon>ProcesingData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\SettingsApps.resx">
       <DependentUpon>SettingsApps.cs</DependentUpon>
@@ -210,7 +221,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Forms\DataBase\DeviceDataForms\" />
+    <Folder Include="Forms\DataBase\" />
     <Folder Include="Forms\Other\" />
     <Folder Include="Logs\" />
   </ItemGroup>
@@ -219,6 +230,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Core\Params\Parametrs_v2.xml" />
+    <None Include="Resources\multiply.png" />
+    <None Include="Resources\tool_box.png" />
+    <None Include="Resources\plus %281%29.png" />
+    <None Include="Resources\electronics %281%29.png" />
     <None Include="Resources\add_device.png" />
     <None Include="Resources\Info-521.png" />
     <None Include="Resources\system_information1.png" />

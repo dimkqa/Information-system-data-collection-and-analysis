@@ -16,6 +16,7 @@ using InfSysDCAA.Core.Validation;
 using InfSysDCAA.Forms.Settings;
 using InfSysDCAA.Forms.About_system_PC;
 using InfSysDCAA.Forms.Auth;
+using InfSysDCAA.Forms.DataBase.AddEditDeviceForms;
 
 namespace InfSysDCAA
 {
@@ -47,21 +48,6 @@ namespace InfSysDCAA
 
         }
 
-        private void добавитьОтчётToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialogAddedFile = new OpenFileDialog();
-            dialogAddedFile.Multiselect = false;
-            dialogAddedFile.Filter = "Файлы испытаний |*.isvsk";
-            if (dialogAddedFile.ShowDialog() == DialogResult.OK)
-            {
-                StreamReader readFile = new StreamReader(dialogAddedFile.FileName, Encoding.GetEncoding("utf-8"));
-                while (!readFile.EndOfStream)
-                {
-
-                }
-            }
-        }
-
         /// <summary>
         /// Открывает форму "Настройки"
         /// </summary>
@@ -81,6 +67,57 @@ namespace InfSysDCAA
         {
             FormChecker.ControlOpenedForm(typeof (AboutOfSystem));
         }
+
+        /// <summary>
+        /// Открываем форму добавления устройства.
+        /// Состоит из двух форм - добавления данных об устройстве, и его параметров
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+         private void addDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormChecker.ControlOpenedForm(typeof(DeviceStepOne));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+         private void addDeviceFileToolStripMenuItem_Click(object sender, EventArgs e)
+         {
+             OpenFileDialog dialogAddedFile = new OpenFileDialog();
+             dialogAddedFile.Multiselect = false;
+             dialogAddedFile.Filter = "Файлы данных устройства |*.dat";
+             if (dialogAddedFile.ShowDialog() == DialogResult.OK)
+             {
+                 StreamReader readFile = new StreamReader(dialogAddedFile.FileName, Encoding.GetEncoding("utf-8"));
+                 while (!readFile.EndOfStream)
+                 {
+
+                 }
+             }
+         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+         private void addeddatafileToolStripMenuItem_Click(object sender, EventArgs e)
+         {
+             OpenFileDialog dialogAddedFile = new OpenFileDialog();
+             dialogAddedFile.Multiselect = false;
+             dialogAddedFile.Filter = "Файлы испытаний |*.isvsk";
+             if (dialogAddedFile.ShowDialog() == DialogResult.OK)
+             {
+                 StreamReader readFile = new StreamReader(dialogAddedFile.FileName, Encoding.GetEncoding("utf-8"));
+                 while (!readFile.EndOfStream)
+                 {
+
+                 }
+             }
+         }
 
         /// <summary>
         /// Обработка кнопки Logout
@@ -115,11 +152,6 @@ namespace InfSysDCAA
                 formControls.Add(c);
             }
             return formControls;
-        }
-
-        private void addDeviceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
