@@ -38,14 +38,16 @@ namespace InfSysDCAA.Forms.Auth
         private void button_login_system_Click(object sender, EventArgs e)
         {
             //Если валидация успешна
-            if (ValidationFieldTextBox.ValidationFields(fields))
+            if (ValidationField.ValidationFields(fields))
             {
                 List<Control> fieldsAuth = new List<Control>()
                 {
                   field_system_login, field_system_password
                 };
+
                 string login = Convert.ToString(field_system_login.Text);
                 string password = Convert.ToString(field_system_password.Text);
+
                 StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
                 authentication uAuth = new authentication(login, password);
                 if (!uAuth.LogIn())

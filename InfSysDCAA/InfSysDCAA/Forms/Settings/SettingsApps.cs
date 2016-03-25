@@ -44,7 +44,7 @@ namespace InfSysDCAA.Forms.Settings
         private void btn_save_settings_connect_Click(object sender, EventArgs e)
         {
             //Сохранение настроек подключения
-            if(!ValidationFieldTextBox.ValidationFields(fields))
+            if(!ValidationField.ValidationFields(fields))
             {
                  /*foreach (var field in fields)
                  {

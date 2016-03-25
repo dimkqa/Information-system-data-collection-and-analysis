@@ -76,11 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Auth\authentication.cs" />
+    <Compile Include="Core\Params\HandlerParam.cs" />
     <Compile Include="Core\Validation\FieldList.cs" />
     <Compile Include="Core\Validation\FormChecker.cs" />
     <Compile Include="Core\Validation\StatusUserUI.cs" />
     <Compile Include="Core\Validation\Validation.cs" />
-    <Compile Include="Core\Validation\ValidationFieldTextBox.cs" />
+    <Compile Include="Core\Validation\ValidationFields.cs" />
     <Compile Include="Forms\Processing data\ProcesingData.cs">
       <SubType>Form</SubType>
     </Compile>

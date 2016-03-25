@@ -1,4 +1,4 @@
-﻿namespace InfSysDCAA.Forms.ProcessingData
+﻿namespace InfSysDCAA.Forms.Processing_data
 {
     partial class ProcessAnalyseData
     {

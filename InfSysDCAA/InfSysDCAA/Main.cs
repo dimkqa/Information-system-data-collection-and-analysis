@@ -16,7 +16,7 @@ using InfSysDCAA.Core.Validation;
 using InfSysDCAA.Forms.Settings;
 using InfSysDCAA.Forms.About_system_PC;
 using InfSysDCAA.Forms.Auth;
-using InfSysDCAA.Forms.DataBase.AddEditDeviceForms;
+using InfSysDCAA.Forms.Device.Add_or_Edit;
 
 namespace InfSysDCAA
 {
@@ -40,7 +40,8 @@ namespace InfSysDCAA
 
             CollectSystemInfo.GetSystemInformation();
             PathFinder.CreateAllPath(Environment.UserName);
-            AuthUser();
+            //Расскоментируй. Форма авторизации
+            //AuthUser();
         }
 
         private void Main_Load(object sender, EventArgs e)

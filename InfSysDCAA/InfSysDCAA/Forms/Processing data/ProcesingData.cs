@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace InfSysDCAA.Forms.ProcessingData
+﻿namespace InfSysDCAA.Forms.Processing_data
 {
+    using System;
+    using System.Drawing;
+    using System.Windows.Forms;
+
     public partial class ProcessAnalyseData : Form
     {
         private const int Width = (int)150;
@@ -27,7 +21,16 @@ namespace InfSysDCAA.Forms.ProcessingData
 
         private void button_cancel_analyse_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Вы уверены?", "Отменить обработку данных?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (MessageBox.Show("Вы уверены?", "Отменить обработку данных?", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                
+            }
+            else
+            {
+
+            }
+
         }
 
         private void cancel_analyse(object sender, EventArgs e)
