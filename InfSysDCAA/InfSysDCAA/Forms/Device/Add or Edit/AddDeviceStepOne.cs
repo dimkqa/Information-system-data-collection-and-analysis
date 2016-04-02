@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Validation;
+using InfSysDCAA.Core.XML.Devices;
 
 namespace InfSysDCAA.Forms.Device.Add_or_Edit
 {
@@ -10,7 +11,7 @@ namespace InfSysDCAA.Forms.Device.Add_or_Edit
         private const int Width = (int)706;    //Максимальная ширина окна
         private const int Height = (int)242;   //Максимальная высота окна
 
-        private DeviceStepOne open;
+        private DeviceStepOne currentForm;
 
         public DeviceStepOne()
         {
@@ -21,7 +22,7 @@ namespace InfSysDCAA.Forms.Device.Add_or_Edit
             MinimumSize = new System.Drawing.Size(Width, Height);
             MaximumSize = new System.Drawing.Size(Width, Height);
 
-            open = this;
+            currentForm = this;
         }
 
         private void button_save_deviceInfo_Click(object sender, EventArgs e)
@@ -29,9 +30,10 @@ namespace InfSysDCAA.Forms.Device.Add_or_Edit
             //Если все поля верны - пишем в файл. Сохранять бессмысленно.
             if (ValidationField.ValidationFields(getAllTextBoxFields()))
             {
-                open.Close();
+                ///XmlFileCreatorDeviceInfoPart1 dataPar1 = new XmlFileCreatorDeviceInfoPart1();
+                /*currentForm.Close();
                 FormChecker.ControlOpenedForm(typeof (DeviceStepTwo));
-            }
+            */}
         }
 
         /// <summary>

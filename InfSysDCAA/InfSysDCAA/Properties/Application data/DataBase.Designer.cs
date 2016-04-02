@@ -26,60 +26,48 @@ namespace InfSysDCAA.Properties.Application_data {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string databaseHost {
+        public string field_db_host {
             get {
-                return ((string)(this["databaseHost"]));
+                return ((string)(this["field_db_host"]));
             }
             set {
-                this["databaseHost"] = value;
+                this["field_db_host"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string databasePort {
+        public string field_db_name {
             get {
-                return ((string)(this["databasePort"]));
+                return ((string)(this["field_db_name"]));
             }
             set {
-                this["databasePort"] = value;
+                this["field_db_name"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string databaseName {
+        public string field_db_user {
             get {
-                return ((string)(this["databaseName"]));
+                return ((string)(this["field_db_user"]));
             }
             set {
-                this["databaseName"] = value;
+                this["field_db_user"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string databaseUser {
+        public string field_db_password {
             get {
-                return ((string)(this["databaseUser"]));
+                return ((string)(this["field_db_password"]));
             }
             set {
-                this["databaseUser"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string databasePassword {
-            get {
-                return ((string)(this["databasePassword"]));
-            }
-            set {
-                this["databasePassword"] = value;
+                this["field_db_password"] = value;
             }
         }
     }
