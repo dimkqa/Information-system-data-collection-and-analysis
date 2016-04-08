@@ -7,8 +7,8 @@ namespace InfSysDCAA.Forms.Device.Add_or_Edit
 {
     public partial class DeviceStepTwo : Form
     {
-        private const int Width = (int)721;    //Максимальная ширина окна
-        private const int Height = (int)385;   //Максимальная высота окна
+        private const int Width = (int)832;
+        private const int Height = (int)367;
 
         public DeviceStepTwo()
         {

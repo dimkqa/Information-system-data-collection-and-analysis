@@ -85,9 +85,9 @@ namespace InfSysDCAA.Core.Validation
         {
             _newForm = (Form)CreatedNewObjectByClassName(className, formControls);
             _newForm.FormClosed += FormCloseFunctionExit;
-            _newForm.Show();
-            _newForm.TopLevel = true;
-            _newForm.TopMost = true;
+            _newForm.ShowDialog();
+            //_newForm.TopLevel = true;
+            //_newForm.TopMost = true;
         }
 
         /// <summary>

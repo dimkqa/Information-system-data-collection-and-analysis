@@ -117,7 +117,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(8, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(450, 46);
+            this.groupBox1.Size = new System.Drawing.Size(435, 46);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Приёмник";
@@ -179,22 +179,22 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Location = new System.Drawing.Point(8, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(690, 68);
+            this.groupBox2.Size = new System.Drawing.Size(435, 147);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Передатчик";
             // 
             // field_timeToUpDownSignal_typical
             // 
-            this.field_timeToUpDownSignal_typical.Location = new System.Drawing.Point(390, 40);
+            this.field_timeToUpDownSignal_typical.Location = new System.Drawing.Point(164, 116);
             this.field_timeToUpDownSignal_typical.Name = "field_timeToUpDownSignal_typical";
-            this.field_timeToUpDownSignal_typical.Size = new System.Drawing.Size(110, 20);
+            this.field_timeToUpDownSignal_typical.Size = new System.Drawing.Size(154, 20);
             this.field_timeToUpDownSignal_typical.TabIndex = 21;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(335, 43);
+            this.label10.Location = new System.Drawing.Point(212, 100);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 20;
@@ -202,15 +202,15 @@
             // 
             // field_timeToUpDownSignal_max
             // 
-            this.field_timeToUpDownSignal_max.Location = new System.Drawing.Point(546, 40);
+            this.field_timeToUpDownSignal_max.Location = new System.Drawing.Point(275, 77);
             this.field_timeToUpDownSignal_max.Name = "field_timeToUpDownSignal_max";
-            this.field_timeToUpDownSignal_max.Size = new System.Drawing.Size(110, 20);
+            this.field_timeToUpDownSignal_max.Size = new System.Drawing.Size(154, 20);
             this.field_timeToUpDownSignal_max.TabIndex = 23;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(506, 43);
+            this.label7.Location = new System.Drawing.Point(235, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 22;
@@ -219,7 +219,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(185, 43);
+            this.label8.Location = new System.Drawing.Point(27, 80);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 13);
             this.label8.TabIndex = 18;
@@ -227,15 +227,15 @@
             // 
             // field_timeToUpDownSignal_min
             // 
-            this.field_timeToUpDownSignal_min.Location = new System.Drawing.Point(219, 40);
+            this.field_timeToUpDownSignal_min.Location = new System.Drawing.Point(69, 77);
             this.field_timeToUpDownSignal_min.Name = "field_timeToUpDownSignal_min";
-            this.field_timeToUpDownSignal_min.Size = new System.Drawing.Size(110, 20);
+            this.field_timeToUpDownSignal_min.Size = new System.Drawing.Size(154, 20);
             this.field_timeToUpDownSignal_min.TabIndex = 19;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 43);
+            this.label9.Location = new System.Drawing.Point(4, 61);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(184, 13);
             this.label9.TabIndex = 17;
@@ -243,7 +243,7 @@
             // 
             // field_reciver_diffOutVolt_max
             // 
-            this.field_reciver_diffOutVolt_max.Location = new System.Drawing.Point(502, 13);
+            this.field_reciver_diffOutVolt_max.Location = new System.Drawing.Point(275, 33);
             this.field_reciver_diffOutVolt_max.Name = "field_reciver_diffOutVolt_max";
             this.field_reciver_diffOutVolt_max.Size = new System.Drawing.Size(154, 20);
             this.field_reciver_diffOutVolt_max.TabIndex = 16;
@@ -260,7 +260,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(462, 16);
+            this.label4.Location = new System.Drawing.Point(235, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 13);
             this.label4.TabIndex = 15;
@@ -268,15 +268,15 @@
             // 
             // field_reciver_diffOutVolt_min
             // 
-            this.field_reciver_diffOutVolt_min.Location = new System.Drawing.Point(276, 13);
+            this.field_reciver_diffOutVolt_min.Location = new System.Drawing.Point(69, 33);
             this.field_reciver_diffOutVolt_min.Name = "field_reciver_diffOutVolt_min";
-            this.field_reciver_diffOutVolt_min.Size = new System.Drawing.Size(173, 20);
+            this.field_reciver_diffOutVolt_min.Size = new System.Drawing.Size(154, 20);
             this.field_reciver_diffOutVolt_min.TabIndex = 14;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(242, 16);
+            this.label5.Location = new System.Drawing.Point(27, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 13);
             this.label5.TabIndex = 13;
@@ -290,9 +290,9 @@
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Controls.Add(this.groupBox5);
-            this.groupBox3.Location = new System.Drawing.Point(8, 138);
+            this.groupBox3.Location = new System.Drawing.Point(449, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(690, 164);
+            this.groupBox3.Size = new System.Drawing.Size(358, 311);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Питание";
@@ -307,7 +307,7 @@
             this.groupBox11.Controls.Add(this.label32);
             this.groupBox11.Location = new System.Drawing.Point(6, 114);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(334, 44);
+            this.groupBox11.Size = new System.Drawing.Size(335, 44);
             this.groupBox11.TabIndex = 51;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "+12V 100% времени передачи";
@@ -368,9 +368,9 @@
             this.groupBox9.Controls.Add(this.field_power_plus12V_50_min);
             this.groupBox9.Controls.Add(this.label25);
             this.groupBox9.Controls.Add(this.label26);
-            this.groupBox9.Location = new System.Drawing.Point(346, 64);
+            this.groupBox9.Location = new System.Drawing.Point(6, 214);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(334, 44);
+            this.groupBox9.Size = new System.Drawing.Size(335, 44);
             this.groupBox9.TabIndex = 44;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "+12V 50% времени передачи";
@@ -494,7 +494,7 @@
             this.groupBox7.Controls.Add(this.field_power_plus12V_P_min);
             this.groupBox7.Controls.Add(this.label19);
             this.groupBox7.Controls.Add(this.label20);
-            this.groupBox7.Location = new System.Drawing.Point(346, 14);
+            this.groupBox7.Location = new System.Drawing.Point(6, 164);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(334, 44);
             this.groupBox7.TabIndex = 30;
@@ -557,9 +557,9 @@
             this.groupBox6.Controls.Add(this.field_power_minus12V_min);
             this.groupBox6.Controls.Add(this.label15);
             this.groupBox6.Controls.Add(this.label16);
-            this.groupBox6.Location = new System.Drawing.Point(347, 114);
+            this.groupBox6.Location = new System.Drawing.Point(6, 264);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(335, 44);
+            this.groupBox6.Size = new System.Drawing.Size(334, 44);
             this.groupBox6.TabIndex = 58;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "-12V";
@@ -663,18 +663,18 @@
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.field_temp_min);
-            this.groupBox4.Location = new System.Drawing.Point(468, 12);
+            this.groupBox4.Location = new System.Drawing.Point(8, 217);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(228, 46);
+            this.groupBox4.Size = new System.Drawing.Size(435, 46);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Температура";
             // 
             // field_temp_max
             // 
-            this.field_temp_max.Location = new System.Drawing.Point(162, 16);
+            this.field_temp_max.Location = new System.Drawing.Point(275, 16);
             this.field_temp_max.Name = "field_temp_max";
-            this.field_temp_max.Size = new System.Drawing.Size(60, 20);
+            this.field_temp_max.Size = new System.Drawing.Size(154, 20);
             this.field_temp_max.TabIndex = 10;
             // 
             // label12
@@ -689,7 +689,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(122, 19);
+            this.label11.Location = new System.Drawing.Point(224, 19);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(34, 13);
             this.label11.TabIndex = 9;
@@ -699,13 +699,13 @@
             // 
             this.field_temp_min.Location = new System.Drawing.Point(40, 16);
             this.field_temp_min.Name = "field_temp_min";
-            this.field_temp_min.Size = new System.Drawing.Size(60, 20);
+            this.field_temp_min.Size = new System.Drawing.Size(154, 20);
             this.field_temp_min.TabIndex = 8;
             // 
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(486, 308);
+            this.button2.Location = new System.Drawing.Point(220, 282);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(212, 34);
             this.button2.TabIndex = 66;
@@ -716,9 +716,9 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.Location = new System.Drawing.Point(8, 308);
+            this.button3.Location = new System.Drawing.Point(8, 282);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(212, 34);
+            this.button3.Size = new System.Drawing.Size(202, 34);
             this.button3.TabIndex = 65;
             this.button3.Text = "Сбросить поля формы";
             this.button3.UseVisualStyleBackColor = true;
@@ -727,7 +727,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 346);
+            this.ClientSize = new System.Drawing.Size(816, 328);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
