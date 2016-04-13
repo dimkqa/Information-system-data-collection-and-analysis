@@ -1,6 +1,6 @@
-﻿namespace InfSysDCAA.Forms.Reports
+﻿namespace InfSysDCAA.Forms.Settings
 {
-    partial class ReportForms
+    partial class Connection_FTP_Data
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ReportForms";
+            this.Text = "Connection_FTP_Data";
         }
 
         #endregion

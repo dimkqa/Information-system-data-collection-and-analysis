@@ -135,12 +135,12 @@ namespace InfSysDCAA.Core.Collecting_information.System
             //МД5 текущих даных в виде строки
             string currentMd5 = global::System.Text.Encoding.UTF8.GetString(GetSystemInfoMd5Checksum());
             //Строка МД из настроек
-            string savedMd5 = Properties.Application_data.systemInformation.Default.MD5Checksum;
+            string savedMd5 = Properties.Application_data.user.Default.MD5SystemChecksum;
 
             if (!Equals(savedMd5, currentMd5))
             {
-                Properties.Application_data.systemInformation.Default.MD5Checksum = currentMd5;
-                Properties.Application_data.systemInformation.Default.Save();
+                Properties.Application_data.user.Default.MD5SystemChecksum = currentMd5;
+                Properties.Application_data.user.Default.Save();
                 //выполняем запрос к БД
             }
             else

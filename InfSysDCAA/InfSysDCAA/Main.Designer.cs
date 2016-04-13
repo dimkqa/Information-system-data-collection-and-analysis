@@ -34,6 +34,28 @@
             this.OperationsInfo = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBarDown = new System.Windows.Forms.ToolStripProgressBar();
             this.topMenu = new System.Windows.Forms.MenuStrip();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.добавитьУстройствоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDeviceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addeddatafileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectToFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changeDirectoryPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFolderReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.журналСобытийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.журналОшибокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoComputerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxReportsList = new System.Windows.Forms.GroupBox();
             this.gridViewReportsList = new System.Windows.Forms.DataGridView();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,25 +73,6 @@
             this.label_text_secondname_info = new System.Windows.Forms.Label();
             this.label_text_firstname_info = new System.Windows.Forms.Label();
             this.button_logout = new System.Windows.Forms.Button();
-            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.добавитьУстройствоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addDeviceFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addeddatafileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.connectSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openFolderReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statisticsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.журналСобытийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.журналОшибокToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoComputerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.topMenu.SuspendLayout();
             this.groupBoxReportsList.SuspendLayout();
@@ -118,6 +121,186 @@
             this.topMenu.Size = new System.Drawing.Size(1320, 24);
             this.topMenu.TabIndex = 2;
             this.topMenu.Text = "menuStrip1";
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.добавитьУстройствоToolStripMenuItem,
+            this.addeddatafileToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.настройкиToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.exitToolStripMenuItem});
+            this.systemToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.nas;
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.systemToolStripMenuItem.Text = "Система";
+            // 
+            // добавитьУстройствоToolStripMenuItem
+            // 
+            this.добавитьУстройствоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addDeviceToolStripMenuItem,
+            this.addDeviceFileToolStripMenuItem});
+            this.добавитьУстройствоToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.add_device;
+            this.добавитьУстройствоToolStripMenuItem.Name = "добавитьУстройствоToolStripMenuItem";
+            this.добавитьУстройствоToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.добавитьУстройствоToolStripMenuItem.Text = "Добавить устройство";
+            // 
+            // addDeviceToolStripMenuItem
+            // 
+            this.addDeviceToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.plus__1_;
+            this.addDeviceToolStripMenuItem.Name = "addDeviceToolStripMenuItem";
+            this.addDeviceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.addDeviceToolStripMenuItem.Text = "Добавить через форму";
+            this.addDeviceToolStripMenuItem.Click += new System.EventHandler(this.addDeviceToolStripMenuItem_Click);
+            // 
+            // addDeviceFileToolStripMenuItem
+            // 
+            this.addDeviceFileToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.plus__1_;
+            this.addDeviceFileToolStripMenuItem.Name = "addDeviceFileToolStripMenuItem";
+            this.addDeviceFileToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.addDeviceFileToolStripMenuItem.Text = "Загрузить файл";
+            this.addDeviceFileToolStripMenuItem.Click += new System.EventHandler(this.addDeviceFileToolStripMenuItem_Click);
+            // 
+            // addeddatafileToolStripMenuItem
+            // 
+            this.addeddatafileToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.add_property;
+            this.addeddatafileToolStripMenuItem.Name = "addeddatafileToolStripMenuItem";
+            this.addeddatafileToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.addeddatafileToolStripMenuItem.Text = "Загрузить файл даных";
+            this.addeddatafileToolStripMenuItem.Click += new System.EventHandler(this.addeddatafileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(193, 6);
+            // 
+            // настройкиToolStripMenuItem
+            // 
+            this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectToDBToolStripMenuItem,
+            this.connectToFTPToolStripMenuItem,
+            this.changeDirectoryPathToolStripMenuItem});
+            this.настройкиToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.engineering;
+            this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.настройкиToolStripMenuItem.Text = "Настройки...";
+            // 
+            // connectToDBToolStripMenuItem
+            // 
+            this.connectToDBToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.database;
+            this.connectToDBToolStripMenuItem.Name = "connectToDBToolStripMenuItem";
+            this.connectToDBToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.connectToDBToolStripMenuItem.Text = "Соединение с БД";
+            this.connectToDBToolStripMenuItem.Click += new System.EventHandler(this.connectToDBToolStripMenuItem_Click);
+            // 
+            // connectToFTPToolStripMenuItem
+            // 
+            this.connectToFTPToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.tool_box;
+            this.connectToFTPToolStripMenuItem.Name = "connectToFTPToolStripMenuItem";
+            this.connectToFTPToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.connectToFTPToolStripMenuItem.Text = "Соединение с FTP";
+            this.connectToFTPToolStripMenuItem.Click += new System.EventHandler(this.connectToFTPToolStripMenuItem_Click);
+            // 
+            // changeDirectoryPathToolStripMenuItem
+            // 
+            this.changeDirectoryPathToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.Box_52;
+            this.changeDirectoryPathToolStripMenuItem.Name = "changeDirectoryPathToolStripMenuItem";
+            this.changeDirectoryPathToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.changeDirectoryPathToolStripMenuItem.Text = "Изменение директорий";
+            this.changeDirectoryPathToolStripMenuItem.Click += new System.EventHandler(this.changeDirectoryPathToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(193, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.multiply;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.exitToolStripMenuItem.Text = "Выход";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFolderReportsToolStripMenuItem});
+            this.reportsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.system_information;
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.reportsToolStripMenuItem.Text = "Отчеты";
+            // 
+            // openFolderReportsToolStripMenuItem
+            // 
+            this.openFolderReportsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.tool_box;
+            this.openFolderReportsToolStripMenuItem.Name = "openFolderReportsToolStripMenuItem";
+            this.openFolderReportsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.openFolderReportsToolStripMenuItem.Text = "Открыть папку";
+            // 
+            // serviceToolStripMenuItem
+            // 
+            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.databaseToolStripMenuItem,
+            this.statisticsToolStripMenuItem,
+            this.журналСобытийToolStripMenuItem,
+            this.журналОшибокToolStripMenuItem});
+            this.serviceToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.circuit;
+            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
+            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.serviceToolStripMenuItem.Text = "Сервис";
+            // 
+            // databaseToolStripMenuItem
+            // 
+            this.databaseToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.database;
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.databaseToolStripMenuItem.Text = "База данных";
+            // 
+            // statisticsToolStripMenuItem
+            // 
+            this.statisticsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.line;
+            this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.statisticsToolStripMenuItem.Text = "Статистика";
+            // 
+            // журналСобытийToolStripMenuItem
+            // 
+            this.журналСобытийToolStripMenuItem.Name = "журналСобытийToolStripMenuItem";
+            this.журналСобытийToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.журналСобытийToolStripMenuItem.Text = "Журнал событий";
+            // 
+            // журналОшибокToolStripMenuItem
+            // 
+            this.журналОшибокToolStripMenuItem.Name = "журналОшибокToolStripMenuItem";
+            this.журналОшибокToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.журналОшибокToolStripMenuItem.Text = "Журнал ошибок";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.infoComputerToolStripMenuItem,
+            this.справкаToolStripMenuItem});
+            this.helpToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.high_importance;
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.helpToolStripMenuItem.Text = "Помощь";
+            // 
+            // infoComputerToolStripMenuItem
+            // 
+            this.infoComputerToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.system_information1;
+            this.infoComputerToolStripMenuItem.Name = "infoComputerToolStripMenuItem";
+            this.infoComputerToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.infoComputerToolStripMenuItem.Text = "О системе...";
+            this.infoComputerToolStripMenuItem.Click += new System.EventHandler(this.infoComputerToolStripMenuItem_Click);
+            // 
+            // справкаToolStripMenuItem
+            // 
+            this.справкаToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.Info_521;
+            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
+            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.справкаToolStripMenuItem.Text = "Справка";
             // 
             // groupBoxReportsList
             // 
@@ -298,159 +481,6 @@
             this.button_logout.UseVisualStyleBackColor = true;
             this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
             // 
-            // systemToolStripMenuItem
-            // 
-            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.добавитьУстройствоToolStripMenuItem,
-            this.addeddatafileToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.connectSettingsToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.exitToolStripMenuItem});
-            this.systemToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.nas;
-            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
-            this.systemToolStripMenuItem.Text = "Система";
-            // 
-            // добавитьУстройствоToolStripMenuItem
-            // 
-            this.добавитьУстройствоToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addDeviceToolStripMenuItem,
-            this.addDeviceFileToolStripMenuItem});
-            this.добавитьУстройствоToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.add_device;
-            this.добавитьУстройствоToolStripMenuItem.Name = "добавитьУстройствоToolStripMenuItem";
-            this.добавитьУстройствоToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.добавитьУстройствоToolStripMenuItem.Text = "Добавить устройство";
-            // 
-            // addDeviceToolStripMenuItem
-            // 
-            this.addDeviceToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.plus__1_;
-            this.addDeviceToolStripMenuItem.Name = "addDeviceToolStripMenuItem";
-            this.addDeviceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.addDeviceToolStripMenuItem.Text = "Добавить через форму";
-            this.addDeviceToolStripMenuItem.Click += new System.EventHandler(this.addDeviceToolStripMenuItem_Click);
-            // 
-            // addDeviceFileToolStripMenuItem
-            // 
-            this.addDeviceFileToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.plus__1_;
-            this.addDeviceFileToolStripMenuItem.Name = "addDeviceFileToolStripMenuItem";
-            this.addDeviceFileToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.addDeviceFileToolStripMenuItem.Text = "Загрузить файл";
-            this.addDeviceFileToolStripMenuItem.Click += new System.EventHandler(this.addDeviceFileToolStripMenuItem_Click);
-            // 
-            // addeddatafileToolStripMenuItem
-            // 
-            this.addeddatafileToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.add_property;
-            this.addeddatafileToolStripMenuItem.Name = "addeddatafileToolStripMenuItem";
-            this.addeddatafileToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.addeddatafileToolStripMenuItem.Text = "Загрузить файл даных";
-            this.addeddatafileToolStripMenuItem.Click += new System.EventHandler(this.addeddatafileToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
-            // 
-            // connectSettingsToolStripMenuItem
-            // 
-            this.connectSettingsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.engineering;
-            this.connectSettingsToolStripMenuItem.Name = "connectSettingsToolStripMenuItem";
-            this.connectSettingsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.connectSettingsToolStripMenuItem.Text = "Настройки соединения";
-            this.connectSettingsToolStripMenuItem.Click += new System.EventHandler(this.connectSettingsToolStripMenuItem_Click_1);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(199, 6);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.multiply;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
-            this.exitToolStripMenuItem.Text = "Выход";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
-            // 
-            // reportsToolStripMenuItem
-            // 
-            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openFolderReportsToolStripMenuItem});
-            this.reportsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.system_information;
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.reportsToolStripMenuItem.Text = "Отчеты";
-            // 
-            // openFolderReportsToolStripMenuItem
-            // 
-            this.openFolderReportsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.tool_box;
-            this.openFolderReportsToolStripMenuItem.Name = "openFolderReportsToolStripMenuItem";
-            this.openFolderReportsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.openFolderReportsToolStripMenuItem.Text = "Открыть папку";
-            // 
-            // serviceToolStripMenuItem
-            // 
-            this.serviceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.databaseToolStripMenuItem,
-            this.statisticsToolStripMenuItem,
-            this.журналСобытийToolStripMenuItem,
-            this.журналОшибокToolStripMenuItem});
-            this.serviceToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.circuit;
-            this.serviceToolStripMenuItem.Name = "serviceToolStripMenuItem";
-            this.serviceToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.serviceToolStripMenuItem.Text = "Сервис";
-            // 
-            // databaseToolStripMenuItem
-            // 
-            this.databaseToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.database;
-            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
-            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.databaseToolStripMenuItem.Text = "База данных";
-            // 
-            // statisticsToolStripMenuItem
-            // 
-            this.statisticsToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.line;
-            this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.statisticsToolStripMenuItem.Text = "Статистика";
-            // 
-            // журналСобытийToolStripMenuItem
-            // 
-            this.журналСобытийToolStripMenuItem.Name = "журналСобытийToolStripMenuItem";
-            this.журналСобытийToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.журналСобытийToolStripMenuItem.Text = "Журнал событий";
-            // 
-            // журналОшибокToolStripMenuItem
-            // 
-            this.журналОшибокToolStripMenuItem.Name = "журналОшибокToolStripMenuItem";
-            this.журналОшибокToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.журналОшибокToolStripMenuItem.Text = "Журнал ошибок";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.infoComputerToolStripMenuItem,
-            this.справкаToolStripMenuItem});
-            this.helpToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.high_importance;
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.helpToolStripMenuItem.Text = "Помощь";
-            // 
-            // infoComputerToolStripMenuItem
-            // 
-            this.infoComputerToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.system_information1;
-            this.infoComputerToolStripMenuItem.Name = "infoComputerToolStripMenuItem";
-            this.infoComputerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.infoComputerToolStripMenuItem.Text = "О системе...";
-            this.infoComputerToolStripMenuItem.Click += new System.EventHandler(this.infoComputerToolStripMenuItem_Click);
-            // 
-            // справкаToolStripMenuItem
-            // 
-            this.справкаToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.Info_521;
-            this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
-            this.справкаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.справкаToolStripMenuItem.Text = "Справка";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,12 +546,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         public System.Windows.Forms.ToolStripMenuItem addeddatafileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem connectSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem добавитьУстройствоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDeviceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDeviceFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFolderReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectToFTPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeDirectoryPathToolStripMenuItem;
 
 
     }

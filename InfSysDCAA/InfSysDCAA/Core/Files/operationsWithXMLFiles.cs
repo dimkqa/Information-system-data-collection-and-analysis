@@ -4,7 +4,7 @@ using InfSysDCAA.Core.Directory;
 
 namespace InfSysDCAA.Core.Files
 {
-
+    /*
     public class OperationsWithXml : WorkWithFiles
     {
         private string _pathFile;
@@ -85,5 +85,5 @@ namespace InfSysDCAA.Core.Files
             XDocument document = new XDocument(
                 new XElement(""));
         }
-    }
+    }*/
 }

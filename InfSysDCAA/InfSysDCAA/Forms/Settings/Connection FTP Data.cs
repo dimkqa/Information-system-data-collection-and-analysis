@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace InfSysDCAA.Forms.Reports
+namespace InfSysDCAA.Forms.Settings
 {
-    public partial class ReportForms : Form
+    public partial class Connection_FTP_Data : Form
     {
-        public ReportForms()
+        public Connection_FTP_Data()
         {
             InitializeComponent();
         }

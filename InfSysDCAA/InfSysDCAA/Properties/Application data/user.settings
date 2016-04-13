@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="InfSysDCAA.Properties.Application_data" GeneratedClassName="user">
+  <Profiles />
+  <Settings>
+    <Setting Name="MD5SystemChecksum" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_db_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_db_name" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_db_user" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_db_password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="path_doc_reports" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Documents\InfSysDCAA\Reports</Value>
+    </Setting>
+    <Setting Name="path_doc_raw_files" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Documents\InfSysDCAA\Raw Files</Value>
+    </Setting>
+    <Setting Name="path_doc_config" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\Documents\InfSysDCAA\Config</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

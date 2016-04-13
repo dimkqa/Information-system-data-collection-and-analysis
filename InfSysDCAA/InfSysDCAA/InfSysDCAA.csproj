@@ -76,6 +76,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Auth\authentication.cs" />
+    <Compile Include="Core\Directory\DirectoryList.cs" />
+    <Compile Include="Core\Directory\DirectoryChanger.cs" />
+    <Compile Include="Core\Directory\DirectoryCreater.cs" />
     <Compile Include="Core\Params\HandlerParam.cs" />
     <Compile Include="Core\Validation\FieldList.cs" />
     <Compile Include="Core\Validation\FormChecker.cs" />
@@ -92,23 +95,24 @@
     <Compile Include="Forms\Processing data\ProcesingData.Designer.cs">
       <DependentUpon>ProcesingData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\Change Directory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\Change Directory.Designer.cs">
+      <DependentUpon>Change Directory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\Connection FTP Data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\Connection FTP Data.Designer.cs">
+      <DependentUpon>Connection FTP Data.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Application data\application.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>application.settings</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Application data\DataBase.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>DataBase.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Application data\systemInformation.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>systemInformation.settings</DependentUpon>
-    </Compile>
     <Compile Include="Core\Collecting information\System\collect-system-info.cs" />
-    <Compile Include="Core\Directory\CreatedDirectory.cs" />
     <Compile Include="Core\Files\operationsWithHTMLFiles.cs" />
     <Compile Include="Core\Files\operationsWithXMLFiles.cs" />
     <Compile Include="Core\Files\workWithFiles.cs" />
@@ -118,7 +122,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>database.settings</DependentUpon>
     </Compile>
-    <Compile Include="Core\Directory\PathFinder.cs" />
     <Compile Include="Forms\About system PC\AboutOfSystem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,17 +146,11 @@
     <Compile Include="Forms\Auth\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Reports\ReportForms.cs">
+    <Compile Include="Forms\Settings\Connection DB Data.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Reports\ReportForms.Designer.cs">
-      <DependentUpon>ReportForms.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Settings\SettingsApps.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Settings\SettingsApps.Designer.cs">
-      <DependentUpon>SettingsApps.cs</DependentUpon>
+    <Compile Include="Forms\Settings\Connection DB Data.Designer.cs">
+      <DependentUpon>Connection DB Data.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -162,6 +159,11 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Properties\Application data\user.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>user.settings</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\About system PC\AboutOfSystem.resx">
       <DependentUpon>AboutOfSystem.cs</DependentUpon>
@@ -178,8 +180,8 @@
     <EmbeddedResource Include="Forms\Processing data\ProcesingData.resx">
       <DependentUpon>ProcesingData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\SettingsApps.resx">
-      <DependentUpon>SettingsApps.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\Connection DB Data.resx">
+      <DependentUpon>Connection DB Data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -199,17 +201,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>application.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Properties\Application data\DataBase.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>DataBase.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Properties\Application data\systemInformation.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>systemInformation.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Core\Config\database.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>database.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Application data\user.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>user.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -235,6 +233,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Core\Params\Parametrs_v2.xml" />
+    <None Include="Resources\Box-52.png" />
     <None Include="Resources\multiply.png" />
     <None Include="Resources\tool_box.png" />
     <None Include="Resources\plus %281%29.png" />

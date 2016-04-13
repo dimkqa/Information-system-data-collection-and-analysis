@@ -15,8 +15,8 @@ namespace InfSysDCAA.Core.Settings
         /// <param name="value">value Значение поля</param>
         public static void WriteDataSettings(string name, string value)
         {
-            Properties.Application_data.DataBase.Default[name] = value;
-            Properties.Application_data.DataBase.Default.Save();
+            Properties.Application_data.user.Default[name] = value;
+            Properties.Application_data.user.Default.Save();
         }
 
         /// <summary>
@@ -27,10 +27,10 @@ namespace InfSysDCAA.Core.Settings
         {
             Dictionary<string, string> connectDictionary = new Dictionary<string, string>()
             {
-                {tmpList[0], Properties.Application_data.DataBase.Default.field_db_host},
-                {tmpList[1], Properties.Application_data.DataBase.Default.field_db_name},
-                {tmpList[2], Properties.Application_data.DataBase.Default.field_db_user},
-                {tmpList[3], Properties.Application_data.DataBase.Default.field_db_password}
+                {tmpList[0], Properties.Application_data.user.Default.field_db_host},
+                {tmpList[1], Properties.Application_data.user.Default.field_db_name},
+                {tmpList[2], Properties.Application_data.user.Default.field_db_user},
+                {tmpList[3], Properties.Application_data.user.Default.field_db_password}
             };
              return connectDictionary;
         }

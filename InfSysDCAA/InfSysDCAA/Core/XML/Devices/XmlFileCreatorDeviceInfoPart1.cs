@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace InfSysDCAA.Core.XML.Devices
-{
+{/*
     using System.IO;
     using System.Xml.Linq;
     using InfSysDCAA.Core.Directory;
@@ -83,5 +83,5 @@ namespace InfSysDCAA.Core.XML.Devices
             new XElement(""));
             return true;
         }
-    }
+    }*/
 }

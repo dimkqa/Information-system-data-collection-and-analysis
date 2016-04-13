@@ -83,6 +83,16 @@ namespace InfSysDCAA.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Box_52 {
+            get {
+                object obj = ResourceManager.GetObject("Box-52", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap circuit {
             get {
                 object obj = ResourceManager.GetObject("circuit", resourceCulture);

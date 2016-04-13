@@ -39,7 +39,10 @@ namespace InfSysDCAA
             Text = Convert.ToString("Информационная система сбора и анализа данных");
 
             CollectSystemInfo.GetSystemInformation();
-            PathFinder.CreateAllPath(Environment.UserName);
+
+            DirectoryCreater.PathsAnalyser(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
+                Environment.UserName);
+            
             //Расскоментируй. Форма авторизации
             //AuthUser();
         }
@@ -47,16 +50,6 @@ namespace InfSysDCAA
         private void Main_Load(object sender, EventArgs e)
         {
 
-        }
-
-        /// <summary>
-        /// Открывает форму "Настройки"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void connectSettingsToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            FormChecker.ControlOpenedForm(typeof(SetingsApps));
         }
 
         /// <summary>
@@ -163,6 +156,30 @@ namespace InfSysDCAA
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void connectToDBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormChecker.ControlOpenedForm(typeof(SetingsApps));
+        }
+
+        private void connectToFTPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormChecker.ControlOpenedForm(typeof(SetingsApps));
+        }
+
+        private void changeDirectoryPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog FBD = new FolderBrowserDialog();
+            FBD.Description = "Измените папку сохранения отчётов";
+            if (FBD.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show("Директория для сохранения отётов изменена на " + FBD.SelectedPath +
+                    ". \n После нажатия на кнопку \"ОК\" программа перезапустится",
+                    "Изменение директории отчётов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DirectoryChanger.ChangePath(Path.GetFullPath(FBD.SelectedPath));
+                Application.Restart();
+            }
         }
     }
 }
