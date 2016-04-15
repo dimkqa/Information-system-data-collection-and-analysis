@@ -26,5 +26,14 @@
     <Setting Name="path_doc_config" Type="System.String" Scope="User">
       <Value Profile="(Default)">\Documents\InfSysDCAA\Config</Value>
     </Setting>
+    <Setting Name="field_ftp_host" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_ftp_login" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="field_ftp_password" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

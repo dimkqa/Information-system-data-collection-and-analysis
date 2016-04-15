@@ -16,14 +16,16 @@ using InfSysDCAA.Core.Validation;
 
 namespace InfSysDCAA.Forms.Settings
 {
-    public partial class SetingsApps : Form
+    public partial class Connection_DB_Data : Form
     {
         private const int Width = (int)350;    //Максимальная ширина окна
         private const int Height = (int)250;   //Максимальная высота окна
 
+        Settings_DB SDB = new Settings_DB();
+
         private List<TextBox> fields = new List<TextBox>();
 
-        public SetingsApps()
+        public Connection_DB_Data()
         {
             InitializeComponent();
 
@@ -36,7 +38,7 @@ namespace InfSysDCAA.Forms.Settings
             fields.Add(field_db_name);
             fields.Add(field_db_user);
             fields.Add(field_db_password);
-            RecoveryConnectionData(SettingsFunctions.ReadDataSettings());
+            RecoveryConnectionData(SDB.ReadDataSettings());
         }
 
         /// <summary>
@@ -66,9 +68,60 @@ namespace InfSysDCAA.Forms.Settings
             if (ValidationField.ValidationFields(fields))
             {
                 if (TestConnectToDB(fields))
-                    SuccessConnection(fields);
+                    SuccessConnection();
                 else
                     failureConnection();
+            }
+        }
+
+        /// <summary>
+        /// Сохраняет данные о конфигурации соединения с сервером баз данных
+        /// </summary>
+        private void SaveDataConnection()
+        {
+            if (ValidationField.ValidationFields(fields))
+            {
+                foreach (var field in fields)
+                {
+                    SDB.WriteDataSettings(field.Name, field.Text);
+                }
+                Close();
+            }
+        }
+
+        /// <summary>
+        /// Выполняет проверку соеднения с сервером баз данных
+        /// </summary>
+        /// <param name="field">List textbox'ов</param>
+        /// <returns>Если соединение установлено, возвращает true, иначе false</returns>
+        private bool TestConnectToDB(List<TextBox> field)
+        {
+            //TODO: codereview + error Connect;
+            string tmpConnect = "Database=" + field[1].Text + ";Data Source=" + field[0].Text + ";User id=" + field[2].Text + ";Password=" + field[3].Text;
+            MySqlConnection mySqlConnection = new MySqlConnection(tmpConnect);
+            mySqlConnection.Open();
+            if (mySqlConnection.State == ConnectionState.Open)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// При загрузке формы "Настройки" извлекает из файла-конфигурации
+        /// параметры последнего соединения и заполняет ими поля формы.
+        /// </summary>
+        /// <param name="tmpDictionary"></param>
+        private void RecoveryConnectionData(Dictionary<string, string> tmpDictionary)
+        {
+            foreach (KeyValuePair<string, string> tmp in tmpDictionary)
+            {
+                foreach (var field in fields)
+                {
+                    if (field.Name == tmp.Key)
+                    {
+                        field.Text = tmp.Value;
+                    }
+                }
             }
         }
 
@@ -77,7 +130,7 @@ namespace InfSysDCAA.Forms.Settings
         /// выполняет сохранение настроек.
         /// </summary>
         /// <param name="textBoxs"></param>
-        private void SuccessConnection(List<TextBox> textBoxs)
+        private void SuccessConnection()
         {
             MessageBox.Show("Соединение с сервером баз данных было установлено и проверено.", "Успешное соединение с сервером",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -99,53 +152,6 @@ namespace InfSysDCAA.Forms.Settings
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        /// <summary>
-        /// Сохраняет данные о конфигурации соединения с сервером баз данных
-        /// </summary>
-        private void SaveDataConnection()
-        {
-            foreach (var field in fields)
-            {
-                SettingsFunctions.WriteDataSettings(field.Name, field.Text);
-            }
-        }
-        
-        /// <summary>
-        /// Выполняет проверку соеднения с сервером баз данных
-        /// </summary>
-        /// <param name="field"></param>
-        /// <returns></returns>
-        private bool TestConnectToDB(List<TextBox> field)
-        {
-            //TODO: codereview + error Connect;
-            string tmpConnect = "Database="+field[1].Text+";Data Source="+field[0].Text+";User id="+field[2].Text+";Password="+field[3].Text;
-            MySqlConnection mySqlConnection = new MySqlConnection(tmpConnect);
-            mySqlConnection.Open();
-            if (mySqlConnection.State == ConnectionState.Open)
-                return true;
-            else
-                return false;
-        }
-
-
-        /// <summary>
-        /// При загрузке формы "Настройки" извлекает из файла-конфигурации
-        /// параметры последнего соединения и заполняет ими поля формы.
-        /// </summary>
-        /// <param name="tmpDictionary"></param>
-        private void RecoveryConnectionData(Dictionary<string, string> tmpDictionary)
-        {
-            foreach (KeyValuePair<string, string> tmp in tmpDictionary)
-            {
-                foreach (var field in fields)
-                {
-                    if (field.Name == tmp.Key)
-                    {
-                        field.Text = tmp.Value;
-                    }
-                }
-            }
-        }
-
+      
     }
 }

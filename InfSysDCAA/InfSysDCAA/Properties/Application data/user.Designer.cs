@@ -118,5 +118,41 @@ namespace InfSysDCAA.Properties.Application_data {
                 this["path_doc_config"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string field_ftp_host {
+            get {
+                return ((string)(this["field_ftp_host"]));
+            }
+            set {
+                this["field_ftp_host"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string field_ftp_login {
+            get {
+                return ((string)(this["field_ftp_login"]));
+            }
+            set {
+                this["field_ftp_login"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string field_ftp_password {
+            get {
+                return ((string)(this["field_ftp_password"]));
+            }
+            set {
+                this["field_ftp_password"] = value;
+            }
+        }
     }
 }

@@ -79,7 +79,11 @@
     <Compile Include="Core\Directory\DirectoryList.cs" />
     <Compile Include="Core\Directory\DirectoryChanger.cs" />
     <Compile Include="Core\Directory\DirectoryCreater.cs" />
+    <Compile Include="Core\FTP\FTP.cs" />
     <Compile Include="Core\Params\HandlerParam.cs" />
+    <Compile Include="Core\Settings\ASettings.cs" />
+    <Compile Include="Core\Settings\Settings DB.cs" />
+    <Compile Include="Core\Settings\Settings FTP.cs" />
     <Compile Include="Core\Validation\FieldList.cs" />
     <Compile Include="Core\Validation\FormChecker.cs" />
     <Compile Include="Core\Validation\StatusUserUI.cs" />
@@ -94,12 +98,6 @@
     </Compile>
     <Compile Include="Forms\Processing data\ProcesingData.Designer.cs">
       <DependentUpon>ProcesingData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Settings\Change Directory.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Settings\Change Directory.Designer.cs">
-      <DependentUpon>Change Directory.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\Connection FTP Data.cs">
       <SubType>Form</SubType>
@@ -116,7 +114,6 @@
     <Compile Include="Core\Files\operationsWithHTMLFiles.cs" />
     <Compile Include="Core\Files\operationsWithXMLFiles.cs" />
     <Compile Include="Core\Files\workWithFiles.cs" />
-    <Compile Include="Core\Settings\Settings.cs" />
     <Compile Include="Core\Config\database.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -182,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\Connection DB Data.resx">
       <DependentUpon>Connection DB Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\Connection FTP Data.resx">
+      <DependentUpon>Connection FTP Data.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -160,12 +160,12 @@ namespace InfSysDCAA
 
         private void connectToDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormChecker.ControlOpenedForm(typeof(SetingsApps));
+            FormChecker.ControlOpenedForm(typeof(Connection_DB_Data));
         }
 
         private void connectToFTPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormChecker.ControlOpenedForm(typeof(SetingsApps));
+            FormChecker.ControlOpenedForm(typeof(Connection_FTP_Data));
         }
 
         private void changeDirectoryPathToolStripMenuItem_Click(object sender, EventArgs e)
