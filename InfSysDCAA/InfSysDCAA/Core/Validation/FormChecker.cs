@@ -19,8 +19,9 @@ namespace InfSysDCAA.Core.Validation
         private static readonly Dictionary<string, string> FormNamePresenter = new Dictionary<string, string>()
         {
             {"AboutOfSystem", "О системе"},
-            {"SetingsApps", "Настройки системы"},
-            {"Auth","Авторизация"}
+            {"Connection_DB_Data", "Настройки соединения с БД"},
+            {"Auth","Авторизация"},
+            {"Connection_FTP_Data","Настройки соединения с FTP"}
         };
 
         private static string _nameOldForm;

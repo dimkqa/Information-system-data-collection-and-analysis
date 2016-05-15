@@ -35,6 +35,11 @@ namespace InfSysDCAA.Core.Directory
             defaultPath.Add(Properties.Application_data.user.Default.path_doc_raw_files);
         }
 
+        public static string GetReportsFolderPath()
+        {
+            return defaultPath[0];
+        }
+
         /// <summary>
         /// Анализ путей. Смотрим на конец пути. 
         /// Пример: \\Documents\\InfSysDCAA\\Raw Files

@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
 using InfSysDCAA.Core.Directory;
+using InfSysDCAA.Core.File_processing;
+using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Validation;
 using InfSysDCAA.Forms.Settings;
 using InfSysDCAA.Forms.About_system_PC;
@@ -94,7 +96,7 @@ namespace InfSysDCAA
          }
 
         /// <summary>
-        /// 
+        /// Добавляет файл исходных даных для парсинга
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -102,14 +104,11 @@ namespace InfSysDCAA
          {
              OpenFileDialog dialogAddedFile = new OpenFileDialog();
              dialogAddedFile.Multiselect = false;
-             dialogAddedFile.Filter = "Файлы испытаний |*.isvsk";
+             dialogAddedFile.Filter = "Бинарный файл данных |*.bin";
              if (dialogAddedFile.ShowDialog() == DialogResult.OK)
              {
-                 StreamReader readFile = new StreamReader(dialogAddedFile.FileName, Encoding.GetEncoding("utf-8"));
-                 while (!readFile.EndOfStream)
-                 {
-
-                 }
+                 SourceProcessing SP = new SourceProcessing(dialogAddedFile.FileName);
+                 SourceProcessing.ReaderBinaryFile();
              }
          }
 
@@ -174,12 +173,14 @@ namespace InfSysDCAA
             FBD.Description = "Измените папку сохранения отчётов";
             if (FBD.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Директория для сохранения отётов изменена на " + FBD.SelectedPath +
-                    ". \n После нажатия на кнопку \"ОК\" программа перезапустится",
-                    "Изменение директории отчётов", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                DirectoryChanger.ChangePath(Path.GetFullPath(FBD.SelectedPath));
+                DirectoryChanger.ChangeReportsPathMessage(FBD.SelectedPath);
                 Application.Restart();
             }
+        }
+
+        private void openFolderReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DirectoryControl.OpenDirectoryOnExplorer(DirectoryCreater.GetReportsFolderPath());
         }
     }
 }

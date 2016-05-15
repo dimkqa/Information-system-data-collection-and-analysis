@@ -76,11 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Auth\authentication.cs" />
+    <Compile Include="Core\Directory\DirectoryControl.cs" />
     <Compile Include="Core\Directory\DirectoryList.cs" />
     <Compile Include="Core\Directory\DirectoryChanger.cs" />
     <Compile Include="Core\Directory\DirectoryCreater.cs" />
+    <Compile Include="Core\File processing\ProcessingDataFile.cs" />
     <Compile Include="Core\FTP\FTP.cs" />
     <Compile Include="Core\Params\HandlerParam.cs" />
+    <Compile Include="Core\Processing\DevicesStruct.cs" />
+    <Compile Include="Core\Processing\Devices\ADevices.cs" />
+    <Compile Include="Core\Processing\Devices\ConstantDevicesStructure.cs" />
+    <Compile Include="Core\Processing\Devices\TemporaryDevicesStructure.cs" />
+    <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
     <Compile Include="Core\Settings\Settings DB.cs" />
     <Compile Include="Core\Settings\Settings FTP.cs" />
@@ -224,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\DataBase\" />
+    <Folder Include="Core\Processing\Word\" />
     <Folder Include="Forms\DataBase\" />
     <Folder Include="Forms\Other\" />
     <Folder Include="Logs\" />
