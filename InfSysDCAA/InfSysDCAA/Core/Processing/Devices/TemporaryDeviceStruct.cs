@@ -6,16 +6,8 @@ using System.Threading.Tasks;
 
 namespace InfSysDCAA.Core.Processing.Devices
 {
-    public class TemporaryDevicesStructure : ADevices
+    public class TemporaryDevicesStructure
     {
-        /// <summary>
-        /// Число байт на одно устройство
-        /// </summary>
-        public const int LengthDeviceInBytes = 6422;
-        /// <summary>
-        /// Общее число байт в файле - на все устройства
-        /// </summary>
-        public static int LengthAllDevicesBytes;
         /// <summary>
         /// Описывает структуру устройства
         /// </summary>
@@ -24,7 +16,7 @@ namespace InfSysDCAA.Core.Processing.Devices
             /// <summary>
             /// Инвентарный номер устройства. String.
             /// </summary>
-            public string InventoryNumber;             
+            public string InventoryNumber;
             /// <summary>
             /// Приёмник: Дифференциальное входное напряжение. List double. Должен хранить 100 значений.
             /// </summary>

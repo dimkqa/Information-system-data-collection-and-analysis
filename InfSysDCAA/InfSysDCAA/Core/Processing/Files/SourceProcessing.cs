@@ -3,22 +3,47 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using InfSysDCAA.Core.Processing.Devices;
+using InfSysDCAA.Core.Processing;
 
 namespace InfSysDCAA.Core.Processing.Files
 {
-    using InfSysDCAA.Core.Processing;
+    /// <summary>
+    /// Класс для обработки файла с данными.
+    /// Производит парсинг файла.
+    /// </summary>
     public class SourceProcessing
     {
+        /// <summary>
+        /// Полный путь до файла
+        /// </summary>
         public static string FullPathToFile { get; set; }
+        /// <summary>
+        /// Число устройств в тесте
+        /// </summary>
         private static int CountDevicesInTheTest { get; set; }
+        /// <summary>
+        /// Текущая позиция в файле во время чтения
+        /// </summary>
         private static int CurrentPosition { get; set; }
+        /// <summary>
+        /// Счётчик устройств
+        /// </summary>
         private static int CounterDevices { get; set; }
 
+        /// <summary>
+        /// Консруктор принимает полный путь до файла.
+        /// Задаётся в окне выбора файла
+        /// </summary>
+        /// <param name="fullPathToFile">String - полный путь до файла</param>
         public SourceProcessing(string fullPathToFile)
         {
             FullPathToFile = fullPathToFile;
         }
 
+        /// <summary>
+        /// Производит чтение и парсинг файла с данными
+        /// Рассортировывает данные в предоставленые контейнеры 
+        /// </summary>
         public static void ReaderBinaryFile()
         {
             using (BinaryReader reader = new BinaryReader(File.Open(FullPathToFile, FileMode.Open), Encoding.ASCII))
@@ -32,6 +57,7 @@ namespace InfSysDCAA.Core.Processing.Files
 
                 //Создаём и инициализируем поля структуры
                 TemporaryDevicesStructure.TmpDevice[] t = new TemporaryDevicesStructure.TmpDevice[CountDevicesInTheTest];
+
                 for (int i = 0; i < CountDevicesInTheTest; i++)
                 {
                     t[i].ReceiverDifferentialInputVoltage = new List<double>();
@@ -44,8 +70,6 @@ namespace InfSysDCAA.Core.Processing.Files
                     t[i].PowerReqPlusTwelve50Voltage = new List<double>();
                     t[i].PowerReqPlusTwelve100Voltage = new List<double>();
                     t[i].Temperature = new List<double>();
-                    List<Tuple<String, List<double>>> cortegh = new List<Tuple<string, List<double>>>();
-
                 }
 
                 //Число устройств
@@ -53,72 +77,68 @@ namespace InfSysDCAA.Core.Processing.Files
                 //В цикле будем считывать данные устройств пока не дойдем до конца файла
                 while (reader.BaseStream.Position != DevicesStruct.LengthAllDevicesBytes)
                 {
-                    if (CounterDevices <= CountDevicesInTheTest)
+                    //Читаем 4 байта разделителя
+                    reader.ReadInt32();
+                    //Читаем инвентарный номер
+                    t[CounterDevices].InventoryNumber = reader.ReadString();
+                    //Смещение на начало сегмента
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    //Читаем данные приёмника
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        //Читаем 4 байта разделителя
-                        reader.ReadInt32();
-                        //Читаем инвентарный номер
-                        t[CounterDevices].InventoryNumber = reader.ReadString();
-                        //Смещение на начало сегмента
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        //Читаем данные приёмника
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].ReceiverDifferentialInputVoltage.Add(reader.ReadDouble());
-                        }
-                        //Читаем данные передатчика
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].TransmitterDifferentialOutputVoltage.Add(reader.ReadDouble());
-                        }
-                        t[CounterDevices].TransmitterRiseRecessionSignalTime.Add(reader.ReadDouble());
-                        //Читаем требования по питанию
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqPlusFiveVoltage.Add(reader.ReadDouble());
-                        }
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqMinusTwelveVoltage.Add(reader.ReadDouble());
-                        }
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqPlusTwelvePauseVoltage.Add(reader.ReadDouble());
-                        }
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqPlusTwelve25Voltage.Add(reader.ReadDouble());
-                        }
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqPlusTwelve50Voltage.Add(reader.ReadDouble());
-                        }
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].PowerReqPlusTwelve100Voltage.Add(reader.ReadDouble());
-                        }
-                        //Читаем данные по температуре
-                        CurrentPosition = (int) reader.BaseStream.Position - 1;
-                        while (reader.BaseStream.Position <= CurrentPosition + 800)
-                        {
-                            t[CounterDevices].Temperature.Add(reader.ReadDouble());
-                        }
-                        //Отправляем всё в обработку, находим средние показатели, заносим их в структуру.
-                        //Продолжаем работу
+                        t[CounterDevices].ReceiverDifferentialInputVoltage.Add(reader.ReadDouble());
                     }
-                    else
+                    //Читаем данные передатчика
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        break;
+                        t[CounterDevices].TransmitterDifferentialOutputVoltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].TransmitterRiseRecessionSignalTime.Add(reader.ReadDouble());
+                    }
+                    //Читаем требования по питанию
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqPlusFiveVoltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqMinusTwelveVoltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqPlusTwelvePauseVoltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqPlusTwelve25Voltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqPlusTwelve50Voltage.Add(reader.ReadDouble());
+                    }
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].PowerReqPlusTwelve100Voltage.Add(reader.ReadDouble());
+                    }
+                    //Читаем данные по температуре
+                    CurrentPosition = (int)reader.BaseStream.Position - 1;
+                    while (reader.BaseStream.Position <= CurrentPosition + 800)
+                    {
+                        t[CounterDevices].Temperature.Add(reader.ReadDouble());
                     }
                     CounterDevices++;
                 }
+                ///TODO: Завершить обработку файлов - обсчет прямых измерений
             }
         }
     }
