@@ -238,6 +238,7 @@
             this.openFolderReportsToolStripMenuItem.Name = "openFolderReportsToolStripMenuItem";
             this.openFolderReportsToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.openFolderReportsToolStripMenuItem.Text = "Открыть папку";
+            this.openFolderReportsToolStripMenuItem.Click += new System.EventHandler(this.openFolderReportsToolStripMenuItem_Click);
             // 
             // serviceToolStripMenuItem
             // 

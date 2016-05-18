@@ -57,7 +57,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
@@ -76,11 +76,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Auth\authentication.cs" />
+    <Compile Include="Core\Directory\DirectoryControl.cs" />
     <Compile Include="Core\Directory\DirectoryList.cs" />
     <Compile Include="Core\Directory\DirectoryChanger.cs" />
     <Compile Include="Core\Directory\DirectoryCreater.cs" />
+    <Compile Include="Core\File processing\ProcessingDataFile.cs" />
     <Compile Include="Core\FTP\FTP.cs" />
     <Compile Include="Core\Params\HandlerParam.cs" />
+    <Compile Include="Core\Processing\Devices\DevicesStruct.cs" />
+    <Compile Include="Core\Processing\Devices\TemporaryDeviceStruct.cs" />
+    <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
+    <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
     <Compile Include="Core\Settings\Settings DB.cs" />
     <Compile Include="Core\Settings\Settings FTP.cs" />
@@ -224,9 +230,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\DataBase\" />
+    <Folder Include="Core\Processing\Word\" />
     <Folder Include="Forms\DataBase\" />
     <Folder Include="Forms\Other\" />
     <Folder Include="Logs\" />
+    <Folder Include="TemporaryDevicesStructure\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Core\Params\Parametrs_v1.xml">
