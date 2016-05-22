@@ -12,7 +12,7 @@ namespace InfSysDCAA.Core.Config {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class database : global::System.Configuration.ApplicationSettingsBase {
         
         private static database defaultInstance = ((database)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new database())));

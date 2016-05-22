@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>InfSysDCAA</RootNamespace>
     <AssemblyName>InfSysDCAA</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Users\Dmitriy\Desktop\</PublishUrl>
@@ -27,6 +27,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -82,11 +83,15 @@
     <Compile Include="Core\Directory\DirectoryCreater.cs" />
     <Compile Include="Core\File processing\ProcessingDataFile.cs" />
     <Compile Include="Core\FTP\FTP.cs" />
-    <Compile Include="Core\Params\HandlerParam.cs" />
+    <Compile Include="Core\Processing\Data\ProcessingData.cs" />
+    <Compile Include="Core\Processing\Devices\ConstantDeviceStruct.cs" />
     <Compile Include="Core\Processing\Devices\DevicesStruct.cs" />
     <Compile Include="Core\Processing\Devices\TemporaryDeviceStruct.cs" />
     <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
+    <Compile Include="Core\Processing\Direct dimension\Options list.cs" />
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
+    <Compile Include="Core\Processing\Test\GetDeviceInfo.cs" />
+    <Compile Include="Core\Processing\Test\Testing.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
     <Compile Include="Core\Settings\Settings DB.cs" />
     <Compile Include="Core\Settings\Settings FTP.cs" />
@@ -96,9 +101,9 @@
     <Compile Include="Core\Validation\Validation.cs" />
     <Compile Include="Core\Validation\ValidationFields.cs" />
     <Compile Include="Core\XML\AbstractXMLClass.cs" />
-    <Compile Include="Core\XML\Devices\XmlFileCreatorDeviceInfoPart1.cs" />
-    <Compile Include="Core\XML\Devices\XmlFileCreatorDeviceInfoPart2.cs" />
-    <Compile Include="Core\XML\XmlClassPath.cs" />
+    <Compile Include="Core\XML\Devices\Reader\ReaderParamsXML.cs" />
+    <Compile Include="Core\XML\Devices\Writer\XmlFileCreatorDeviceInfoPart1.cs" />
+    <Compile Include="Core\XML\Devices\Writer\XmlFileCreatorDeviceInfoPart2.cs" />
     <Compile Include="Forms\Processing data\ProcesingData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,10 +242,6 @@
     <Folder Include="TemporaryDevicesStructure\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Core\Params\Parametrs_v1.xml">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Core\Params\Parametrs_v2.xml" />
     <None Include="Resources\Box-52.png" />
     <None Include="Resources\multiply.png" />
     <None Include="Resources\tool_box.png" />

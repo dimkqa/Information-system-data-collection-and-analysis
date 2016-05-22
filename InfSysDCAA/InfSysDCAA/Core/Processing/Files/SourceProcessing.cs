@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using InfSysDCAA.Core.Processing.Devices;
 using InfSysDCAA.Core.Processing;
+using InfSysDCAA.Core.Processing.Test;
 
 namespace InfSysDCAA.Core.Processing.Files
 {
@@ -13,6 +14,16 @@ namespace InfSysDCAA.Core.Processing.Files
     /// </summary>
     public class SourceProcessing
     {
+        /// <summary>
+        /// Содержит структуры для передачи в тест.
+        /// </summary>
+        public static TemporaryDevicesStructure.TmpDevice[] RawStructDevice { get; set; }
+
+        /// <summary>
+        /// Содержит структуры для считывания в них исходных данных
+        /// </summary>
+        private static TemporaryDevicesStructure.TmpDevice[] RawTmpStructDevice { get; set; }
+
         /// <summary>
         /// Полный путь до файла
         /// </summary>
@@ -56,21 +67,7 @@ namespace InfSysDCAA.Core.Processing.Files
                 DevicesStruct.LengthAllDevicesBytes = DevicesStruct.LengthDeviceInBytes * CountDevicesInTheTest;
 
                 //Создаём и инициализируем поля структуры
-                TemporaryDevicesStructure.TmpDevice[] t = new TemporaryDevicesStructure.TmpDevice[CountDevicesInTheTest];
-
-                for (int i = 0; i < CountDevicesInTheTest; i++)
-                {
-                    t[i].ReceiverDifferentialInputVoltage = new List<double>();
-                    t[i].TransmitterDifferentialOutputVoltage = new List<double>();
-                    t[i].TransmitterRiseRecessionSignalTime = new List<double>();
-                    t[i].PowerReqPlusFiveVoltage = new List<double>();
-                    t[i].PowerReqMinusTwelveVoltage = new List<double>();
-                    t[i].PowerReqPlusTwelvePauseVoltage = new List<double>();
-                    t[i].PowerReqPlusTwelve25Voltage = new List<double>();
-                    t[i].PowerReqPlusTwelve50Voltage = new List<double>();
-                    t[i].PowerReqPlusTwelve100Voltage = new List<double>();
-                    t[i].Temperature = new List<double>();
-                }
+                InitStructure(CountDevicesInTheTest);
 
                 //Число устройств
                 CounterDevices = 0;
@@ -80,65 +77,117 @@ namespace InfSysDCAA.Core.Processing.Files
                     //Читаем 4 байта разделителя
                     reader.ReadInt32();
                     //Читаем инвентарный номер
-                    t[CounterDevices].InventoryNumber = reader.ReadString();
+                    RawTmpStructDevice[CounterDevices].InventoryNumber = reader.ReadString();
                     //Смещение на начало сегмента
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     //Читаем данные приёмника
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].ReceiverDifferentialInputVoltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].ReceiverDifferentialInputVoltage.Add(reader.ReadDouble());
                     }
                     //Читаем данные передатчика
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].TransmitterDifferentialOutputVoltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].TransmitterDifferentialOutputVoltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].TransmitterRiseRecessionSignalTime.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].TransmitterRiseRecessionSignalTime.Add(reader.ReadDouble());
                     }
                     //Читаем требования по питанию
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqPlusFiveVoltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqPlusFiveVoltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqMinusTwelveVoltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqMinusTwelveVoltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqPlusTwelvePauseVoltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqPlusTwelvePauseVoltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqPlusTwelve25Voltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqPlusTwelve25Voltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqPlusTwelve50Voltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqPlusTwelve50Voltage.Add(reader.ReadDouble());
                     }
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].PowerReqPlusTwelve100Voltage.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].PowerReqPlusTwelve100Voltage.Add(reader.ReadDouble());
                     }
                     //Читаем данные по температуре
                     CurrentPosition = (int)reader.BaseStream.Position - 1;
                     while (reader.BaseStream.Position <= CurrentPosition + 800)
                     {
-                        t[CounterDevices].Temperature.Add(reader.ReadDouble());
+                        RawTmpStructDevice[CounterDevices].Temperature.Add(reader.ReadDouble());
                     }
                     CounterDevices++;
                 }
-                ///TODO: Завершить обработку файлов - обсчет прямых измерений
+                CopyStructure();
+                ///TODO: Здесь могут быть прямые измерения
+            }
+        }
+
+        /// <summary>
+        /// Производит копирование структуры
+        /// </summary>
+        private static void CopyStructure()
+        {
+            RawStructDevice = RawTmpStructDevice;
+        }
+
+        public static string[] getArrayInventoryNumber()
+        {
+            string [] strInv = new string[CountDevicesInTheTest];
+            for (int i = 0; i < CountDevicesInTheTest; i++)
+            {
+                strInv[i] = RawTmpStructDevice[i].InventoryNumber;
+            }
+            return strInv;
+        }
+
+        /// <summary>
+        /// Инициализирует структуры устройств для записи данных из файла и для передачи в тест
+        /// </summary>
+        /// <param name="countDeviceTest">Int, число параметров</param>
+        private static void InitStructure(int countDeviceTest)
+        {
+            RawStructDevice = new TemporaryDevicesStructure.TmpDevice[countDeviceTest];
+            RawTmpStructDevice = new TemporaryDevicesStructure.TmpDevice[countDeviceTest];
+            for (int i = 0; i < countDeviceTest; i++)
+            {
+                RawTmpStructDevice[i].ReceiverDifferentialInputVoltage = new List<double>();
+                RawStructDevice[i].ReceiverDifferentialInputVoltage = new List<double>();
+                RawTmpStructDevice[i].TransmitterDifferentialOutputVoltage = new List<double>();
+                RawStructDevice[i].TransmitterDifferentialOutputVoltage = new List<double>();
+                RawTmpStructDevice[i].TransmitterRiseRecessionSignalTime = new List<double>();
+                RawStructDevice[i].TransmitterRiseRecessionSignalTime = new List<double>();
+                RawTmpStructDevice[i].PowerReqPlusFiveVoltage = new List<double>();
+                RawStructDevice[i].PowerReqPlusFiveVoltage = new List<double>();
+                RawTmpStructDevice[i].PowerReqMinusTwelveVoltage = new List<double>();
+                RawStructDevice[i].PowerReqMinusTwelveVoltage = new List<double>();
+                RawTmpStructDevice[i].PowerReqPlusTwelvePauseVoltage = new List<double>();
+                RawStructDevice[i].PowerReqPlusTwelvePauseVoltage = new List<double>();
+                RawTmpStructDevice[i].PowerReqPlusTwelve25Voltage = new List<double>();
+                RawStructDevice[i].PowerReqPlusTwelve25Voltage = new List<double>();
+                RawTmpStructDevice[i].PowerReqPlusTwelve50Voltage = new List<double>();
+                RawStructDevice[i].PowerReqPlusTwelve50Voltage = new List<double>();
+                RawTmpStructDevice[i].PowerReqPlusTwelve100Voltage = new List<double>();
+                RawStructDevice[i].PowerReqPlusTwelve100Voltage = new List<double>();
+                RawTmpStructDevice[i].Temperature = new List<double>();
+                RawStructDevice[i].Temperature = new List<double>();
             }
         }
     }

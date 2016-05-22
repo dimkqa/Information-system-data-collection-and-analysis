@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
 using InfSysDCAA.Core.Directory;
 using InfSysDCAA.Core.File_processing;
+using InfSysDCAA.Core.Processing.Data;
 using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Validation;
 using InfSysDCAA.Forms.Settings;
@@ -107,8 +108,7 @@ namespace InfSysDCAA
              dialogAddedFile.Filter = "Бинарный файл данных |*.bin";
              if (dialogAddedFile.ShowDialog() == DialogResult.OK)
              {
-                 SourceProcessing SP = new SourceProcessing(dialogAddedFile.FileName);
-                 SourceProcessing.ReaderBinaryFile();
+                ProcessingData ProcData = new ProcessingData(dialogAddedFile.FileName);
              }
          }
 

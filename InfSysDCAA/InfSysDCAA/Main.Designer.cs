@@ -65,7 +65,6 @@
             this.resultrReports = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.viewReports = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox_userInfo = new System.Windows.Forms.GroupBox();
-            this.button_blocked = new System.Windows.Forms.Button();
             this.label_status_info = new System.Windows.Forms.Label();
             this.label_secondname_info = new System.Windows.Forms.Label();
             this.label_firstname_info = new System.Windows.Forms.Label();
@@ -389,7 +388,6 @@
             // 
             // groupBox_userInfo
             // 
-            this.groupBox_userInfo.Controls.Add(this.button_blocked);
             this.groupBox_userInfo.Controls.Add(this.label_status_info);
             this.groupBox_userInfo.Controls.Add(this.label_secondname_info);
             this.groupBox_userInfo.Controls.Add(this.label_firstname_info);
@@ -403,16 +401,6 @@
             this.groupBox_userInfo.TabIndex = 4;
             this.groupBox_userInfo.TabStop = false;
             this.groupBox_userInfo.Text = "Информация о пользователе";
-            // 
-            // button_blocked
-            // 
-            this.button_blocked.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_blocked.Location = new System.Drawing.Point(6, 71);
-            this.button_blocked.Name = "button_blocked";
-            this.button_blocked.Size = new System.Drawing.Size(176, 23);
-            this.button_blocked.TabIndex = 7;
-            this.button_blocked.Text = "Заблокировать систему";
-            this.button_blocked.UseVisualStyleBackColor = true;
             // 
             // label_status_info
             // 
@@ -539,7 +527,6 @@
         private System.Windows.Forms.Label label_text_status_info;
         private System.Windows.Forms.Label label_text_secondname_info;
         private System.Windows.Forms.Label label_text_firstname_info;
-        protected internal System.Windows.Forms.Button button_blocked;
         protected internal System.Windows.Forms.Button button_logout;
         private System.Windows.Forms.ToolStripMenuItem infoComputerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;

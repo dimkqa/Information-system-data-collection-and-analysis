@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace InfSysDCAA.Core.Directory
 {
@@ -60,6 +61,10 @@ namespace InfSysDCAA.Core.Directory
                 {
                     CreatePath(defaultPath[i]);
                 }
+                else
+                {
+                    CreatePath(DirectoryList.DefaultPathList[i]);
+                }
             }
 
         }
@@ -70,9 +75,16 @@ namespace InfSysDCAA.Core.Directory
         /// <param name="path">string - Путь до директории</param>
         private static void CreatePath(string path)
         {
-            if (!System.IO.Directory.Exists(path))
+            try
             {
-                System.IO.Directory.CreateDirectory(path);
+                if (!System.IO.Directory.Exists(path))
+                {
+                    System.IO.Directory.CreateDirectory(path);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
             }
         }
     }
