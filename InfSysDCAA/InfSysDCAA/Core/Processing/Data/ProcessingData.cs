@@ -34,6 +34,7 @@ namespace InfSysDCAA.Core.Processing.Data
                 SourceProcessing processing = new SourceProcessing(FileName);
                 SourceProcessing.ReaderBinaryFile();
                 GetDeviceInfo dev = new GetDeviceInfo(SourceProcessing.getArrayInventoryNumber());
+                
                 //TODO: ДОДЕЛАТЬ обработку и возврат массива со структурами из XML. Проведение теста.
                 //Вызов метода из теста.
                 //Необходимо получить листы параметров из XML
