@@ -58,6 +58,7 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
         {
             AddedDotXML(inventNumber);
             CountInvetntNumbers = inventNumber.Count();
+            PreparePermanentData();
             PasreArrayStringInventoryNumber(inventNumber);
         }
 
@@ -92,14 +93,14 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                 else
                 {
                     //TODO: Вынести в отдельный файл ошибки.
-                    string errMsg = "Файл устройства с инвентарным номером "+ inv +"не найден";
-                    throw new Exception(errMsg);        
+                    string errMsg = "Файл устройства с инвентарным номером " + inv + "не найден";
+                    throw new Exception(errMsg);
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace, e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }  
+            }
         }
 
         /// <summary>
@@ -120,6 +121,13 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
             XMLDevice.PowerReqPlusTwelve50Voltage = new List<double>();
             XMLDevice.PowerReqPlusTwelve100Voltage = new List<double>();
             XMLDevice.Temperature = new List<double>();
+        }
+
+        /// <summary>
+        /// Инициализирует структуру для долговременного хранения данных
+        /// </summary>
+        private void PreparePermanentData()
+        {
             //Создадим и проведем инициализацию массива структур
             XmlDeviceExport = new ConstantDeviceStruct.TmpDevice[CountInvetntNumbers];
             for (int i = 0; i < CountInvetntNumbers; i++)
@@ -155,13 +163,12 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                     XElement Limit = ReceiverElement.Element("Limit");
                     XElement Minimum = ReceiverElement.Element("Minimum");
                     XElement Maximum = ReceiverElement.Element("Maximum");
-
-                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Limit.Value));
+                    //Нижняя граница
+                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верхняя граница
+                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.ReceiverDifferentialInputVoltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 //Ветка трансмиттера
                 foreach (XElement TransmitterElementDiffOutV in element.Elements("DifferentialOutputVoltage"))
@@ -169,114 +176,91 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                     XElement Minimum = TransmitterElementDiffOutV.Element("Minimum");
                     XElement Normal = TransmitterElementDiffOutV.Element("Normal");
                     XElement Limit = TransmitterElementDiffOutV.Element("Limit");
-
-                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Normal.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.TransmitterDifferentialOutputVoltage.Add(Convert.ToDouble(Normal.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement TransmitterElementTimeUpDownS in element.Elements("TimeToUpDownSignal"))
                 {
                     XElement Minimum = TransmitterElementTimeUpDownS.Element("Minimum");
-                    XElement Normal = TransmitterElementTimeUpDownS.Element("Normal");
                     XElement Maximum = TransmitterElementTimeUpDownS.Element("Maximum");
                     XElement Limit = TransmitterElementTimeUpDownS.Element("Limit");
-
-                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.TransmitterRiseRecessionSignalTime.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 //Ветка требования по питанию
                 foreach (XElement PlusFiveVolt in element.Elements("PlusFiveVolt"))
                 {
                     XElement Maximum = PlusFiveVolt.Element("Maximum");
                     XElement Limit = PlusFiveVolt.Element("Limit");
-
-                    XMLDevice.PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqPlusFiveVoltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement MinusTwelvVolt in element.Elements("MinusTwelvVolt"))
                 {
                     XElement Normal = MinusTwelvVolt.Element("Normal");
                     XElement Limit = MinusTwelvVolt.Element("Limit");
-
-                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement PlusTwelvVoltPause in element.Elements("PlusTwelvVoltPause"))
                 {
                     XElement Minimum = PlusTwelvVoltPause.Element("Minimum");
-                    XElement Normal = PlusTwelvVoltPause.Element("Normal");
                     XElement Maximum = PlusTwelvVoltPause.Element("Maximum");
                     XElement Limit = PlusTwelvVoltPause.Element("Limit");
-
-                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelvePauseVoltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement PlusTwelvVoltTwentyFive in element.Elements("PlusTwelvVoltTwentyFive"))
                 {
                     XElement Minimum = PlusTwelvVoltTwentyFive.Element("Minimum");
-                    XElement Normal = PlusTwelvVoltTwentyFive.Element("Normal");
                     XElement Maximum = PlusTwelvVoltTwentyFive.Element("Maximum");
                     XElement Limit = PlusTwelvVoltTwentyFive.Element("Limit");
-
-                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve25Voltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement PlusTwelvVoltFifty in element.Elements("PlusTwelvVoltFifty"))
                 {
                     XElement Minimum = PlusTwelvVoltFifty.Element("Minimum");
-                    XElement Normal = PlusTwelvVoltFifty.Element("Normal");
                     XElement Maximum = PlusTwelvVoltFifty.Element("Maximum");
                     XElement Limit = PlusTwelvVoltFifty.Element("Limit");
-
-                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve50Voltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement PlusTwelvVoltHundred in element.Elements("PlusTwelvVoltHundred"))
                 {
                     XElement Minimum = PlusTwelvVoltHundred.Element("Minimum");
                     XElement Limit = PlusTwelvVoltHundred.Element("Limit");
                     XElement Maximum = PlusTwelvVoltHundred.Element("Maximum");
-                    XElement Normal = PlusTwelvVoltHundred.Element("Normal");
-
-                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Normal.Value));
-                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqPlusTwelve100Voltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 // Ветка температуры
                 foreach (XElement temperature in element.Elements("PowerTemp"))
@@ -284,17 +268,25 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                     XElement Minimum = temperature.Element("Minimum");
                     XElement Maximum = temperature.Element("Maximum");
                     XElement Limit = temperature.Element("Limit");
-
-                    XMLDevice.Temperature.Add(Convert.ToDouble(Minimum.Value));
-                    XmlDeviceExport[CountTmp].Temperature.Add(Convert.ToDouble(Minimum.Value));
-                    XMLDevice.Temperature.Add(Convert.ToDouble(Maximum.Value));
-                    XmlDeviceExport[CountTmp].Temperature.Add(Convert.ToDouble(Maximum.Value));
-                    XMLDevice.Temperature.Add(Convert.ToDouble(Limit.Value));
-                    XmlDeviceExport[CountTmp].Temperature.Add(Convert.ToDouble(Limit.Value));
+                    //Низ
+                    XMLDevice.Temperature.Add(Convert.ToDouble(Minimum.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.Temperature.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
+                    //Верх
+                    XMLDevice.Temperature.Add(Convert.ToDouble(Minimum.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.Temperature.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
             }
+            SaveTheData(CountTmp);
             //Уменьшаем число устройств
-            CountTmp--;
+            CountInvetntNumbers--;
+        }
+
+        /// <summary>
+        /// После того, как данные очередного XML файла прочитаны, сохраняем их.
+        /// </summary>
+        private void SaveTheData(int count)
+        {
+            XmlDeviceExport[count] = XMLDevice;
         }
 
         /// <summary>

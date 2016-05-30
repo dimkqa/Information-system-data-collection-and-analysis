@@ -45,6 +45,7 @@ namespace InfSysDCAA.Core.Processing.Test
             try
             {
                 _xmlReaderParamDevice = new ReaderParamsXML(InventoryNumbers);
+                //XmlDeviceExport = _xmlReaderParamDevice.XmlDeviceExport;
             }
             catch (Exception ex)
             {
@@ -55,59 +56,5 @@ namespace InfSysDCAA.Core.Processing.Test
             /// 3. Вернуть листы отсюда в вызов.
             /// 4. Если Файла с таким инвентарным номером нет, то выдать ошибку 
         }
-
-        public double GetDataWithLimit()
-        {
-            double s = 0.0;
-            return s;
-        }
-        
-        /*private double getReceiverDifferentialInputVoltageData()
-        {
-            
-        }*/
-
-        /*
-        private double getTransmitterDifferentialOutputVoltageData()
-        {
-
-        }
-
-        private double getTransmitterTimeToUpDownSignalData()
-        {
-
-        }
-
-        private double getPowerRequirementsPlusFiveVoltData()
-        {
-
-        }
-
-        private double getPowerRequirementsMinusTwelvVoltData()
-        {
-
-        }
-
-        private double getPowerRequirementsPlusTwelvVoltPauseData()
-        {
-
-        }
-
-        private double getPowerRequirementsPlusTwelvVoltTwentyFiveData()
-        {
-
-        }
-        private double getPowerRequirementsPlusTwelvVoltFiftyData()
-        {
-
-        }
-        private double getPowerRequirementsPlusTwelvVoltHundredData()
-        {
-
-        }
-        private double getTemperatureData()
-        {
-
-        }*/
     }
 }
