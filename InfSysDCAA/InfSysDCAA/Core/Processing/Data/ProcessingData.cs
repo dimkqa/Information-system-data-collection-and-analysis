@@ -16,7 +16,6 @@ namespace InfSysDCAA.Core.Processing.Data
     /// </summary>
     public class ProcessingData
     {
-
         private string FileName { get; set; }
 
         public ProcessingData(string fileName)
@@ -33,8 +32,8 @@ namespace InfSysDCAA.Core.Processing.Data
             {
                 SourceProcessing processing = new SourceProcessing(FileName);
                 SourceProcessing.ReaderBinaryFile();
-                GetDeviceInfo dev = new GetDeviceInfo(SourceProcessing.getArrayInventoryNumber());
-                
+                GetDeviceInfo infoDev = new GetDeviceInfo(SourceProcessing.getArrayInventoryNumber());
+                Testing startTesting = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
                 //TODO: ДОДЕЛАТЬ обработку и возврат массива со структурами из XML. Проведение теста.
                 //Вызов метода из теста.
                 //Необходимо получить листы параметров из XML

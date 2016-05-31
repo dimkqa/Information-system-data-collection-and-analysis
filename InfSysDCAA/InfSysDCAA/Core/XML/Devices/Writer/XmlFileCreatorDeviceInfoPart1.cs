@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace InfSysDCAA.Core.XML.Devices
+﻿namespace InfSysDCAA.Core.XML.Devices.Writer
 {/*
     using System.IO;
     using System.Xml.Linq;

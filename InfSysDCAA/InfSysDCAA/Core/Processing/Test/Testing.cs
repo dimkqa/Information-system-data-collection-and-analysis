@@ -13,11 +13,12 @@ namespace InfSysDCAA.Core.Processing.Test
     public class Testing
     {
         /// <summary>
-        /// Проводит тестирование параметров платы
+        /// Конструктор задаёт параметры класса и подготавлвает их для дальнейшего использования
         /// </summary>
-        /// <param name="deviceRaw">Массив структур данных, расшифрованная из файла с иходными данными</param>
-        /// <param name="deviceConst">Массив структур данных, взятых из файла настроек (XML)</param>
-        public Testing(TemporaryDevicesStructure.TmpDevice [] deviceRaw, ConstantDeviceStruct [] deviceConst)
+        /// <param name="deviceRaw"> Массив структур данных, расшифрованный из файла с иходными данными </param>
+        /// <param name="deviceConst">Массив структур данных, взятых из файла настроек (XML),
+        /// изначально содержит данные вместе с допуском</param>
+        public Testing(TemporaryDevicesStructure.TmpDevice [] deviceRaw, ConstantDeviceStruct.TmpDevice [] deviceConst)
         {
 
         }

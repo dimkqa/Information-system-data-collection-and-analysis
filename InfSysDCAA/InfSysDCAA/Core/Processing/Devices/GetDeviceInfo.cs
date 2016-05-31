@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using InfSysDCAA.Core.Directory;
-using InfSysDCAA.Core.Processing.Devices;
 using InfSysDCAA.Core.XML.Devices.Reader;
 
-namespace InfSysDCAA.Core.Processing.Test
+namespace InfSysDCAA.Core.Processing.Devices
 {
     /// <summary>
     /// Получает эталонные значения плат, которые находятся в XML-файле
@@ -45,7 +39,7 @@ namespace InfSysDCAA.Core.Processing.Test
             try
             {
                 _xmlReaderParamDevice = new ReaderParamsXML(InventoryNumbers);
-                //XmlDeviceExport = _xmlReaderParamDevice.XmlDeviceExport;
+                XmlDeviceExport = _xmlReaderParamDevice.XmlDeviceExport;
             }
             catch (Exception ex)
             {

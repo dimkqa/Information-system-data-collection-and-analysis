@@ -90,7 +90,7 @@
     <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
     <Compile Include="Core\Processing\Direct dimension\Options list.cs" />
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
-    <Compile Include="Core\Processing\Test\GetDeviceInfo.cs" />
+    <Compile Include="Core\Processing\Devices\GetDeviceInfo.cs" />
     <Compile Include="Core\Processing\Test\Testing.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
     <Compile Include="Core\Settings\Settings DB.cs" />
