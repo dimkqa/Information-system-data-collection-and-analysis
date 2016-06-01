@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Processing.Devices;
+using InfSysDCAA.Core.Processing.Direct_dimension;
 using InfSysDCAA.Core.Processing.Test;
 
 namespace InfSysDCAA.Core.Processing.Data
@@ -33,10 +34,11 @@ namespace InfSysDCAA.Core.Processing.Data
                 SourceProcessing processing = new SourceProcessing(FileName);
                 SourceProcessing.ReaderBinaryFile();
                 GetDeviceInfo infoDev = new GetDeviceInfo(SourceProcessing.getArrayInventoryNumber());
-                Testing startTesting = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
-                //TODO: ДОДЕЛАТЬ обработку и возврат массива со структурами из XML. Проведение теста.
-                //Вызов метода из теста.
-                //Необходимо получить листы параметров из XML
+                DirectDimension processingDimension = new DirectDimension(SourceProcessing.RawStructDevice);
+                Testing InitTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
+                InitTest.StartTest();
+                //TODO:После анализа теста необходимо передать его результаты в класс отчётов, метод которого сформирует отчёт.
+                //InitTest.GetResultTest();
             }
             catch (Exception e)
             {
