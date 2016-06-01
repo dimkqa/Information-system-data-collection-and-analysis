@@ -88,7 +88,6 @@
     <Compile Include="Core\Processing\Devices\DevicesStruct.cs" />
     <Compile Include="Core\Processing\Devices\TemporaryDeviceStruct.cs" />
     <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
-    <Compile Include="Core\Processing\Direct dimension\Options list.cs" />
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Processing\Devices\GetDeviceInfo.cs" />
     <Compile Include="Core\Processing\Test\Testing.cs" />

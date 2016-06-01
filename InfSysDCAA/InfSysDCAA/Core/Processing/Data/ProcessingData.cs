@@ -35,8 +35,8 @@ namespace InfSysDCAA.Core.Processing.Data
                 SourceProcessing.ReaderBinaryFile();
                 GetDeviceInfo infoDev = new GetDeviceInfo(SourceProcessing.getArrayInventoryNumber());
                 DirectDimension processingDimension = new DirectDimension(SourceProcessing.RawStructDevice);
-                Testing InitTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
-                InitTest.StartTest();
+                Testing initTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
+                initTest.StartTest();
                 //TODO:После анализа теста необходимо передать его результаты в класс отчётов, метод которого сформирует отчёт.
                 //InitTest.GetResultTest();
             }
