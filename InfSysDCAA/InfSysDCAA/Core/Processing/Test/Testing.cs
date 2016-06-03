@@ -13,16 +13,39 @@ namespace InfSysDCAA.Core.Processing.Test
     public class Testing
     {
         /// <summary>
+        /// Массив результатов теста, каждая структура содержит информацию об устройстве
+        /// и результатах теста для этого устройства.
+        /// </summary>
+        public TestDataStructure.TestDataStruct[] TestResultDataStruct;
+
+        /// <summary>
         /// Содержит данные текущих измерений
         /// </summary>
         private TemporaryDevicesStructure.TmpDevice[] RawDeviceStructure;
+        
         /// <summary>
         /// Содержит константные параметры для каждого устройства
         /// </summary>
         private ConstantDeviceStruct.TmpDevice[] ConstDeviceStructure;
 
+        private TestSituation testSituation;
+    
         /// <summary>
-        /// Число устройств теста
+        /// Пояснения к возможным исходам теста
+        /// </summary>
+        List<string> Cases = new List<string>
+        {
+            {"Параметры устройства в норме"},
+            {"Параметр"},
+            { "Отклонение от стандартного значения: выход за минимально допустимое значение парамтера"},
+
+            {"Выход за максимально допустимое значение"},
+            {"Тест не пройден, возникли проблемы"},
+            {"Тест успешно пройден"}
+        };
+
+        /// <summary>
+        /// Число устройств в конкретном тесте
         /// </summary>
         private int CountDevices;
 
@@ -51,63 +74,70 @@ namespace InfSysDCAA.Core.Processing.Test
         /// </summary>
         public void StartTest()
         {
-            PrepareTupleResult();
+            PrepareDataResult();
             for (int i = 0; i < CountDevices; i++)
             {
-                TestReceiverDifferentialInputVoltage(RawDeviceStructure[i].ReceiverDifferentialInputVoltage,
-                    ConstDeviceStructure[i].ReceiverDifferentialInputVoltage);
-            }
-        }
+                TestResultDataStruct[i].DeviceInventNumber = 
+                    RawDeviceStructure[i].InventoryNumber;
+                TestResultDataStruct[i].DeviceName = 
+                    GetDeviceInfoDB.GetDeviceName(RawDeviceStructure[i].InventoryNumber);
+                TestResultDataStruct[i].DeviceDescription =
+                    GetDeviceInfoDB.GetDeviceDescription(RawDeviceStructure[i].InventoryNumber);
+                TestResultDataStruct[i].DeviceManufacturer =
+                    GetDeviceInfoDB.GetDeviceManufacturer(RawDeviceStructure[i].InventoryNumber);
 
-        /// <summary>
-        /// Получить результаты теста
-        /// </summary>
-        public void GetResultTest()
-        {
-            
+                TestResultDataStruct[i].ReceiverDifferentialInputVoltage =
+                    TestReceiverDifInVolt(RawDeviceStructure[i].ReceiverDifferentialInputVoltage,
+                        ConstDeviceStructure[i].ReceiverDifferentialInputVoltage);
+            }
         }
 
         /// <summary>
         /// Тестирование приёмника 
+        /// Три условия:
+        /// 1. Текущее значение больше самого минимального и текущее значение меньше самого максимальногоЖ
+        // min-eps <= current <= max+eps
+        /// 2. Текущее минимальное значение находится в диапазоне допустимых минимальных значений
+        // min-eps <= minimum <= min+eps
+        /// 3. Текущее максимальное значение находится в диапазоне допустимых максимальных значений
+        // max-eps <= maximum <=max+eps
         /// </summary>
         /// <param name="RawData">Обработанные исходные данные</param>
         /// <param name="ConstData">Обработанные постоянные данные</param>
-        private void TestReceiverDifferentialInputVoltage(List<double> RawData, List<double> ConstData)
+        private Tuple<bool[], List<string>> TestReceiverDifInVolt(List<double> RawData, List<double> ConstData)
         {
-            bool[] resultTest = new bool[3];
-            //текущее среднее > минимум-допуск И текущее среднее < максимум+допуск
-            if (RawData[2] > ConstData[0] && RawData[2] < ConstData[3])
+            List<string> info = new List<string>();
+            bool [] thisStatus = new bool[3];
+            if (RawData[2] >= ConstData[0] && RawData[2] <= ConstData[3])
             {
-                resultTest[0] = true;
+                thisStatus[0] = true;
             }
             else
             {
-                resultTest[0] = false;
+                thisStatus[0] = false;
             }
-            //текущее мин < минимум-допуск или текущее мин < минимум+допуск
-            if (RawData[0] < ConstData[0] || RawData[0] < ConstData[2])
+            if (RawData[0] >= ConstData[0] && RawData[0] <= ConstData[2])
             {
-                resultTest[1] = true;
+                thisStatus[0] = true;
             }
             else
             {
-                resultTest[1] = false;
+                thisStatus[0] = false;
             }
-            //текущее макс > максимум-допуск или текущее макс > максимум+допуск
-            if (RawData[1] > ConstData[1] || RawData[1] > ConstData[3])
+            if (RawData[1] >= ConstData[1] || RawData[1] <= ConstData[3])
             {
-                resultTest[2] = true;
             }
             else
             {
-                resultTest[2] = false;
+                thisStatus[0] = false;
             }
+            return Tuple.Create<bool[], List<string>>(thisStatus, info);
         }
 
         /// <summary>
         /// Тестирование передатчика
         /// </summary>
-        private void TestTransmitterDifferentialOutputVoltage()
+        private void TestTransDiffOutVolt()
         {
 
         }
@@ -115,7 +145,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование передатчика
         /// </summary>
-        private void TestTransmitterRiseRecessionSignalTime()
+        private void TestTransSignalTime()
         {
 
         }
@@ -123,7 +153,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование требований по питанию +5В
         /// </summary>
-        private void TestPowerReqPlusFiveVoltage()
+        private void TestPowerReqPlusFiveVolt()
         {
 
         }
@@ -131,7 +161,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование требований по питанию -12В
         /// </summary>
-        private void TestPowerReqMinusTwelveVoltage()
+        private void TestPowerReqMinusTwelveVolt()
         {
 
         }
@@ -139,7 +169,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование требований по питанию +12В Пауза
         /// </summary>
-        private void TestPowerReqPlusTwelvePauseVoltage()
+        private void TestPowerReqPlusTwelvePauseVolt()
         {
 
         }
@@ -147,7 +177,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование требований по питанию +12В 25%
         /// </summary>
-        private void TestPowerReqPlusTwelve25Voltage()
+        private void TestPowerReqPlusTwelve25Volt()
         {
 
         }
@@ -155,14 +185,14 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Тестирование требований по питанию +12В 50%
         /// </summary>
-        private void TestPowerReqPlusTwelve50Voltage()
+        private void TestPowerReqPlusTwelve50Volt()
         {
         }
 
         /// <summary>
         /// Тестирование требований по питанию +12В 100%
         /// </summary>
-        private void TestPowerReqPlusTwelve100Voltage()
+        private void TestPowerReqPlusTwelve100Volt()
         {
 
         }
@@ -176,11 +206,26 @@ namespace InfSysDCAA.Core.Processing.Test
         }
 
         /// <summary>
-        /// Подготовка хранилища для результатов
+        /// Подготовка и инициализация хранилища для сохранения результатов тестирования
         /// </summary>
-        private void PrepareTupleResult()
+        private void PrepareDataResult()
         {
-            
+            TestResultDataStruct = new TestDataStructure.TestDataStruct[CountDevices];
+            for (int i = 0; i < CountDevices; i++)
+            {
+                TestResultDataStruct[i].ReceiverDifferentialInputVoltage = new Tuple<bool[], List<string>>(new bool[3], new List<string>());
+               /* TestResultDataStruct[i].TransmitterDifferentialOutputVoltage = new List<string>();
+                TestResultDataStruct[i].TransmitterRiseRecessionSignalTime = new List<string>();
+                TestResultDataStruct[i].PowerReqPlusFiveVoltage = new List<string>();
+                TestResultDataStruct[i].PowerReqMinusTwelveVoltage = new List<string>();
+                TestResultDataStruct[i].PowerReqPlusTwelvePauseVoltage = new List<string>();
+                TestResultDataStruct[i].PowerReqPlusTwelve25Voltage = new List<string>();
+                TestResultDataStruct[i].PowerReqPlusTwelve50Voltage = new List<string>();
+                TestResultDataStruct[i].PowerReqPlusTwelve100Voltage = new List<string>();
+                TestResultDataStruct[i].Temperature = new List<string>();*/
+                TestResultDataStruct[i].DeviceStatusDescription = new List<string>();
+                TestResultDataStruct[i].DeviceDataDescriptionTest = new List<string>();
+            }
         }
 
     }

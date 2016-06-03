@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Processing.Devices;
 using InfSysDCAA.Core.Processing.Direct_dimension;
+using InfSysDCAA.Core.Processing.Report;
 using InfSysDCAA.Core.Processing.Test;
 
 namespace InfSysDCAA.Core.Processing.Data
@@ -39,6 +40,7 @@ namespace InfSysDCAA.Core.Processing.Data
                 initTest.StartTest();
                 //TODO:После анализа теста необходимо передать его результаты в класс отчётов, метод которого сформирует отчёт.
                 //InitTest.GetResultTest();
+                //Reporting report = new Reporting();
             }
             catch (Exception e)
             {

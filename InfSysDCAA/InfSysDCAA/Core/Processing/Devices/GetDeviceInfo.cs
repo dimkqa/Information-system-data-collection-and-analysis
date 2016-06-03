@@ -45,10 +45,6 @@ namespace InfSysDCAA.Core.Processing.Devices
             {
                 MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /// 1. Найти файл по инвентаному номеру (обратиться в ReaderParamsXML.cs, передав туда инвентарный номер).
-            /// 2. Распарсить файл в листы
-            /// 3. Вернуть листы отсюда в вызов.
-            /// 4. Если Файла с таким инвентарным номером нет, то выдать ошибку 
         }
     }
 }

@@ -86,11 +86,15 @@
     <Compile Include="Core\Processing\Data\ProcessingData.cs" />
     <Compile Include="Core\Processing\Devices\ConstantDeviceStruct.cs" />
     <Compile Include="Core\Processing\Devices\DevicesStruct.cs" />
+    <Compile Include="Core\Processing\Devices\GetDeviceInfoDB.cs" />
     <Compile Include="Core\Processing\Devices\TemporaryDeviceStruct.cs" />
     <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Processing\Devices\GetDeviceInfo.cs" />
+    <Compile Include="Core\Processing\Report\Reporting.cs" />
+    <Compile Include="Core\Processing\Test\TestDataStructure.cs" />
     <Compile Include="Core\Processing\Test\Testing.cs" />
+    <Compile Include="Core\Processing\Test\TestSituation.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
     <Compile Include="Core\Settings\Settings DB.cs" />
     <Compile Include="Core\Settings\Settings FTP.cs" />
@@ -234,7 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\DataBase\" />
-    <Folder Include="Core\Processing\Word\" />
     <Folder Include="Forms\DataBase\" />
     <Folder Include="Forms\Other\" />
     <Folder Include="Logs\" />
