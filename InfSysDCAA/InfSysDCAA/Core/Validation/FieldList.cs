@@ -66,7 +66,7 @@ namespace InfSysDCAA.Core.Validation
             {"field_power_plus12V_100_max",      @"^[0-9]{1,3}$"},
             {"field_power_plus12V_100_epsilon",  @"^[0-9\\.]{1,4}$"},
 
-            {"field_power_minus12V_min",         @"^[0-9]{1,3}$"},
+            {"field_power_minus12V_max",         @"^[0-9]{1,3}$"},
             {"field_power_minus12V_epsilon",     @"^[0-9\\.]{1,4}$"},
 
             {"field_ftp_host",                   @"^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$"},
@@ -132,7 +132,7 @@ namespace InfSysDCAA.Core.Validation
             {"field_power_plus12V_100_max",     "Поле \"Питание +12В 100% максимум\" содержит ошибки:\r\n"},
             {"field_power_plus12V_100_epsilon", "Поле \"Допуск по питанию +12В 100%\" содержит ошибки:\r\n"},
 
-            {"field_power_minus12V_min",        "Поле \"Питание -12В минимум\" содержит ошибки:\r\n"},
+            {"field_power_minus12V_max",        "Поле \"Питание -12В минимум\" содержит ошибки:\r\n"},
             {"field_power_minus12V_epsilon",    "Поле \"Допуск по питанию -12В\" содержит ошибки:\r\n"},
 
             {"field_ftp_host",                  "Поле \"FTP-хост\" содержит ошибки:\r\n" },

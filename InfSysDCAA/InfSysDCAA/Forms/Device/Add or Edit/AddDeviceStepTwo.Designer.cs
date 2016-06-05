@@ -41,7 +41,7 @@
             this.field_power_minus12V_epsilon = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.field_power_minus12V_min = new System.Windows.Forms.TextBox();
+            this.field_power_minus12V_max = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.field_power_plus5V_epsilon = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -86,6 +86,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.field_transmitter_rise_typical = new System.Windows.Forms.TextBox();
+            this.lable123 = new System.Windows.Forms.Label();
             this.field_transmitter_rise_epsilon = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.field_transmitter_rise_max = new System.Windows.Forms.TextBox();
@@ -100,16 +102,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.field_temperature_min = new System.Windows.Forms.TextBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.field_transmitter_diffOutVolt_typical = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.field_transmitter_epsilon = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.field_transmitter_diffOutVolt_max = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.field_transmitter_diffOutVolt_min = new System.Windows.Forms.TextBox();
-            this.field_transmitter_rise_typical = new System.Windows.Forms.TextBox();
-            this.lable123 = new System.Windows.Forms.Label();
-            this.field_transmitter_diffOutVolt_typical = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -206,7 +206,7 @@
             this.groupBox5.Controls.Add(this.field_power_minus12V_epsilon);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.field_power_minus12V_min);
+            this.groupBox5.Controls.Add(this.field_power_minus12V_max);
             this.groupBox5.Location = new System.Drawing.Point(240, 13);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(228, 39);
@@ -235,16 +235,16 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(6, 16);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.Size = new System.Drawing.Size(34, 13);
             this.label13.TabIndex = 2;
-            this.label13.Text = "Норм";
+            this.label13.Text = "Макс";
             // 
-            // field_power_minus12V_min
+            // field_power_minus12V_max
             // 
-            this.field_power_minus12V_min.Location = new System.Drawing.Point(44, 13);
-            this.field_power_minus12V_min.Name = "field_power_minus12V_min";
-            this.field_power_minus12V_min.Size = new System.Drawing.Size(60, 20);
-            this.field_power_minus12V_min.TabIndex = 3;
+            this.field_power_minus12V_max.Location = new System.Drawing.Point(44, 13);
+            this.field_power_minus12V_max.Name = "field_power_minus12V_max";
+            this.field_power_minus12V_max.Size = new System.Drawing.Size(60, 20);
+            this.field_power_minus12V_max.TabIndex = 3;
             // 
             // groupBox8
             // 
@@ -653,6 +653,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Приёмник: Время нарастания/спада сигнала:";
             // 
+            // field_transmitter_rise_typical
+            // 
+            this.field_transmitter_rise_typical.Location = new System.Drawing.Point(259, 19);
+            this.field_transmitter_rise_typical.Name = "field_transmitter_rise_typical";
+            this.field_transmitter_rise_typical.Size = new System.Drawing.Size(60, 20);
+            this.field_transmitter_rise_typical.TabIndex = 9;
+            // 
+            // lable123
+            // 
+            this.lable123.AutoSize = true;
+            this.lable123.Location = new System.Drawing.Point(208, 22);
+            this.lable123.Name = "lable123";
+            this.lable123.Size = new System.Drawing.Size(49, 13);
+            this.lable123.TabIndex = 8;
+            this.lable123.Text = "Рабочее";
+            // 
             // field_transmitter_rise_epsilon
             // 
             this.field_transmitter_rise_epsilon.Location = new System.Drawing.Point(142, 45);
@@ -781,6 +797,22 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Приёмник: Дифференциальное выходное напряжение:";
             // 
+            // field_transmitter_diffOutVolt_typical
+            // 
+            this.field_transmitter_diffOutVolt_typical.Location = new System.Drawing.Point(259, 20);
+            this.field_transmitter_diffOutVolt_typical.Name = "field_transmitter_diffOutVolt_typical";
+            this.field_transmitter_diffOutVolt_typical.Size = new System.Drawing.Size(60, 20);
+            this.field_transmitter_diffOutVolt_typical.TabIndex = 11;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(208, 22);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(49, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Рабочее";
+            // 
             // field_transmitter_epsilon
             // 
             this.field_transmitter_epsilon.Location = new System.Drawing.Point(142, 50);
@@ -828,38 +860,6 @@
             this.field_transmitter_diffOutVolt_min.Name = "field_transmitter_diffOutVolt_min";
             this.field_transmitter_diffOutVolt_min.Size = new System.Drawing.Size(60, 20);
             this.field_transmitter_diffOutVolt_min.TabIndex = 3;
-            // 
-            // field_transmitter_rise_typical
-            // 
-            this.field_transmitter_rise_typical.Location = new System.Drawing.Point(259, 19);
-            this.field_transmitter_rise_typical.Name = "field_transmitter_rise_typical";
-            this.field_transmitter_rise_typical.Size = new System.Drawing.Size(60, 20);
-            this.field_transmitter_rise_typical.TabIndex = 9;
-            // 
-            // lable123
-            // 
-            this.lable123.AutoSize = true;
-            this.lable123.Location = new System.Drawing.Point(208, 22);
-            this.lable123.Name = "lable123";
-            this.lable123.Size = new System.Drawing.Size(49, 13);
-            this.lable123.TabIndex = 8;
-            this.lable123.Text = "Рабочее";
-            // 
-            // field_transmitter_diffOutVolt_typical
-            // 
-            this.field_transmitter_diffOutVolt_typical.Location = new System.Drawing.Point(259, 20);
-            this.field_transmitter_diffOutVolt_typical.Name = "field_transmitter_diffOutVolt_typical";
-            this.field_transmitter_diffOutVolt_typical.Size = new System.Drawing.Size(60, 20);
-            this.field_transmitter_diffOutVolt_typical.TabIndex = 11;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(208, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(49, 13);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Рабочее";
             // 
             // DeviceStepTwo
             // 
@@ -944,7 +944,7 @@
         private System.Windows.Forms.TextBox field_power_minus12V_epsilon;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox field_power_minus12V_min;
+        private System.Windows.Forms.TextBox field_power_minus12V_max;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox field_power_plus5V_max;

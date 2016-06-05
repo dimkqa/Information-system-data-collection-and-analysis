@@ -207,12 +207,12 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                 }
                 foreach (XElement MinusTwelvVolt in element.Elements("MinusTwelvVolt"))
                 {
-                    XElement Normal = MinusTwelvVolt.Element("Normal");
+                    XElement Maximum = MinusTwelvVolt.Element("Maximum");
                     XElement Limit = MinusTwelvVolt.Element("Limit");
                     //Низ
-                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value) - Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Maximum.Value) - Convert.ToDouble(Limit.Value));
                     //Верх
-                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Normal.Value) + Convert.ToDouble(Limit.Value));
+                    XMLDevice.PowerReqMinusTwelveVoltage.Add(Convert.ToDouble(Maximum.Value) + Convert.ToDouble(Limit.Value));
                 }
                 foreach (XElement PlusTwelvVoltPause in element.Elements("PlusTwelvVoltPause"))
                 {
