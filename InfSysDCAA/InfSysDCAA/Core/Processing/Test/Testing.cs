@@ -28,6 +28,21 @@ namespace InfSysDCAA.Core.Processing.Test
         /// </summary>
         private ConstantDeviceStruct.TmpDevice[] ConstDeviceStructure;
 
+        /// <summary>
+        /// Содержит текстовые пояснения к тесту
+        /// </summary>
+        private List<string> explanationsTextResultInfo = new List<string>();
+
+        /// <summary>
+        /// Содержит булевый парамтер - успешность прохождения на соответствие
+        /// </summary>
+        private bool[] thisResultStatus = new bool[3];
+
+        /// <summary>
+        /// Содержит список параметров
+        /// </summary>
+        private List<double> dataParametrsInfo = new List<double>();
+
         private TestSituation testSituation;
     
         /// <summary>
@@ -79,16 +94,27 @@ namespace InfSysDCAA.Core.Processing.Test
             {
                 TestResultDataStruct[i].DeviceInventNumber = 
                     RawDeviceStructure[i].InventoryNumber;
-                TestResultDataStruct[i].DeviceName = 
+                /*TestResultDataStruct[i].DeviceName = 
                     GetDeviceInfoDB.GetDeviceName(RawDeviceStructure[i].InventoryNumber);
                 TestResultDataStruct[i].DeviceDescription =
                     GetDeviceInfoDB.GetDeviceDescription(RawDeviceStructure[i].InventoryNumber);
                 TestResultDataStruct[i].DeviceManufacturer =
                     GetDeviceInfoDB.GetDeviceManufacturer(RawDeviceStructure[i].InventoryNumber);
-
+                    */
                 TestResultDataStruct[i].ReceiverDifferentialInputVoltage =
                     TestReceiverDifInVolt(RawDeviceStructure[i].ReceiverDifferentialInputVoltage,
                         ConstDeviceStructure[i].ReceiverDifferentialInputVoltage);
+                TestResultDataStruct[i].TransmitterDifferentialOutputVoltage =
+                    TestTransDiffOutVolt(RawDeviceStructure[i].TransmitterDifferentialOutputVoltage,
+                        ConstDeviceStructure[i].TransmitterDifferentialOutputVoltage);
+
+                TestResultDataStruct[i].TransmitterRiseRecessionSignalTime =
+                    TestTransSignalTime(RawDeviceStructure[i].TransmitterRiseRecessionSignalTime,
+                        ConstDeviceStructure[i].TransmitterRiseRecessionSignalTime);
+
+                TestResultDataStruct[i].PowerReqPlusFiveVoltage =
+                    TestPowerReqPlusFiveVolt(RawDeviceStructure[i].PowerReqPlusFiveVoltage,
+                        ConstDeviceStructure[i].PowerReqPlusFiveVoltage);
             }
         }
 
@@ -104,105 +130,276 @@ namespace InfSysDCAA.Core.Processing.Test
         /// </summary>
         /// <param name="RawData">Обработанные исходные данные</param>
         /// <param name="ConstData">Обработанные постоянные данные</param>
-        private Tuple<bool[], List<string>> TestReceiverDifInVolt(List<double> RawData, List<double> ConstData)
+        private Tuple<bool[], List<string>, List<double>> TestReceiverDifInVolt(List<double> RawData, List<double> ConstData)
         {
-            List<string> info = new List<string>();
-            bool [] thisStatus = new bool[3];
+            clearDataRepository();
             if (RawData[2] >= ConstData[0] && RawData[2] <= ConstData[3])
             {
-                thisStatus[0] = true;
+                thisResultStatus[0] = true;
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
             else
             {
-                thisStatus[0] = false;
+                if (RawData[2] < ConstData[0])
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра ниже, чем его самое максимальное значение с допуском");
+                }
+                else
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра выше, чем его самое максимальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
             if (RawData[0] >= ConstData[0] && RawData[0] <= ConstData[2])
             {
-                thisStatus[0] = true;
+                thisResultStatus[1] = true;
+                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
             else
             {
-                thisStatus[0] = false;
+                if (RawData[0] < ConstData[0])
+                {
+                    thisResultStatus[1] = false;
+                    explanationsTextResultInfo.Add("Минимальное значение параметра ниже, чем его самое миниальное значение с допуском");
+                }
+                else
+                {
+                    thisResultStatus[1] = false;
+                    explanationsTextResultInfo.Add("Минимальное значение параметра выше, чем его самое миниальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
-            if (RawData[1] >= ConstData[1] || RawData[1] <= ConstData[3])
+            if (RawData[1] <= ConstData[3])
             {
+                thisResultStatus[2] = true;
+                explanationsTextResultInfo.Add("Максимальное значение параметра не превышает значения с допуском");
+                dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
             }
             else
             {
-                thisStatus[0] = false;
+                if (RawData[1] > ConstData[3])
+                {
+                    thisResultStatus[2] = false;
+                    explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
+                    dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
+                }
             }
-            return Tuple.Create<bool[], List<string>>(thisStatus, info);
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование передатчика
         /// </summary>
-        private void TestTransDiffOutVolt()
+        private Tuple<bool[], List<string>, List<double>> TestTransDiffOutVolt(List<double> RawData, List<double> ConstData)
         {
-
+            clearDataRepository();
+            if (RawData[2] >= ConstData[0] && RawData[2] <= ConstData[3])
+            {
+                thisResultStatus[0] = true;
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            else
+            {
+                if (RawData[2] < ConstData[0])
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра ниже, чем его самое максимальное значение с допуском");
+                }
+                else
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра выше, чем его самое максимальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            if (RawData[0] >= ConstData[0] && RawData[0] <= ConstData[2])
+            {
+                thisResultStatus[1] = true;
+                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
+            }
+            else
+            {
+                if (RawData[0] < ConstData[0])
+                {
+                    thisResultStatus[1] = false;
+                    explanationsTextResultInfo.Add("Минимальное значение параметра ниже, чем его самое миниальное значение с допуском");
+                }
+                else
+                {
+                    thisResultStatus[1] = false;
+                    explanationsTextResultInfo.Add("Минимальное значение параметра выше, чем его самое миниальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
+            }
+            if (RawData[1] <= ConstData[3])
+            {
+                thisResultStatus[2] = true;
+                explanationsTextResultInfo.Add("Максимальное значение параметра не превышает значения с допуском");
+                dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            else
+            {
+                if (RawData[1] > ConstData[3])
+                {
+                    thisResultStatus[2] = false;
+                    explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
+                    dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
+                }
+            }
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование передатчика
         /// </summary>
-        private void TestTransSignalTime()
+        private Tuple<bool[], List<string>, List<double>> TestTransSignalTime(List<double> RawData, List<double> ConstData)
         {
-
+            clearDataRepository();
+            if (RawData[2] >= ConstData[0] && RawData[2] <= ConstData[3])
+            {
+                thisResultStatus[0] = true;
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            else
+            {
+                if (RawData[2] < ConstData[0])
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра ниже, чем его самое максимальное значение с допуском");
+                }
+                else
+                {
+                    thisResultStatus[0] = false;
+                    explanationsTextResultInfo.Add("Среднее значение параметра выше, чем его самое максимальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            if (RawData[0] >= ConstData[0])
+            {
+                thisResultStatus[1] = true;
+                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
+            }
+            else
+            {
+                if (RawData[0] < ConstData[0])
+                {
+                    thisResultStatus[1] = false;
+                    explanationsTextResultInfo.Add("Минимальное значение параметра ниже, чем его самое миниальное значение с допуском");
+                }
+                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
+            }
+            if (RawData[1] <= ConstData[3])
+            {
+                thisResultStatus[2] = true;
+                explanationsTextResultInfo.Add("Максимальное значение параметра не превышает значения с допуском");
+                dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
+            }
+            else
+            {
+                if (RawData[1] > ConstData[3])
+                {
+                    thisResultStatus[2] = false;
+                    explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
+                    dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
+                }
+            }
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию +5В
         /// </summary>
-        private void TestPowerReqPlusFiveVolt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqPlusFiveVolt(List<double> RawData, List<double> ConstData)
         {
-
+            clearDataRepository();
+            if (RawData[0] > 0)
+            {
+                thisResultStatus[0] = true;
+                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
+            }
+            else
+            {
+                thisResultStatus[0] = false;
+                explanationsTextResultInfo.Add("Минимальное значение параметра меньше 0!");
+            }
+            if (RawData[2] <= ConstData[1])
+            {
+                thisResultStatus[1] = true;
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
+            }
+            else
+            {
+                thisResultStatus[1] = false;
+                explanationsTextResultInfo.Add("Среднее значение параметра превышает верхний предел параметра с допуском");
+            }
+            if (RawData[1] <= ConstData[1])
+            {
+                thisResultStatus[2] = true;
+                explanationsTextResultInfo.Add("Максимальное значение параметра находится в пределах значения параметра с допуском");
+            }
+            else
+            {
+                thisResultStatus[2] = false;
+                explanationsTextResultInfo.Add("Максимальное значение параметра превышает верхний предел параметра с допуском");
+            }
+            dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию -12В
         /// </summary>
-        private void TestPowerReqMinusTwelveVolt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqMinusTwelveVolt(List<double> RawData, List<double> ConstData)
         {
-
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию +12В Пауза
         /// </summary>
-        private void TestPowerReqPlusTwelvePauseVolt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqPlusTwelvePauseVolt(List<double> RawData, List<double> ConstData)
         {
-
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию +12В 25%
         /// </summary>
-        private void TestPowerReqPlusTwelve25Volt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqPlusTwelve25Volt(List<double> RawData, List<double> ConstData)
         {
-
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию +12В 50%
         /// </summary>
-        private void TestPowerReqPlusTwelve50Volt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqPlusTwelve50Volt(List<double> RawData, List<double> ConstData)
         {
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований по питанию +12В 100%
         /// </summary>
-        private void TestPowerReqPlusTwelve100Volt()
+        private Tuple<bool[], List<string>, List<double>> TestPowerReqPlusTwelve100Volt(List<double> RawData, List<double> ConstData)
         {
-
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
         /// Тестирование требований температуры
         /// </summary>
-        private void TestTemperature()
+        private Tuple<bool[], List<string>, List<double>> TestTemperature(List<double> RawData, List<double> ConstData)
         {
-
+            return Tuple.Create<bool[], List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
@@ -213,20 +410,38 @@ namespace InfSysDCAA.Core.Processing.Test
             TestResultDataStruct = new TestDataStructure.TestDataStruct[CountDevices];
             for (int i = 0; i < CountDevices; i++)
             {
-                TestResultDataStruct[i].ReceiverDifferentialInputVoltage = new Tuple<bool[], List<string>>(new bool[3], new List<string>());
-               /* TestResultDataStruct[i].TransmitterDifferentialOutputVoltage = new List<string>();
-                TestResultDataStruct[i].TransmitterRiseRecessionSignalTime = new List<string>();
-                TestResultDataStruct[i].PowerReqPlusFiveVoltage = new List<string>();
-                TestResultDataStruct[i].PowerReqMinusTwelveVoltage = new List<string>();
-                TestResultDataStruct[i].PowerReqPlusTwelvePauseVoltage = new List<string>();
-                TestResultDataStruct[i].PowerReqPlusTwelve25Voltage = new List<string>();
-                TestResultDataStruct[i].PowerReqPlusTwelve50Voltage = new List<string>();
-                TestResultDataStruct[i].PowerReqPlusTwelve100Voltage = new List<string>();
-                TestResultDataStruct[i].Temperature = new List<string>();*/
+                TestResultDataStruct[i].ReceiverDifferentialInputVoltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].TransmitterDifferentialOutputVoltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].TransmitterRiseRecessionSignalTime =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqPlusFiveVoltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqMinusTwelveVoltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqPlusTwelvePauseVoltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqPlusTwelve25Voltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqPlusTwelve50Voltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].PowerReqPlusTwelve100Voltage =
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
+                TestResultDataStruct[i].Temperature = 
+                    new Tuple<bool[], List<string>, List<double>>(new bool[3], new List<string>(), new List<double>());
                 TestResultDataStruct[i].DeviceStatusDescription = new List<string>();
                 TestResultDataStruct[i].DeviceDataDescriptionTest = new List<string>();
             }
         }
 
+        /// <summary>
+        /// Очищает хранилища данных перед каждым параметром
+        /// </summary>
+        private void clearDataRepository()
+        {
+            explanationsTextResultInfo.Clear();
+            dataParametrsInfo.Clear();
+        }
     }
 }
