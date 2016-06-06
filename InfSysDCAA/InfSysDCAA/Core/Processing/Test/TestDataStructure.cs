@@ -54,52 +54,52 @@ namespace InfSysDCAA.Core.Processing.Test
             /// <summary>
             /// Данные приёмника: Дифференциальное входное напряжение.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> ReceiverDifferentialInputVoltage;
+            public Tuple<List<bool>, List<string>, List<double>> ReceiverDifferentialInputVoltage;
 
             /// <summary>
             /// Данные передатчика: Дифференциальное выходное напряжение.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> TransmitterDifferentialOutputVoltage;
+            public Tuple<List<bool>, List<string>, List<double>> TransmitterDifferentialOutputVoltage;
 
             /// <summary>
             /// Данные передатчика: Время нарастания и спада сигнала.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> TransmitterRiseRecessionSignalTime;
+            public Tuple<List<bool>, List<string>, List<double>> TransmitterRiseRecessionSignalTime;
             
             /// <summary>
             /// Требования по питанию: +5В. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqPlusFiveVoltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqPlusFiveVoltage;
             
             /// <summary>
             /// Требования по питанию: -12В. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqMinusTwelveVoltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqMinusTwelveVoltage;
             
             /// <summary>
             /// Требования по питанию: +12В Пауза. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqPlusTwelvePauseVoltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqPlusTwelvePauseVoltage;
 
             /// <summary>
             /// Требования по питанию: +12В 25% времени передачи. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqPlusTwelve25Voltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqPlusTwelve25Voltage;
 
             /// <summary>
             /// Требования по питанию: +12В 50% времени передачи. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqPlusTwelve50Voltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqPlusTwelve50Voltage;
 
             /// <summary>
             /// Требования по питанию: +12В 100% времени передачи.List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> PowerReqPlusTwelve100Voltage;
+            public Tuple<List<bool>, List<string>, List<double>> PowerReqPlusTwelve100Voltage;
 
             /// <summary>
             /// Параметры температуры. List string.
             /// </summary>
-            public Tuple<bool[], List<string>, List<double>> Temperature;
+            public Tuple<List<bool>, List<string>, List<double>> Temperature;
         }
     }
 }

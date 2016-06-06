@@ -91,7 +91,6 @@
     <Compile Include="Core\Processing\Direct dimension\DirectDimension.cs" />
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Processing\Devices\GetDeviceInfo.cs" />
-    <Compile Include="Core\Processing\imba.cs" />
     <Compile Include="Core\Processing\Report\Reporting.cs" />
     <Compile Include="Core\Processing\Test\TestDataStructure.cs" />
     <Compile Include="Core\Processing\Test\Testing.cs" />
