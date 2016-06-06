@@ -38,9 +38,9 @@ namespace InfSysDCAA.Core.Processing.Data
                 DirectDimension processingDimension = new DirectDimension(SourceProcessing.RawStructDevice);
                 Testing initTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
                 initTest.StartTest();
+                Reporting report = new Reporting(initTest.TestResultDataStruct);
                 //TODO:После анализа теста необходимо передать его результаты в класс отчётов, метод которого сформирует отчёт.
                 //InitTest.GetResultTest();
-                //Reporting report = new Reporting();
             }
             catch (Exception e)
             {

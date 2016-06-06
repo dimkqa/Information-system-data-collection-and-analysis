@@ -43,22 +43,6 @@ namespace InfSysDCAA.Core.Processing.Test
         /// </summary>
         private List<double> dataParametrsInfo = new List<double>();
 
-        private TestSituation testSituation;
-
-        /// <summary>
-        /// Пояснения к возможным исходам теста
-        /// </summary>
-        List<string> Cases = new List<string>
-        {
-            {"Параметры устройства в норме"},
-            {"Параметр"},
-            { "Отклонение от стандартного значения: выход за минимально допустимое значение парамтера"},
-
-            {"Выход за максимально допустимое значение"},
-            {"Тест не пройден, возникли проблемы"},
-            {"Тест успешно пройден"}
-        };
-
         /// <summary>
         /// Число устройств в конкретном тесте
         /// </summary>

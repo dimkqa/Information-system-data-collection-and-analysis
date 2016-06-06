@@ -14,14 +14,10 @@ namespace InfSysDCAA.Core.Processing.Report
     public class Reporting
     {
         /// <summary>
-        /// Конструктор принимает 3 структуры с данными, в первых двух содержаться числовые значения, 
-        /// в последней выводы по тесту
+        /// Конструктор класса отчётов
         /// </summary>
-        /// <param name="TestRawData">Структура содержит данные измерений</param>
-        /// <param name="TestConstData">Структура содержит эталонные данные</param>
-        /// <param name="TestResultData">Структура содержит текстовое пояснение к конкретному параметру устройства</param>
-        public Reporting(TemporaryDevicesStructure.TmpDevice[] TestRawData,
-            ConstantDeviceStruct.TmpDevice[] TestConstData, TestDataStructure.TestDataStruct[] TestResultData)
+        /// <param name="ResultData">Входные параметры теста, кортеж</param>
+        public Reporting(TestDataStructure.TestDataStruct[] ResultData)
         {
 
         }
