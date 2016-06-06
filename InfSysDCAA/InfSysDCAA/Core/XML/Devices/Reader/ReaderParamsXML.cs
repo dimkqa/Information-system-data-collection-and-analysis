@@ -1,5 +1,6 @@
 ﻿using InfSysDCAA.Core.Directory;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using InfSysDCAA.Core.Processing;
 using InfSysDCAA.Core.Processing.Devices;
 
 namespace InfSysDCAA.Core.XML.Devices.Reader
@@ -34,6 +36,11 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
         private int CountTmp { get; set; }
 
         /// <summary>
+        /// Число устройств, постоянное
+        /// </summary>
+        private int ConstantInv { get; set; }
+
+        /// <summary>
         /// Содержит полный путь до файла.
         /// </summary>
         private string FullPathToFile => DirectoryList.DefaultPathList[1] + "\\" + FileNameParams;
@@ -47,6 +54,11 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
         /// Массив структур для экспорта в класс процесса
         /// </summary>
         public ConstantDeviceStruct.TmpDevice[] XmlDeviceExport;
+
+        /// <summary>
+        /// Просто офигительный массив структур для опупенного метода реверса!
+        /// </summary>
+        public ConstantDeviceStruct.TmpDevice[] SuperXmlDeviceExport;
 
         /// <summary>
         /// Принимает массив инвентарных номеров устройств, входящих в тест.
@@ -88,6 +100,7 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
                 {
                     PrepareData();
                     CountTmp = CountInvetntNumbers - 1;
+                    ConstantInv = CountInvetntNumbers - 1;
                     ExtractXMLData();/////////////////////////////////
                 }
                 else
@@ -130,18 +143,29 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
         {
             //Создадим и проведем инициализацию массива структур
             XmlDeviceExport = new ConstantDeviceStruct.TmpDevice[CountInvetntNumbers];
+            SuperXmlDeviceExport = new ConstantDeviceStruct.TmpDevice[CountInvetntNumbers];
             for (int i = 0; i < CountInvetntNumbers; i++)
             {
                 XmlDeviceExport[i].ReceiverDifferentialInputVoltage = new List<double>();
+                SuperXmlDeviceExport[i].ReceiverDifferentialInputVoltage = new List<double>();
                 XmlDeviceExport[i].PowerReqMinusTwelveVoltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqMinusTwelveVoltage = new List<double>();
                 XmlDeviceExport[i].PowerReqPlusFiveVoltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqPlusFiveVoltage = new List<double>();
                 XmlDeviceExport[i].PowerReqPlusTwelve100Voltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqPlusTwelve100Voltage = new List<double>();
                 XmlDeviceExport[i].PowerReqPlusTwelve25Voltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqPlusTwelve25Voltage = new List<double>();
                 XmlDeviceExport[i].PowerReqPlusTwelve50Voltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqPlusTwelve50Voltage = new List<double>();
                 XmlDeviceExport[i].PowerReqPlusTwelvePauseVoltage = new List<double>();
+                SuperXmlDeviceExport[i].PowerReqPlusTwelvePauseVoltage = new List<double>();
                 XmlDeviceExport[i].Temperature = new List<double>();
+                SuperXmlDeviceExport[i].Temperature = new List<double>();
                 XmlDeviceExport[i].TransmitterDifferentialOutputVoltage = new List<double>();
+                SuperXmlDeviceExport[i].TransmitterDifferentialOutputVoltage = new List<double>();
                 XmlDeviceExport[i].TransmitterRiseRecessionSignalTime = new List<double>();
+                SuperXmlDeviceExport[i].TransmitterRiseRecessionSignalTime = new List<double>();
             }
         }
 
@@ -287,6 +311,27 @@ namespace InfSysDCAA.Core.XML.Devices.Reader
         private void SaveTheData(int count)
         {
             XmlDeviceExport[count] = XMLDevice;
+            if (count == 0)
+            {
+                XmlDeviceExport = MySuperFunctionReverse(XmlDeviceExport);
+            }
+        }
+
+        /// <summary>
+        /// Мой супер опупенный метод реверса массива структур.
+        /// Просто обалденнейший метод!
+        /// </summary>
+        /// <param name="t">Массив структур</param>
+        /// <returns>Самый отзеркальнный массив из всех когда либо отзеркаленных!</returns>
+        private ConstantDeviceStruct.TmpDevice[] MySuperFunctionReverse(ConstantDeviceStruct.TmpDevice[] t)
+        {
+            int j = 0;
+            for (int i = t.Count() - 1; i >= 0; i--)
+            {
+                SuperXmlDeviceExport[j] = t[i];
+                j++;
+            }
+            return SuperXmlDeviceExport;
         }
 
         /// <summary>
