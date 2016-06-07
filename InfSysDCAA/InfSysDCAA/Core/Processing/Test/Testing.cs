@@ -85,6 +85,10 @@ namespace InfSysDCAA.Core.Processing.Test
                 TestResultDataStruct[i].DeviceManufacturer =
                     GetDeviceInfoDB.GetDeviceManufacturer(RawDeviceStructure[i].InventoryNumber);
                     */
+                ///TODO: ебучая ошибка
+                TestResultDataStruct[i].PowerReqPlusFiveVoltage =
+                    Test2ConstField(RawDeviceStructure[i].PowerReqPlusFiveVoltage,
+                        ConstDeviceStructure[i].PowerReqPlusFiveVoltage);
                 TestResultDataStruct[i].ReceiverDifferentialInputVoltage =
                     Test4ConstField(RawDeviceStructure[i].ReceiverDifferentialInputVoltage,
                         ConstDeviceStructure[i].ReceiverDifferentialInputVoltage);
@@ -110,15 +114,55 @@ namespace InfSysDCAA.Core.Processing.Test
                 TestResultDataStruct[i].Temperature = Test4ConstField(RawDeviceStructure[i].Temperature,
                     ConstDeviceStructure[i].Temperature);
 
-                TestResultDataStruct[i].PowerReqPlusFiveVoltage =
-                    Test2ConstField(RawDeviceStructure[i].PowerReqPlusFiveVoltage,
-                        ConstDeviceStructure[i].PowerReqPlusFiveVoltage);
-
-                TestResultDataStruct[i].PowerReqMinusTwelveVoltage =
-                    Test2ConstField(RawDeviceStructure[i].PowerReqMinusTwelveVoltage,
-                        ConstDeviceStructure[i].PowerReqMinusTwelveVoltage);
+                /*
+                 TestResultDataStruct[i].PowerReqMinusTwelveVoltage =
+                     Test2ConstField(RawDeviceStructure[i].PowerReqMinusTwelveVoltage,
+                         ConstDeviceStructure[i].PowerReqMinusTwelveVoltage);*/
             }
         }
+
+
+        private Tuple<List<bool>, List<string>, List<double>> Test2ConstField(List<double> RawData, List<double> ConstData)
+        {
+            NewDataLists();
+            if (RawData[0] > 0)
+            {
+                thisResultStatus.Add(true);
+                explanationsTextResultInfo.Add("Минимальное значение параметра больше 0.");
+                dataParametrsInfo.Add(RawData[0]);
+            }
+            else
+            {
+                thisResultStatus.Add(false);
+                explanationsTextResultInfo.Add("Минимальное значение параметра меньше 0.");
+                dataParametrsInfo.Add(RawData[0]);
+            }
+            if (RawData[1] <= ConstData[1])
+            {
+                thisResultStatus.Add(true);
+                explanationsTextResultInfo.Add("Максимальное значение параметра находится в допустимом пределе.");
+                dataParametrsInfo.Add(RawData[1]);
+                dataParametrsInfo.Add(ConstData[1]);
+                thisResultStatus.Add(true);
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимом пределе.");
+                dataParametrsInfo.Add(RawData[2]);
+            }
+            else
+            {
+                thisResultStatus.Add(false);
+                explanationsTextResultInfo.Add("Максимальное значение параметра превышает предельное значение параметра");
+                dataParametrsInfo.Add(RawData[1]);
+                dataParametrsInfo.Add(ConstData[1]);
+                thisResultStatus.Add(true);
+                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимом пределе.");
+                dataParametrsInfo.Add(RawData[2]);
+            }
+            return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
+        }
+
+
+
+
 
         /// <summary>
         /// Тестирование приёмника 
@@ -134,6 +178,7 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <param name="RawData">Лист из структуры расшифрованных параметров</param>
         /// <param name="ConstData">Лист из структуры постоянных параметров</param>
         /// <returns></returns>
+        /*
         private Tuple<List<bool>, List<string>, List<double>> Test2ConstField(List<double> RawData, List<double> ConstData)
         {
             clearDataRepository();
@@ -144,22 +189,22 @@ namespace InfSysDCAA.Core.Processing.Test
             }
             else
             {
-               thisResultStatus.Add(false);
+                thisResultStatus.Add(false);
                 explanationsTextResultInfo.Add("Минимальное значение параметра меньше 0!");
             }
             if (RawData[2] <= ConstData[1])
             {
-               thisResultStatus.Add(true);
+                thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
             }
             else
             {
-                thisResultStatus[1] = false;
+                thisResultStatus.Add(false);
                 explanationsTextResultInfo.Add("Среднее значение параметра превышает верхний предел параметра с допуском");
             }
             if (RawData[1] <= ConstData[1])
             {
-               thisResultStatus.Add(true);
+                thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Максимальное значение параметра находится в пределах значения параметра с допуском");
             }
             else
@@ -168,8 +213,8 @@ namespace InfSysDCAA.Core.Processing.Test
                 explanationsTextResultInfo.Add("Максимальное значение параметра превышает верхний предел параметра с допуском");
             }
             dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[1]);
-            return Tuple.Create<List<bool>, List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
-        }
+            return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
+        }*/
 
         /// <summary>
         /// Производит сравнение измерений с 4-мя постоянными параметрами (из XML)
@@ -179,10 +224,10 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <returns></returns> 
         private Tuple<List<bool>, List<string>, List<double>> Test4ConstField(List<double> RawData, List<double> ConstData)
         {
-            clearDataRepository();
+            NewDataLists();
             if (RawData[2] >= ConstData[0] && RawData[2] <= ConstData[3])
             {
-               thisResultStatus.Add(true);
+                thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
                 dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
@@ -190,39 +235,39 @@ namespace InfSysDCAA.Core.Processing.Test
             {
                 if (RawData[2] < ConstData[0])
                 {
-                   thisResultStatus.Add(false);
+                    thisResultStatus.Add(false);
                     explanationsTextResultInfo.Add("Среднее значение параметра ниже, чем его самое максимальное значение с допуском");
                 }
                 else
                 {
-                   thisResultStatus.Add(false);
+                    thisResultStatus.Add(false);
                     explanationsTextResultInfo.Add("Среднее значение параметра выше, чем его самое максимальное значение с допуском");
                 }
                 dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
             if (RawData[0] >= ConstData[0] && RawData[0] <= ConstData[2])
             {
-        thisResultStatus.Add(true);
-        explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
+                thisResultStatus.Add(true);
+                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
                 dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
             else
             {
                 if (RawData[0] < ConstData[0])
                 {
-            thisResultStatus.Add(false);
-            explanationsTextResultInfo.Add("Минимальное значение параметра ниже, чем его самое миниальное значение с допуском");
+                    thisResultStatus.Add(false);
+                    explanationsTextResultInfo.Add("Минимальное значение параметра ниже, чем его самое миниальное значение с допуском");
                 }
                 else
                 {
-            thisResultStatus.Add(false);
-            explanationsTextResultInfo.Add("Минимальное значение параметра выше, чем его самое миниальное значение с допуском");
+                    thisResultStatus.Add(false);
+                    explanationsTextResultInfo.Add("Минимальное значение параметра выше, чем его самое миниальное значение с допуском");
                 }
                 dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
             if (RawData[1] <= ConstData[3])
             {
-               thisResultStatus.Add(true);
+                thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Максимальное значение параметра не превышает значения с допуском");
                 dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
             }
@@ -230,12 +275,12 @@ namespace InfSysDCAA.Core.Processing.Test
             {
                 if (RawData[1] > ConstData[3])
                 {
-            thisResultStatus.Add(false);
-            explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
+                    thisResultStatus.Add(false);
+                    explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
                     dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
                 }
             }
-            return Tuple.Create<List<bool>, List<string>, List<double>>(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
+            return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
         /// <summary>
@@ -274,11 +319,11 @@ namespace InfSysDCAA.Core.Processing.Test
         /// <summary>
         /// Очищает хранилища данных перед каждым параметром
         /// </summary>
-        private void clearDataRepository()
+        private void NewDataLists()
         {
-            explanationsTextResultInfo.Clear();
-            dataParametrsInfo.Clear();
-            thisResultStatus.Clear();
+            dataParametrsInfo = new List<double>();
+            explanationsTextResultInfo = new List<string>();
+            thisResultStatus = new List<bool>();
         }
     }
 }
