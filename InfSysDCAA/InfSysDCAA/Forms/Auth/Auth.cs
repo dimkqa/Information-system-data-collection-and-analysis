@@ -9,11 +9,14 @@ namespace InfSysDCAA.Forms.Auth
 {
     public partial class Auth : Form
     {
-        private const int Width = (int)300;    
-        private const int Height = (int)204; 
+        private const int Width = (int)300;
+        private const int Height = (int)204;
 
         private List<Control> controlsInForm = new List<Control>();
         private List<TextBox> fields = new List<TextBox>();
+
+        private List<Control> TextBoxFiledsBlocked = new List<Control>();
+
         public Auth(List<Control> tmpControlsForm)
         {
             InitializeComponent();
@@ -37,29 +40,31 @@ namespace InfSysDCAA.Forms.Auth
         /// <param name="e"></param>
         private void button_login_system_Click(object sender, EventArgs e)
         {
-            //Если валидация успешна
-            if (ValidationField.ValidationFields(fields))
+            try
             {
-                List<Control> fieldsAuth = new List<Control>()
+                if (ValidationField.ValidationFields(fields))
                 {
-                  field_system_login, field_system_password
-                };
+                    TextBoxFiledsBlocked.Add(field_system_login);
+                    TextBoxFiledsBlocked.Add(field_system_password);
 
-                string login = Convert.ToString(field_system_login.Text);
-                string password = Convert.ToString(field_system_password.Text);
+                    StatusUserUI.StatusFunctionalityPartsOfTheWindow(TextBoxFiledsBlocked);
+                    AuthClass userAuth = new AuthClass(field_system_login.Text, field_system_password.Text);
 
-                StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
-                AuthClass uAuth = new AuthClass(login, password);
-                if (!uAuth.LogIn())
-                {
-                    MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
+                    if (!userAuth.LogIn())
+                    {
+                        MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        StatusUserUI.StatusFunctionalityPartsOfTheWindow(TextBoxFiledsBlocked);
+                    }
+                    else
+                    {
+                        this.Hide();
+                        StatusUserUI.StatusFunctionalityPartsOfTheWindow(setAllControlsEnabled(controlsInForm));
+                    }
                 }
-                else
-                {
-                    this.Hide();
-                    StatusUserUI.StatusFunctionalityPartsOfTheWindow(setAllControlsEnabled(controlsInForm));
-                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message, exp.StackTrace);
             }
         }
 
@@ -68,12 +73,12 @@ namespace InfSysDCAA.Forms.Auth
         /// </summary>
         /// <param name="arrayControlsForm"></param>
         /// <returns>Возвращает "List"></returns>
-       private List<Control> setAllControlsEnabled(List<Control> arrayControlsForm)
+        private List<Control> setAllControlsEnabled(List<Control> arrayControlsForm)
         {
-           foreach (Control c in arrayControlsForm)
-           {
-               c.Enabled = false;
-           }
+            foreach (Control c in arrayControlsForm)
+            {
+                c.Enabled = false;
+            }
             return arrayControlsForm;
         }
 

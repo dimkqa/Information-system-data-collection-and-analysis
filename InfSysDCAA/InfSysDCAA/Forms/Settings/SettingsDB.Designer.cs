@@ -1,6 +1,6 @@
 ﻿namespace InfSysDCAA.Forms.Settings
 {
-    partial class ConnectionDbData
+    partial class SettingsDB
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionDbData));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDB));
             this.data_db_grpbx = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.selected_db_combobox = new System.Windows.Forms.ComboBox();

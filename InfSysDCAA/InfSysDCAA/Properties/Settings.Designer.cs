@@ -46,5 +46,23 @@ namespace InfSysDCAA.Properties {
                 this["CountOpeningProgramm"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LKx84dh8B")]
+        public string emergency_login {
+            get {
+                return ((string)(this["emergency_login"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("K085D32S")]
+        public string emergency_password {
+            get {
+                return ((string)(this["emergency_password"]));
+            }
+        }
     }
 }

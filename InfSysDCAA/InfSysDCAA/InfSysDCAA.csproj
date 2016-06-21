@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Auth\AuthClass.cs" />
+    <Compile Include="Core\DataBase\DataBaseConnect.cs" />
+    <Compile Include="Core\DataBase\DataBaseQuery.cs" />
     <Compile Include="Core\Directory\DirectoryControl.cs" />
     <Compile Include="Core\Directory\DirectoryList.cs" />
     <Compile Include="Core\Directory\DirectoryChanger.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Core\Processing\Files\SourceProcessing.cs" />
     <Compile Include="Core\Processing\Devices\GetDeviceInfo.cs" />
     <Compile Include="Core\Processing\Report\Reporting.cs" />
+    <Compile Include="Core\Processing\Report\ReportToPrint.cs" />
     <Compile Include="Core\Processing\Test\TestDataStructure.cs" />
     <Compile Include="Core\Processing\Test\Testing.cs" />
     <Compile Include="Core\Settings\ASettings.cs" />
@@ -113,11 +116,11 @@
     <Compile Include="Forms\Processing data\ProcesingData.Designer.cs">
       <DependentUpon>ProcesingData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\Connection FTP Data.cs">
+    <Compile Include="Forms\Settings\SettingsFTP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\Connection FTP Data.Designer.cs">
-      <DependentUpon>Connection FTP Data.cs</DependentUpon>
+    <Compile Include="Forms\Settings\SettingsFTP.Designer.cs">
+      <DependentUpon>SettingsFTP.cs</DependentUpon>
     </Compile>
     <Compile Include="ImgCKBA.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -161,11 +164,11 @@
     <Compile Include="Forms\Auth\Auth.Designer.cs">
       <DependentUpon>Auth.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\Connection DB Data.cs">
+    <Compile Include="Forms\Settings\SettingsDB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\Connection DB Data.Designer.cs">
-      <DependentUpon>Connection DB Data.cs</DependentUpon>
+    <Compile Include="Forms\Settings\SettingsDB.Designer.cs">
+      <DependentUpon>SettingsDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -195,11 +198,11 @@
     <EmbeddedResource Include="Forms\Processing data\ProcesingData.resx">
       <DependentUpon>ProcesingData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\Connection DB Data.resx">
-      <DependentUpon>Connection DB Data.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\SettingsDB.resx">
+      <DependentUpon>SettingsDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\Connection FTP Data.resx">
-      <DependentUpon>Connection FTP Data.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Settings\SettingsFTP.resx">
+      <DependentUpon>SettingsFTP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImgCKBA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -218,7 +221,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram2.cd" />
     <None Include="InfSysDCAA_TemporaryKey.pfx" />
     <None Include="Properties\Application data\application.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -246,7 +248,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\DataBase\" />
     <Folder Include="Forms\DataBase\" />
     <Folder Include="Forms\Other\" />
     <Folder Include="Logs\" />

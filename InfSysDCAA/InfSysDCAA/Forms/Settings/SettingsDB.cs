@@ -10,22 +10,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core;
+using InfSysDCAA.Core.DataBase;
 using MySql.Data.MySqlClient;
 using InfSysDCAA.Core.Settings;
 using InfSysDCAA.Core.Validation;
 
 namespace InfSysDCAA.Forms.Settings
 {
-    public partial class ConnectionDbData : Form
+    public partial class SettingsDB : Form
     {
-        private const int Width = (int)350;    //Максимальная ширина окна
-        private const int Height = (int)250;   //Максимальная высота окна
+        private const int Width = (int)350;    
+        private const int Height = (int)250;
 
         Settings_DB _sdb = new Settings_DB();
 
         private List<TextBox> _fields = new List<TextBox>();
 
-        public ConnectionDbData()
+        /// <summary>
+        /// Инициализация формы
+        /// </summary>
+        public SettingsDB()
         {
             InitializeComponent();
 
@@ -69,8 +73,6 @@ namespace InfSysDCAA.Forms.Settings
             {
                 if (TestConnectToDb(_fields))
                     SuccessConnection();
-                else
-                    FailureConnection();
             }
         }
 
@@ -97,13 +99,13 @@ namespace InfSysDCAA.Forms.Settings
         private bool TestConnectToDb(List<TextBox> field)
         {
             //TODO: codereview + error Connect;
-            string tmpConnect = "Database=" + field[1].Text + ";Data Source=" + field[0].Text + ";User id=" + field[2].Text + ";Password=" + field[3].Text;
-            MySqlConnection mySqlConnection = new MySqlConnection(tmpConnect);
-            mySqlConnection.Open();
-            if (mySqlConnection.State == ConnectionState.Open)
+
+            DataBaseConnect DBC = new DataBaseConnect(field[0].Text, field[1].Text, field[2].Text, field[3].Text);
+            if (DBC.TestConnection())
+            {
                 return true;
-            else
-                return false;
+            }
+            return false;
         }
 
         /// <summary>
@@ -142,16 +144,5 @@ namespace InfSysDCAA.Forms.Settings
                 Close();
             }
         }
-
-        /// <summary>
-        /// Соединение с сервером баз данных не удалось осуществить.
-        /// </summary>
-        private void FailureConnection()
-        {
-            MessageBox.Show("Не удалось соединиться с сервером баз данных", "Ошибка соединения с сервером",
-                 MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-      
     }
 }

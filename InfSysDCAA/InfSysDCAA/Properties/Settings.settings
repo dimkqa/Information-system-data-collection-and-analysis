@@ -8,5 +8,11 @@
     <Setting Name="CountOpeningProgramm" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="emergency_login" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">LKx84dh8B</Value>
+    </Setting>
+    <Setting Name="emergency_password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">K085D32S</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

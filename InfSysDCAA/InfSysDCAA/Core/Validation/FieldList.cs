@@ -13,7 +13,7 @@ namespace InfSysDCAA.Core.Validation
         /// </summary>
         public static readonly Dictionary<string, string> patterns = new Dictionary<string, string>()
         {
-            {"field_db_host", @"^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$"},
+            {"field_db_host", @"^"},
             {"field_db_name", @"^[a-zA-Z][a-zA-Z0-9-_]{3,8}$"},
             {"field_db_user", @"^[a-zA-Z][a-zA-Z0-9-_]{3,8}$"},
             //{"field_db_password", @"^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})$"}, real

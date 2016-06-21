@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
+using InfSysDCAA.Core.DataBase;
 using InfSysDCAA.Core.Directory;
 using InfSysDCAA.Core.Processing.Data;
 using InfSysDCAA.Core.Processing.Files;
@@ -28,11 +29,19 @@ namespace InfSysDCAA
         private const int MaxHeight   = 768;
         protected bool authUser = false;
 
+        private string SNAME;
+        private string DBNAME;
+        private string UNAME;
+        private string PASS;
+
+
         public Main()
         {
             InitializeComponent();
-            //Счётчик запуска программы
-            Properties.Settings.Default.CountOpeningProgramm++;
+
+            PollCounterLaunchesProgram(Properties.Settings.Default.CountOpeningProgramm);
+
+            Properties.Settings.Default.CountOpeningProgramm = 0;//++;
             Properties.Settings.Default.Save();
 
             StartPosition = FormStartPosition.CenterScreen;
@@ -43,42 +52,78 @@ namespace InfSysDCAA
             DirectoryCreater.PathsAnalyser(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
                 Environment.UserName);
             LoadTable();
-            //Расскоментируй. Форма авторизации
-            //AuthUser();
+
             CollectSystemInfo.GetSystemInformation();
+            TCDB();
+           // AuthUser();
         }
 
+        /// <summary>
+        /// Опрос счётчика запусков программы. 
+        /// Если 0 - запуск в первый раз, вход по дежурному паролю.
+        /// Иначе через БД
+        /// </summary>
+        /// <param name="count">Число запусков программы</param>
+        private void PollCounterLaunchesProgram(int count)
+        {
+            if (count == 0)
+            {
+                Properties.Application_data.user.Default.field_db_host = "";
+                Properties.Application_data.user.Default.field_db_host = "";
+                Properties.Application_data.user.Default.field_db_name = "";
+                Properties.Application_data.user.Default.field_db_user = "";
+                Properties.Application_data.user.Default.field_db_password = "";
+            }
+            else
+            {
+                SNAME = Properties.Application_data.user.Default.field_db_host;
+                DBNAME = Properties.Application_data.user.Default.field_db_name;
+                UNAME = Properties.Application_data.user.Default.field_db_user;
+                PASS = Properties.Application_data.user.Default.field_db_password;
+            }
+        }
+
+        /// <summary>
+        /// Тест соединения с БД при запуске.
+        /// </summary>
+        private void TCDB()
+        {
+        DataBaseConnect DBC = new DataBaseConnect(SNAME, DBNAME, UNAME, PASS);
+            if (!DBC.TestConnection())
+            {
+                MessageBox.Show("Соединение с базой данных невозможно. Вход только по дежерному паролю",
+                    "Сервер баз данных не отвечает", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        /// <summary>
+        /// Пример заполнения таблицы
+        /// </summary>
         private void LoadTable()
         {
-            
             gridViewReportsList.Rows.Add(1, "09-04-2016_13-40-26", "09.04.16", "Иванов В.");
             gridViewReportsList.Rows[0].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(2, "09-04-2016_12-55-12", "09.04.16", "Дмитриев С.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[1].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(3, "09-04-2016_20-10-12", "09.04.16", "Поляков Н.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[2].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(4, "09-04-2016_16-47-00", "09.04.16", "Сырцев Р.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[3].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(5, "10-04-2016_08-57-32", "10.04.16", "Иванов В.");
-            gridViewReportsList.Rows[0].Cells[4].Value = false;
+            gridViewReportsList.Rows[4].Cells[4].Value = false;
             gridViewReportsList.Rows.Add(6, "10-04-2016_10-47-26", "10.04.16", "Иванов В.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[5].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(7, "10-04-2016_15-32-56", "10.04.16", "Пицель Е.");
-            gridViewReportsList.Rows[0].Cells[4].Value = false;
+            gridViewReportsList.Rows[6].Cells[4].Value = false;
             gridViewReportsList.Rows.Add(8, "10-04-2016_11-41-58", "10.04.16", "Арутенян А.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[7].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(9, "11-04-2016_10-47-26", "11.04.16", "Цареградцев А.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows[8].Cells[4].Value = true;
             gridViewReportsList.Rows.Add(10, "11-04-2016_10-58-26", "11.04.16", "Чучан Х.");
-            gridViewReportsList.Rows[0].Cells[4].Value = false;
-            gridViewReportsList.Rows[0].Cells[5].Value = "FTP";
+            gridViewReportsList.Rows[9].Cells[4].Value = false;
+            gridViewReportsList.Rows[9].Cells[5].Value = "FTP";
             gridViewReportsList.Rows.Add(11, "11-04-2016_14-57-26", "11.04.16", "Данилов Е.");
-            gridViewReportsList.Rows[0].Cells[4].Value = true;
-        }
-
-        private void Main_Load(object sender, EventArgs e)
-        {
-
+            gridViewReportsList.Rows[10].Cells[4].Value = true;
         }
 
         /// <summary>
@@ -185,7 +230,7 @@ namespace InfSysDCAA
 
         private void connectToDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormChecker.ControlOpenedForm(typeof(ConnectionDbData));
+            FormChecker.ControlOpenedForm(typeof(SettingsDB));
         }
 
         private void connectToFTPToolStripMenuItem_Click(object sender, EventArgs e)
