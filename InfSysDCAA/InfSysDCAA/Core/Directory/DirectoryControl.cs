@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace InfSysDCAA.Core.Directory
 {
+    /// <summary>
+    /// Открывает проводник
+    /// </summary>
     public static class DirectoryControl
     {
         /// <summary>

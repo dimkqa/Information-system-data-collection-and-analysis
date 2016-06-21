@@ -160,62 +160,6 @@ namespace InfSysDCAA.Core.Processing.Test
             return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 
-
-
-
-
-        /// <summary>
-        /// Тестирование приёмника 
-        /// Три условия:
-        /// 1. Текущее значение больше самого минимального и текущее значение меньше самого максимальногоЖ
-        // min-eps <= current <= max+eps
-        /// 2. Текущее минимальное значение находится в диапазоне допустимых минимальных значений
-        // min-eps <= minimum <= min+eps
-        /// 3. Текущее максимальное значение находится в диапазоне допустимых максимальных значений
-        // max-eps <= maximum <=max+eps
-        /// Производит сравнение измерений с 2-мя постоянными параметрами (из XML)
-        /// </summary>
-        /// <param name="RawData">Лист из структуры расшифрованных параметров</param>
-        /// <param name="ConstData">Лист из структуры постоянных параметров</param>
-        /// <returns></returns>
-        /*
-        private Tuple<List<bool>, List<string>, List<double>> Test2ConstField(List<double> RawData, List<double> ConstData)
-        {
-            clearDataRepository();
-            if (RawData[0] > 0)
-            {
-                thisResultStatus.Add(true);
-                explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
-            }
-            else
-            {
-                thisResultStatus.Add(false);
-                explanationsTextResultInfo.Add("Минимальное значение параметра меньше 0!");
-            }
-            if (RawData[2] <= ConstData[1])
-            {
-                thisResultStatus.Add(true);
-                explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
-            }
-            else
-            {
-                thisResultStatus.Add(false);
-                explanationsTextResultInfo.Add("Среднее значение параметра превышает верхний предел параметра с допуском");
-            }
-            if (RawData[1] <= ConstData[1])
-            {
-                thisResultStatus.Add(true);
-                explanationsTextResultInfo.Add("Максимальное значение параметра находится в пределах значения параметра с допуском");
-            }
-            else
-            {
-                thisResultStatus.Add(false);
-                explanationsTextResultInfo.Add("Максимальное значение параметра превышает верхний предел параметра с допуском");
-            }
-            dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[1]);
-            return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
-        }*/
-
         /// <summary>
         /// Производит сравнение измерений с 4-мя постоянными параметрами (из XML)
         /// </summary>
@@ -229,7 +173,6 @@ namespace InfSysDCAA.Core.Processing.Test
             {
                 thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Среднее значение параметра находится в допустимых границах");
-                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
             else
             {
@@ -243,13 +186,11 @@ namespace InfSysDCAA.Core.Processing.Test
                     thisResultStatus.Add(false);
                     explanationsTextResultInfo.Add("Среднее значение параметра выше, чем его самое максимальное значение с допуском");
                 }
-                dataParametrsInfo.Add(RawData[2]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[3]);
             }
             if (RawData[0] >= ConstData[0] && RawData[0] <= ConstData[2])
             {
                 thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Минимальное значение параметра находится в допустимых границах");
-                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
             else
             {
@@ -263,13 +204,11 @@ namespace InfSysDCAA.Core.Processing.Test
                     thisResultStatus.Add(false);
                     explanationsTextResultInfo.Add("Минимальное значение параметра выше, чем его самое миниальное значение с допуском");
                 }
-                dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]);
             }
             if (RawData[1] <= ConstData[3])
             {
                 thisResultStatus.Add(true);
                 explanationsTextResultInfo.Add("Максимальное значение параметра не превышает значения с допуском");
-                dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
             }
             else
             {
@@ -277,9 +216,10 @@ namespace InfSysDCAA.Core.Processing.Test
                 {
                     thisResultStatus.Add(false);
                     explanationsTextResultInfo.Add("Максимальное значение параметра выше, чем его самое высокое значение с допуском");
-                    dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(ConstData[3]);
                 }
             }
+            dataParametrsInfo.Add(RawData[0]); dataParametrsInfo.Add(RawData[1]); dataParametrsInfo.Add(RawData[2]);
+            dataParametrsInfo.Add(ConstData[0]); dataParametrsInfo.Add(ConstData[2]); dataParametrsInfo.Add(ConstData[3]);
             return Tuple.Create(thisResultStatus, explanationsTextResultInfo, dataParametrsInfo);
         }
 

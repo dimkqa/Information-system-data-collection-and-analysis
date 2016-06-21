@@ -29,6 +29,5 @@
         //public abstract FileInfo EditFile(string path);
         //public abstract FileInfo DelteFile(string path);
         //public abstract FileInfo FindFile(string path);
-        //public abstract BinaryReader BinaryCreateFile();
     }
 }

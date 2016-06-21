@@ -9,20 +9,32 @@ using System.Windows.Forms;
 
 namespace InfSysDCAA.Core.FTP
 {
+    /// <summary>
+    /// Работа с FTP
+    /// </summary>
     public class FTP
     {
+        /// <summary>
+        /// Хост подключения
+        /// </summary>
         private string Host
         {
             get { return _host; }
             set { _host = value; }
         }
 
+        /// <summary>
+        /// Пользователь
+        /// </summary>
         private string User
         {
             get { return _user; }
             set { _user = value; }            
         }
 
+        /// <summary>
+        /// Пароль
+        /// </summary>
         private string Password
         {
             get { return _password; }
@@ -33,9 +45,24 @@ namespace InfSysDCAA.Core.FTP
         private string _user = null;
         private string _password = null;
 
+        /// <summary>
+        /// Фтп-запрос
+        /// </summary>
         private FtpWebRequest ftpRequest = null;
+
+        /// <summary>
+        /// Фтп-ответ
+        /// </summary>
         private FtpWebResponse ftpResponse = null;
+
+        /// <summary>
+        /// поток
+        /// </summary>
         private Stream ftpStream = null;
+
+        /// <summary>
+        /// Размер буфера
+        /// </summary>
         //private int bufferSize = 32768;
         private int bufferSize = 2048;
 
@@ -52,7 +79,10 @@ namespace InfSysDCAA.Core.FTP
             Password = password;
         }
 
-
+        /// <summary>
+        /// Тест соединения
+        /// </summary>
+        /// <returns></returns>
         public bool Test()
         {
             try

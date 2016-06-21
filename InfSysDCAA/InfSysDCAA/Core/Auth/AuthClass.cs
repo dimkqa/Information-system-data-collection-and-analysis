@@ -6,7 +6,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class authentication
+    public class AuthClass
     {
         private string _password;
         private string _login;
@@ -18,7 +18,7 @@
             get { return _password; }
             set { _password = value; }
         }
-        public authentication(string login, string password)
+        public AuthClass(string login, string password)
         {
             Login = login;
             Password = password;

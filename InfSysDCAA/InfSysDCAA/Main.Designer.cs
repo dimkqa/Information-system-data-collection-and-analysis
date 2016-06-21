@@ -56,6 +56,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoComputerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxReportsList = new System.Windows.Forms.GroupBox();
             this.gridViewReportsList = new System.Windows.Forms.DataGridView();
             this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -100,8 +101,8 @@
             // OperationsInfo
             // 
             this.OperationsInfo.Name = "OperationsInfo";
-            this.OperationsInfo.Size = new System.Drawing.Size(50, 17);
-            this.OperationsInfo.Text = "unkown";
+            this.OperationsInfo.Size = new System.Drawing.Size(64, 17);
+            this.OperationsInfo.Text = "Ожидание";
             // 
             // statusProgressBarDown
             // 
@@ -281,7 +282,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.infoComputerToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.sdToolStripMenuItem});
             this.helpToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.high_importance;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
@@ -301,6 +303,13 @@
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.справкаToolStripMenuItem.Text = "Справка";
+            // 
+            // sdToolStripMenuItem
+            // 
+            this.sdToolStripMenuItem.Image = global::InfSysDCAA.Properties.Resources.ckba_logo;
+            this.sdToolStripMenuItem.Name = "sdToolStripMenuItem";
+            this.sdToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.sdToolStripMenuItem.Text = "sd";
             // 
             // groupBoxReportsList
             // 
@@ -543,8 +552,7 @@
         private System.Windows.Forms.ToolStripMenuItem connectToDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem connectToFTPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeDirectoryPathToolStripMenuItem;
-
-
+        private System.Windows.Forms.ToolStripMenuItem sdToolStripMenuItem;
     }
 }
 

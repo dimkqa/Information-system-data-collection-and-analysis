@@ -49,7 +49,7 @@ namespace InfSysDCAA.Forms.Auth
                 string password = Convert.ToString(field_system_password.Text);
 
                 StatusUserUI.StatusFunctionalityPartsOfTheWindow(fieldsAuth);
-                authentication uAuth = new authentication(login, password);
+                AuthClass uAuth = new AuthClass(login, password);
                 if (!uAuth.LogIn())
                 {
                     MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Hand);

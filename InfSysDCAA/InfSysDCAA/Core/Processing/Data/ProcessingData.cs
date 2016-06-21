@@ -39,8 +39,6 @@ namespace InfSysDCAA.Core.Processing.Data
                 Testing initTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
                 initTest.StartTest();
                 Reporting report = new Reporting(initTest.TestResultDataStruct);
-                //TODO:После анализа теста необходимо передать его результаты в класс отчётов, метод которого сформирует отчёт.
-                //InitTest.GetResultTest();
             }
             catch (Exception e)
             {

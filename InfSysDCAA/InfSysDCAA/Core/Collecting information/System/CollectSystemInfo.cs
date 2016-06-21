@@ -7,12 +7,24 @@ using System.Security.Cryptography;
 
 namespace InfSysDCAA.Core.Collecting_information.System
 {
+    /// <summary>
+    /// Собирает сведения о системе
+    /// </summary>
     [Serializable]
     public static class CollectSystemInfo
     {
+        /// <summary>
+        /// Словарь для хранения данных
+        /// </summary>
         private static Dictionary<string, string> _forSystemComputerInformation = new Dictionary<string, string>();
+        /// <summary>
+        /// Словарь для хранения данных
+        /// </summary>
         public static Dictionary<string, string> ForAboutComputerInformation = new Dictionary<string, string>();
         
+        /// <summary>
+        /// Массив строк с англоязычными наименование параметров
+        /// </summary>
         private static readonly string[] _keySystemInfoHashtable = new string[]
         {
             "pc_name", "user_name", "os_name", "os_version", "os_bit_width",
@@ -20,6 +32,9 @@ namespace InfSysDCAA.Core.Collecting_information.System
             "count_phys_proc", "name_card", "graph_proc"
         };
 
+        /// <summary>
+        /// Массив строк с рускоязычными параметрами
+        /// </summary>
         private static readonly string[] _keySystemInfoText = new string[]
         {
             "Имя ПК: ", "Имя пользователя:", "Название ОС: ", "Версия ОС: ", "Разрядность ОС: ",
@@ -27,6 +42,9 @@ namespace InfSysDCAA.Core.Collecting_information.System
             "Число физических процессоров: ", "Название видеоплаты: ", "Граф. процессор: "
         };
 
+        /// <summary>
+        /// Осуществляет сбор информации о системе
+        /// </summary>
         public static void GetSystemInformation()
         {
             ManagementObjectSearcher operatingSystem = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_OperatingSystem");
@@ -39,6 +57,10 @@ namespace InfSysDCAA.Core.Collecting_information.System
             //SqlDataInsert();
         }
 
+        /// <summary>
+        /// Сбор информаци об ОС
+        /// </summary>
+        /// <param name="operatingSystem">ManagementObjectSearcher</param>
         private static void GetInfoOs(ManagementObjectSearcher operatingSystem)
         {
             foreach (ManagementObject queryObj in operatingSystem.Get())
@@ -67,6 +89,10 @@ namespace InfSysDCAA.Core.Collecting_information.System
 
         }
 
+        /// <summary>
+        /// Сбор информации о процессоре
+        /// </summary>
+        /// <param name="processor">ManagementObjectSearcher</param>
         private static void GetInfoProcessor(ManagementObjectSearcher processor)
         {
             foreach (ManagementObject queryObj in processor.Get())
@@ -83,6 +109,10 @@ namespace InfSysDCAA.Core.Collecting_information.System
             }
         }
 
+        /// <summary>
+        /// Сбор информации о видеокарте
+        /// </summary>
+        /// <param name="videoController">ManagementObjectSearcher</param>
         private static void GetInfoVideo(ManagementObjectSearcher videoController)
         {
             foreach (ManagementObject queryObj in videoController.Get())
@@ -114,6 +144,10 @@ namespace InfSysDCAA.Core.Collecting_information.System
             }
         }
 
+        /// <summary>
+        /// Получение хэша от данных
+        /// </summary>
+        /// <returns>Массив байт, содержит хэш</returns>
         private static byte[] GetSystemInfoMd5Checksum()
         {
             byte[] systemInfoBytes;

@@ -8,17 +8,38 @@ using System.Windows.Forms;
 
 namespace InfSysDCAA.Core.Directory
 {
+    /// <summary>
+    /// Создатель директорий
+    /// </summary>
     public static class DirectoryCreater
     {
+        /// <summary>
+        /// Текущее имя пользователя
+        /// </summary>
+        /// 
         private static string _currentUserName;
+        /// <summary>
+        /// Текущий системный диск
+        /// </summary>
         private static string _currentSystemDisk;
+
+        /// <summary>
+        /// Лист директорий по умолчанию
+        /// </summary>
         private static List<string> defaultPath = new List<string>();
+
+        /// <summary>
+        /// Свойство - Текущее имя пользователя
+        /// </summary>
         private static string CurrentUserName
         {
             get { return _currentUserName; }
             set { _currentUserName = value; }
         }
 
+        /// <summary>
+        /// Свойство - Текущий системный диск (буква)
+        /// </summary>
         private static string CurrentSystemDisk
         {
             get { return _currentSystemDisk; }
@@ -36,6 +57,10 @@ namespace InfSysDCAA.Core.Directory
             defaultPath.Add(Properties.Application_data.user.Default.path_doc_raw_files);
         }
 
+        /// <summary>
+        /// Поулчить путь до директории с отчётами
+        /// </summary>
+        /// <returns></returns>
         public static string GetReportsFolderPath()
         {
             return defaultPath[0];

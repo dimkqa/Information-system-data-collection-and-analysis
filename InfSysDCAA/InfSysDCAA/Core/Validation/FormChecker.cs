@@ -7,10 +7,24 @@ using System.Windows.Forms;
 
 namespace InfSysDCAA.Core.Validation
 {
+    /// <summary>
+    /// Контроль дочерних форм приложения
+    /// </summary>
     public static class FormChecker
     {
+        /// <summary>
+        /// Тип класса
+        /// </summary>
         private static Type _classType;
+
+        /// <summary>
+        /// Экземпляр формы
+        /// </summary>
         private static Form _newForm;
+        
+        /// <summary>
+        /// Тип класса формы
+        /// </summary>
         private static Type ClassType
         {
             get { return _classType; }
@@ -72,7 +86,7 @@ namespace InfSysDCAA.Core.Validation
                 }
                 _newForm.TopLevel = true;
                 _newForm.TopMost = true;
-                _newForm.WindowState = FormWindowState.Normal;
+                _newForm.WindowState = FormWindowState.Normal;  
             }
         }
 
@@ -105,6 +119,7 @@ namespace InfSysDCAA.Core.Validation
                 {
                     easyNameForm = formName.Value.ToString();
                 }
+                ///TODO: else - нет такой формы
             }
             return easyNameForm;
         }

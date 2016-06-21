@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
 using InfSysDCAA.Core.Directory;
-using InfSysDCAA.Core.File_processing;
 using InfSysDCAA.Core.Processing.Data;
 using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Validation;
@@ -40,14 +39,41 @@ namespace InfSysDCAA
             MinimumSize = new Size(MaxWidth, MaxHeight);
             MaximumSize = new Size(MaxWidth, MaxHeight);
             Text = Convert.ToString("Информационная система сбора и анализа данных");
-
-            CollectSystemInfo.GetSystemInformation();
-
+            
             DirectoryCreater.PathsAnalyser(Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
                 Environment.UserName);
-            
+            LoadTable();
             //Расскоментируй. Форма авторизации
             //AuthUser();
+            CollectSystemInfo.GetSystemInformation();
+        }
+
+        private void LoadTable()
+        {
+            
+            gridViewReportsList.Rows.Add(1, "09-04-2016_13-40-26", "09.04.16", "Иванов В.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(2, "09-04-2016_12-55-12", "09.04.16", "Дмитриев С.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(3, "09-04-2016_20-10-12", "09.04.16", "Поляков Н.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(4, "09-04-2016_16-47-00", "09.04.16", "Сырцев Р.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(5, "10-04-2016_08-57-32", "10.04.16", "Иванов В.");
+            gridViewReportsList.Rows[0].Cells[4].Value = false;
+            gridViewReportsList.Rows.Add(6, "10-04-2016_10-47-26", "10.04.16", "Иванов В.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(7, "10-04-2016_15-32-56", "10.04.16", "Пицель Е.");
+            gridViewReportsList.Rows[0].Cells[4].Value = false;
+            gridViewReportsList.Rows.Add(8, "10-04-2016_11-41-58", "10.04.16", "Арутенян А.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(9, "11-04-2016_10-47-26", "11.04.16", "Цареградцев А.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
+            gridViewReportsList.Rows.Add(10, "11-04-2016_10-58-26", "11.04.16", "Чучан Х.");
+            gridViewReportsList.Rows[0].Cells[4].Value = false;
+            gridViewReportsList.Rows[0].Cells[5].Value = "FTP";
+            gridViewReportsList.Rows.Add(11, "11-04-2016_14-57-26", "11.04.16", "Данилов Е.");
+            gridViewReportsList.Rows[0].Cells[4].Value = true;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -159,7 +185,7 @@ namespace InfSysDCAA
 
         private void connectToDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormChecker.ControlOpenedForm(typeof(Connection_DB_Data));
+            FormChecker.ControlOpenedForm(typeof(ConnectionDbData));
         }
 
         private void connectToFTPToolStripMenuItem_Click(object sender, EventArgs e)

@@ -9,7 +9,7 @@
         /// <summary>
         /// Валидация TextBox'ов
         /// </summary>
-        /// <param name="fields"></param>
+        /// <param name="fields">List текстбоксов</param>
         /// <returns></returns>
         public static bool ValidationFields(List<TextBox> fields)
         {
@@ -33,14 +33,7 @@
                         {
                             field.Clear();
                         }
-                    }
-
-                    //foreach (string errMsg in err.Value)
-                    //{
-                    //    //messageErr.Add(err.Value[0, 0] + err.Value[0, 1]);
-                    //    messageErr.Add(errMsg[0] + errMsg[1]);
-                    //}TODO: codereview
-                    
+                    }                   
                     for (int i = 0; i < err.Value.GetUpperBound(0)+1; i++)
                     {
                         messageErr.Add(err.Value[i,0] + err.Value[i,1]);                      

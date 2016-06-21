@@ -59,6 +59,7 @@ namespace InfSysDCAA.Core.Processing.Files
         {
             using (BinaryReader reader = new BinaryReader(File.Open(FullPathToFile, FileMode.Open), Encoding.ASCII))
             {
+                // TODO: проверка файла на размеры
                 //Узнаем сколько устройств было в тесте
                 CountDevicesInTheTest = reader.ReadInt32();
                 //Вернемся к началу файла
