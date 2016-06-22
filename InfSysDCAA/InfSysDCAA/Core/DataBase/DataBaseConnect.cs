@@ -11,27 +11,13 @@ namespace InfSysDCAA.Core.DataBase
     /// <summary>
     /// Основные операции с сервером баз данных
     /// </summary>
-    public class DataBaseConnect
+    public partial class DataBaseConnect
     {
-        /// <summary>
-        /// Имя сервера баз данных
-        /// </summary>
-        private string ServerName { get; set; }
 
         /// <summary>
-        /// Имя базы данных, до которой необходим коннект
+        /// Строка соединения
         /// </summary>
-        private string DataBaseName { get; set; }
-
-        /// <summary>
-        /// Имя пользователя базы данных
-        /// </summary>
-        private string UserName { get; set; }
-
-        /// <summary>
-        /// Пароль пользователя базы данных
-        /// </summary>
-        private string Password { get; set; }
+        private string ConnectionString { get; set; }
 
         /// <summary>
         /// Хранит соединение с базой данных
@@ -45,18 +31,13 @@ namespace InfSysDCAA.Core.DataBase
         /// <param name="databaseName">Строка, база данных</param>
         /// <param name="userName">Строка, пользователь</param>
         /// <param name="password">Строка, пароль</param>
-        public DataBaseConnect(string serverName, string databaseName, string userName, string password)
+        public DataBaseConnect(string connectionString)
         {
-            ServerName = serverName;
-            DataBaseName = databaseName;
-            UserName = userName;
-            Password = password;
+            ConnectionString = connectionString;
         }
 
         public void InitializeConnect()
         {
-            string ConnectionString = "SERVER=" + ServerName + ";" + "DATABASE=" + DataBaseName + ";" + "UID=" +
-                                      UserName + ";" + "PASSWORD=" + Password + ";";
             Connection = new MySqlConnection(ConnectionString);
         }
 

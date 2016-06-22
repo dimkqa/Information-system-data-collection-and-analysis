@@ -17,6 +17,11 @@ namespace InfSysDCAA.Forms.Auth
 
         private List<Control> TextBoxFiledsBlocked = new List<Control>();
 
+        /// <summary>
+        /// Лист данных пользователя для вставки на главную форму
+        /// </summary>
+        private List<string> userData; 
+
         public Auth(List<Control> tmpControlsForm)
         {
             InitializeComponent();
@@ -40,6 +45,8 @@ namespace InfSysDCAA.Forms.Auth
         /// <param name="e"></param>
         private void button_login_system_Click(object sender, EventArgs e)
         {
+            bool status;
+            Tuple<bool, List<string>> returned;
             try
             {
                 if (ValidationField.ValidationFields(fields))
@@ -49,10 +56,11 @@ namespace InfSysDCAA.Forms.Auth
 
                     StatusUserUI.StatusFunctionalityPartsOfTheWindow(TextBoxFiledsBlocked);
                     AuthClass userAuth = new AuthClass(field_system_login.Text, field_system_password.Text);
-
-                    if (!userAuth.LogIn())
+                    returned = userAuth.LogIn();
+                    status = returned.Item1;
+                    userData = returned.Item2;
+                    if (!status)
                     {
-                        MessageBox.Show("Неправильный логин", "Ошибка аутентификации", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         StatusUserUI.StatusFunctionalityPartsOfTheWindow(TextBoxFiledsBlocked);
                     }
                     else
@@ -67,6 +75,12 @@ namespace InfSysDCAA.Forms.Auth
                 MessageBox.Show(exp.Message, exp.StackTrace);
             }
         }
+
+        public List<string> GetUserInfoForMain()
+        {
+            return userData;
+        }
+
 
         /// <summary>
         /// Устанавливает значение всех control на форме в false

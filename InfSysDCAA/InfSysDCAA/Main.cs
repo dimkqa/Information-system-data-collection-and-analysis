@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core.Collecting_information.System;
+using InfSysDCAA.Core.Config;
 using InfSysDCAA.Core.DataBase;
 using InfSysDCAA.Core.Directory;
 using InfSysDCAA.Core.Processing.Data;
@@ -29,11 +30,7 @@ namespace InfSysDCAA
         private const int MaxHeight   = 768;
         protected bool authUser = false;
 
-        private string SNAME;
-        private string DBNAME;
-        private string UNAME;
-        private string PASS;
-
+        private string Conn;
 
         public Main()
         {
@@ -41,7 +38,7 @@ namespace InfSysDCAA
 
             PollCounterLaunchesProgram(Properties.Settings.Default.CountOpeningProgramm);
 
-            Properties.Settings.Default.CountOpeningProgramm = 0;//++;
+            Properties.Settings.Default.CountOpeningProgramm++;//= 0;//++;
             Properties.Settings.Default.Save();
 
             StartPosition = FormStartPosition.CenterScreen;
@@ -55,7 +52,7 @@ namespace InfSysDCAA
 
             CollectSystemInfo.GetSystemInformation();
             TCDB();
-           // AuthUser();
+            AuthUser();
         }
 
         /// <summary>
@@ -76,10 +73,7 @@ namespace InfSysDCAA
             }
             else
             {
-                SNAME = Properties.Application_data.user.Default.field_db_host;
-                DBNAME = Properties.Application_data.user.Default.field_db_name;
-                UNAME = Properties.Application_data.user.Default.field_db_user;
-                PASS = Properties.Application_data.user.Default.field_db_password;
+                Conn = GetConnectionString.getStringConnectionData();
             }
         }
 
@@ -88,7 +82,7 @@ namespace InfSysDCAA
         /// </summary>
         private void TCDB()
         {
-        DataBaseConnect DBC = new DataBaseConnect(SNAME, DBNAME, UNAME, PASS);
+        DataBaseConnect DBC = new DataBaseConnect(Conn);
             if (!DBC.TestConnection())
             {
                 MessageBox.Show("Соединение с базой данных невозможно. Вход только по дежерному паролю",
@@ -193,6 +187,7 @@ namespace InfSysDCAA
             //Выход из системы, остановка всех выполняемых операций
             //Открытие окна авторизации
             //LogOutUser();
+            ClearUserData();
             AuthUser();
         }
         
@@ -201,7 +196,13 @@ namespace InfSysDCAA
         /// </summary>
         private void AuthUser()
         {
-            FormChecker.ControlOpenedForm(typeof(Auth), this, getFormControls());
+            Auth formAuth = new Auth(getFormControls());
+            formAuth.ShowDialog();
+            formAuth.TopLevel = true;
+            formAuth.TopMost = true;
+            WriteUserData(formAuth.GetUserInfoForMain());
+
+            //FormChecker.ControlOpenedForm(typeof(Auth), this, getFormControls());
         }
 
         /// <summary>

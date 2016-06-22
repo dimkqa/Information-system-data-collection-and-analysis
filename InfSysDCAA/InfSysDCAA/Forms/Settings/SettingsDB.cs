@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InfSysDCAA.Core;
+using InfSysDCAA.Core.Config;
 using InfSysDCAA.Core.DataBase;
 using MySql.Data.MySqlClient;
 using InfSysDCAA.Core.Settings;
@@ -100,7 +101,9 @@ namespace InfSysDCAA.Forms.Settings
         {
             //TODO: codereview + error Connect;
 
-            DataBaseConnect DBC = new DataBaseConnect(field[0].Text, field[1].Text, field[2].Text, field[3].Text);
+            DataBaseConnect DBC =
+                new DataBaseConnect(GetConnectionString.getStringConnectionData(field[0].Text, field[1].Text,
+                    field[2].Text, field[3].Text));
             if (DBC.TestConnection())
             {
                 return true;

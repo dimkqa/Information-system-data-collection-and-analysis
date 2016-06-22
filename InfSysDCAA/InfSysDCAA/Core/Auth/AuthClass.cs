@@ -1,4 +1,8 @@
-﻿namespace InfSysDCAA.Core.Auth
+﻿using System.Windows.Forms;
+using InfSysDCAA.Core.Config;
+using InfSysDCAA.Core.DataBase;
+
+namespace InfSysDCAA.Core.Auth
 {
     using System;
     using System.Collections.Generic;
@@ -49,16 +53,34 @@
         }
 
         /// <summary>
-        /// Авторизация пользователей 
+        /// Авторизация
         /// </summary>
-        /// <returns></returns>
-        public bool LogIn()
+        /// <returns>Возвращает кортеж - первый элемент булево значение, второй - список элементов</returns>
+        public Tuple<bool, List<string>> LogIn()
         {
-            getEmergencyAuthData();
-
-
-            return true;
+            List<string> userData = new List<string>();
+            string HLogin, HPassword;
+            try
+            {
+                HLogin = EncryptionData.EncryptLogin(Login, Password);
+                HPassword = EncryptionData.EncryptPassword(Login, Password);
+                DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+                userData = new List<string>(DBC.getUserInfoFromDataBase(HLogin, HPassword));
+                getEmergencyAuthData();
+                if (userData != null)
+                {
+                    return Tuple.Create(true, userData);
+                }
+                else
+                    return Tuple.Create(false, userData);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Пользователь не найден", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return Tuple.Create(false, userData);
+            }
         }
+
 
         /// <summary>
         /// Выход пользователя
