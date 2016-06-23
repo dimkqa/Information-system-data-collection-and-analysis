@@ -33,7 +33,7 @@ namespace InfSysDCAA.Core.DataBase
         /// <param name="password">Строка, пароль</param>
         public DataBaseConnect(string connectionString)
         {
-            ConnectionString = connectionString;
+           ConnectionString = connectionString;
         }
 
         public void InitializeConnect()

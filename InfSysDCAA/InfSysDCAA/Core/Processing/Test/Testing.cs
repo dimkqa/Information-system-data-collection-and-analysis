@@ -85,10 +85,14 @@ namespace InfSysDCAA.Core.Processing.Test
                 TestResultDataStruct[i].DeviceManufacturer =
                     GetDeviceInfoDB.GetDeviceManufacturer(RawDeviceStructure[i].InventoryNumber);
                     */
-                ///TODO: ебучая ошибка
+
                 TestResultDataStruct[i].PowerReqPlusFiveVoltage =
                     Test2ConstField(RawDeviceStructure[i].PowerReqPlusFiveVoltage,
                         ConstDeviceStructure[i].PowerReqPlusFiveVoltage);
+                TestResultDataStruct[i].PowerReqMinusTwelveVoltage =
+                    Test2ConstField(RawDeviceStructure[i].PowerReqMinusTwelveVoltage,
+                        ConstDeviceStructure[i].PowerReqMinusTwelveVoltage);
+
                 TestResultDataStruct[i].ReceiverDifferentialInputVoltage =
                     Test4ConstField(RawDeviceStructure[i].ReceiverDifferentialInputVoltage,
                         ConstDeviceStructure[i].ReceiverDifferentialInputVoltage);
@@ -113,11 +117,6 @@ namespace InfSysDCAA.Core.Processing.Test
                         ConstDeviceStructure[i].PowerReqPlusTwelve100Voltage);
                 TestResultDataStruct[i].Temperature = Test4ConstField(RawDeviceStructure[i].Temperature,
                     ConstDeviceStructure[i].Temperature);
-
-                /*
-                 TestResultDataStruct[i].PowerReqMinusTwelveVoltage =
-                     Test2ConstField(RawDeviceStructure[i].PowerReqMinusTwelveVoltage,
-                         ConstDeviceStructure[i].PowerReqMinusTwelveVoltage);*/
             }
         }
 

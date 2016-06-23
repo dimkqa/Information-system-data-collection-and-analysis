@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using InfSysDCAA.Core.Config;
+using InfSysDCAA.Core.Processing.Devices;
 using MySql.Data.MySqlClient;
 
 namespace InfSysDCAA.Core.DataBase
@@ -51,6 +52,12 @@ namespace InfSysDCAA.Core.DataBase
                 throw new Exception("Возникла ошибка при соединении с сервером.");
                 return list;
             }
+        }
+
+        public bool InsertDataDevice(TemporaryDevicesStructure.TmpDevice[] dataDevices)
+        {
+
+            return true;
         }
     }
 }

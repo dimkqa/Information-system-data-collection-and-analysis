@@ -235,7 +235,7 @@ ENGINE = InnoDB;
 -- Table `isvsk_v2`.`device_manager`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `isvsk_v2`.`device_manager` (
-  `inventnumber` INT(10) NOT NULL,
+  `inventnumber` VARCHAR(255) NOT NULL,
   `id` INT(5) UNSIGNED NOT NULL,
   `serialnumber` VARCHAR(40) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
@@ -374,7 +374,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `isvsk_v2`.`reports_has_device_manager` (
   `reports_id` INT(5) UNSIGNED NOT NULL,
-  `device_manager_inventnumber` INT(10) NOT NULL,
+  `device_manager_inventnumber` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`reports_id`, `device_manager_inventnumber`),
   INDEX `fk_reports_has_device_manager_device_manager1_idx` (`device_manager_inventnumber` ASC),
   INDEX `fk_reports_has_device_manager_reports1_idx` (`reports_id` ASC),
