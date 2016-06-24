@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfSysDCAA.Core.Config;
 using InfSysDCAA.Core.Processing.Devices;
+using InfSysDCAA.Core.Processing.Test;
 using MySql.Data.MySqlClient;
 
 namespace InfSysDCAA.Core.DataBase
@@ -54,10 +55,52 @@ namespace InfSysDCAA.Core.DataBase
             }
         }
 
-        public bool InsertDataDevice(TemporaryDevicesStructure.TmpDevice[] dataDevices)
+        /// <summary>
+        /// Отправка в базу данных результатов тестирования 
+        /// </summary>
+        /// <param name="resultDataDevices">TestDataStructure.TestDataStruct[] - массив результатов</param>
+        /// <returns></returns>
+        public bool InsertDataDevice(TestDataStructure.TestDataStruct[] resultDataDevices)
         {
 
             return true;
+        }
+
+        /// <summary>
+        /// Получение имени устройства
+        /// </summary>
+        /// <param name="InventoryNumber">Инвентарный номер устройства</param>
+        /// <returns></returns>
+        public string getGetDeviceData(string param, string InventoryNumber)
+        {
+            int countRead = 0;
+            string deviceData = " ";
+            string query = "SELECT " + param + " FROM device_manager WHERE inventnumber = \"" + InventoryNumber + "\"";
+            //Создаём новое соединение
+            Connection = new MySqlConnection(GetConnectionString.getStringConnectionData());
+            if (OpenConnection())
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand(query, Connection);
+                MySqlDataReader dataReader = mySqlCommand.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    deviceData = Convert.ToString(dataReader[param] + "");
+                    countRead++;
+                }
+                if (countRead == 0)
+                {
+                    throw new Exception("Устройство с заданым id не найдено!");
+                }
+                dataReader.Close();
+                CloseConnection();
+                return deviceData;
+            }
+            else
+            {
+                throw new Exception("Возникла ошибка при соединении с сервером.");
+                return deviceData;
+            }
         }
     }
 }

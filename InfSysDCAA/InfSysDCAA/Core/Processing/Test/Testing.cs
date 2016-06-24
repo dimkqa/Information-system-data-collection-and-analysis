@@ -78,14 +78,13 @@ namespace InfSysDCAA.Core.Processing.Test
             {
                 TestResultDataStruct[i].DeviceInventNumber =
                     RawDeviceStructure[i].InventoryNumber;
-                /*TestResultDataStruct[i].DeviceName = 
+                TestResultDataStruct[i].DeviceName = 
                     GetDeviceInfoDB.GetDeviceName(RawDeviceStructure[i].InventoryNumber);
                 TestResultDataStruct[i].DeviceDescription =
                     GetDeviceInfoDB.GetDeviceDescription(RawDeviceStructure[i].InventoryNumber);
                 TestResultDataStruct[i].DeviceManufacturer =
                     GetDeviceInfoDB.GetDeviceManufacturer(RawDeviceStructure[i].InventoryNumber);
-                    */
-
+                   
                 TestResultDataStruct[i].PowerReqPlusFiveVoltage =
                     Test2ConstField(RawDeviceStructure[i].PowerReqPlusFiveVoltage,
                         ConstDeviceStructure[i].PowerReqPlusFiveVoltage);

@@ -19,7 +19,7 @@ namespace InfSysDCAA.Core.Validation
             //{"field_db_password", @"^((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15})$"}, real
             {"field_db_password", @"^[a-zA-Z][a-zA-Z0-9-_]{3,8}$"},    //test
 
-            {"field_system_login", @"^[a-zA-Z][a-zA-Z0-9-_]{10}$"},
+            {"field_system_login", @"^[a-zA-Z][a-zA-Z0-9-_]{1,10}$"},
             {"field_system_password", @"^[a-zA-Z][a-zA-Z0-9-_]{8,15}$"},
 
             {"field_nameDevice",@"^[a-zA-Z0-9-_ ]{5,15}$"},

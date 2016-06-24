@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using InfSysDCAA.Core.Config;
+using InfSysDCAA.Core.DataBase;
 using InfSysDCAA.Core.Processing.Files;
 using InfSysDCAA.Core.Processing.Devices;
 using InfSysDCAA.Core.Processing.Direct_dimension;
@@ -38,6 +40,8 @@ namespace InfSysDCAA.Core.Processing.Data
                 DirectDimension processingDimension = new DirectDimension(SourceProcessing.RawStructDevice);
                 Testing initTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
                 initTest.StartTest();
+                DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+                DBC.InsertDataDevice(initTest.TestResultDataStruct);
                 Reporting report = new Reporting(initTest.TestResultDataStruct);
             }
             catch (Exception e)

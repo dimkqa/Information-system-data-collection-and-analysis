@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using InfSysDCAA.Core.Config;
+using InfSysDCAA.Core.DataBase;
 
 namespace InfSysDCAA.Core.Processing.Devices
 {
@@ -20,10 +22,8 @@ namespace InfSysDCAA.Core.Processing.Devices
         /// <returns></returns>
         public static string GetDeviceName(string InventoryId )
         {
-            int id = Convert.ToInt32(InventoryId);
-            string nameDevice = "";
-            //TODO запрос к БД, результат запроса - имя устройства, определённое по инвентарному номеру
-            return nameDevice;
+            DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+            return DBC.getGetDeviceData("name", InventoryId);
         }
 
         /// <summary>
@@ -33,10 +33,8 @@ namespace InfSysDCAA.Core.Processing.Devices
         /// <returns></returns>
         public static string GetDeviceDescription(string InventoryId)
         {
-            int id = Convert.ToInt32(InventoryId);
-            string descriptionDevice = "";
-            //TODO запрос к БД, результат запроса - описание устройства, определённое по инвентарному номеру
-            return descriptionDevice;
+            DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+            return DBC.getGetDeviceData("description", InventoryId);
         }
 
         /// <summary>
@@ -46,10 +44,8 @@ namespace InfSysDCAA.Core.Processing.Devices
         /// <returns></returns>
         public static string GetDeviceManufacturer(string InventoryId)
         {
-            int id = Convert.ToInt32(InventoryId);
-            string manufacturerDevice = "";
-            //TODO запрос к БД, результат запроса - описание устройства, определённое по инвентарному номеру
-            return manufacturerDevice;
+            DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+            return DBC.getGetDeviceData("manufacturer", InventoryId);
         }
     }
 }

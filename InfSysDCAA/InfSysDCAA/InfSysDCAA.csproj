@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="Core\Auth\AuthClass.cs" />
     <Compile Include="Core\Auth\EncryptionData.cs" />
-    <Compile Include="Core\Auth\WriteDataUserInfoMain.cs">
+    <Compile Include="Core\Auth\WriteDataMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Core\Config\GetConnectionString.cs" />

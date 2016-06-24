@@ -76,9 +76,9 @@ namespace InfSysDCAA.Forms.Auth
             }
         }
 
-        public List<string> GetUserInfoForMain()
+        public Tuple<bool, List<string>> GetUserInfoForMain()
         {
-            return userData;
+            return Tuple.Create(true, userData);
         }
 
 

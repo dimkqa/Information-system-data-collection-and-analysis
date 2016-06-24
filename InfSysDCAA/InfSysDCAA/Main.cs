@@ -30,7 +30,15 @@ namespace InfSysDCAA
         private const int MaxHeight   = 768;
         protected bool authUser = false;
 
-        private string Conn;
+        /// <summary>
+        /// Соединение
+        /// </summary>
+        private string _connection;
+
+        /// <summary>
+        /// Форма авторизации
+        /// </summary>
+        private Auth _formAuth;
 
         public Main()
         {
@@ -52,7 +60,8 @@ namespace InfSysDCAA
 
             CollectSystemInfo.GetSystemInformation();
             TCDB();
-            AuthUser();
+            if(AuthUser())
+                WriteUserData(_formAuth.GetUserInfoForMain());
         }
 
         /// <summary>
@@ -73,7 +82,7 @@ namespace InfSysDCAA
             }
             else
             {
-                Conn = GetConnectionString.getStringConnectionData();
+                _connection = GetConnectionString.getStringConnectionData();
             }
         }
 
@@ -82,7 +91,7 @@ namespace InfSysDCAA
         /// </summary>
         private void TCDB()
         {
-        DataBaseConnect DBC = new DataBaseConnect(Conn);
+        DataBaseConnect DBC = new DataBaseConnect(_connection);
             if (!DBC.TestConnection())
             {
                 MessageBox.Show("Соединение с базой данных невозможно. Вход только по дежерному паролю",
@@ -194,14 +203,12 @@ namespace InfSysDCAA
         /// <summary>
         /// Открывает форму авторизации
         /// </summary>
-        private void AuthUser()
+        private bool AuthUser()
         {
-            Auth formAuth = new Auth(getFormControls());
-            formAuth.ShowDialog();
-            formAuth.TopLevel = true;
-            formAuth.TopMost = true;
-            WriteUserData(formAuth.GetUserInfoForMain());
-
+            _formAuth = new Auth(getFormControls());
+            _formAuth.ShowDialog();
+            _formAuth.Close();
+            return _formAuth.GetUserInfoForMain().Item1;
             //FormChecker.ControlOpenedForm(typeof(Auth), this, getFormControls());
         }
 

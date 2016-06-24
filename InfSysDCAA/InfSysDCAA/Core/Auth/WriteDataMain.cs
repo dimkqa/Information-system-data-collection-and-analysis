@@ -26,11 +26,11 @@ namespace InfSysDCAA
 {
     public partial class Main 
     {
-        public void WriteUserData(List<string> userInfo)
+        public void WriteUserData(Tuple<bool, List<string>> userInfo)
         {
-            label_firstname_info.Text = userInfo[0];
-            label_secondname_info.Text = userInfo[1];
-            label_status_info.Text = userInfo[2];
+            label_firstname_info.Text = userInfo.Item2[0];
+            label_secondname_info.Text = userInfo.Item2[1];
+            label_status_info.Text = userInfo.Item2[2];
         }
 
         public void ClearUserData()
