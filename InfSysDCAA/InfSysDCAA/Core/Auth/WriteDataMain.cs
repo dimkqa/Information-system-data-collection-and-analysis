@@ -26,6 +26,10 @@ namespace InfSysDCAA
 {
     public partial class Main 
     {
+        /// <summary>
+        /// Вывод данных о пользователе после логина
+        /// </summary>
+        /// <param name="userInfo"></param>
         public void WriteUserData(Tuple<bool, List<string>> userInfo)
         {
             label_firstname_info.Text = userInfo.Item2[0];
@@ -33,6 +37,9 @@ namespace InfSysDCAA
             label_status_info.Text = userInfo.Item2[2];
         }
 
+        /// <summary>
+        /// Затирание данных о пользователе после логаута
+        /// </summary>
         public void ClearUserData()
         {
             label_firstname_info.Text = "";

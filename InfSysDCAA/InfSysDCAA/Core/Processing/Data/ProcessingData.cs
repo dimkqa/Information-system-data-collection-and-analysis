@@ -40,8 +40,8 @@ namespace InfSysDCAA.Core.Processing.Data
                 DirectDimension processingDimension = new DirectDimension(SourceProcessing.RawStructDevice);
                 Testing initTest = new Testing(SourceProcessing.RawStructDevice, infoDev.XmlDeviceExport);
                 initTest.StartTest();
-                DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
-                DBC.InsertDataDevice(initTest.TestResultDataStruct);
+                //DataBaseConnect DBC = new DataBaseConnect(GetConnectionString.getStringConnectionData());
+                //DBC.InsertDataDevice(initTest.TestResultDataStruct);
                 Reporting report = new Reporting(initTest.TestResultDataStruct);
             }
             catch (Exception e)
